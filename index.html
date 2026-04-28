@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IngredientIQ — Know What's In Everything</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════════ */
+:root {
+  /* Personal Care theme */
+  --accent:      #8B2257;
+  --accent2:     #B03070;
+  --accent-lt:   #F4D6E5;
+  --header-bg:   #C9A08A;
+  --card:        #F0D8C8;
+  --card2:       #EAD0BE;
+  --ink:         #1C0E18;
+  --body:        #4A2E3A;
+  --muted:       #8A6070;
+  --light:       #B89AAA;
+
+  --safe-bg:#E8F5EE;--safe-fg:#1B5E35;--safe-border:#A8D5B5;
+  --caution-bg:#FDF3E3;--caution-fg:#7A4A00;--caution-border:#F0C87A;
+  --flag-bg:#F9E8EE;--flag-fg:#8B1A3A;--flag-border:#E8A0B8;
+
+  --r-sm:12px;--r-md:18px;--r-lg:26px;--r-xl:36px;
+  --shadow-sm:0 2px 12px rgba(28,14,24,.10);
+  --shadow-md:0 8px 30px rgba(28,14,24,.14);
+  --shadow-lg:0 20px 60px rgba(28,14,24,.18);
+  --t:.22s ease;
+}
+
+body.theme-household {
+  --accent:#1A4F72;--accent2:#246A9A;--accent-lt:#D8EAF5;
+  --header-bg:#7A96A8;--card:#D8EAF5;--card2:#C8DDE8;
+  --ink:#0A1E2A;--body:#2A4050;--muted:#6A8898;--light:#A0B8C8;
+}
+body.theme-outdoor {
+  --accent:#2A5C33;--accent2:#38804A;--accent-lt:#D8EAD8;
+  --header-bg:#8FA888;--card:#D8EAD8;--card2:#C8DEC8;
+  --ink:#0E1E12;--body:#2A4030;--muted:#6A8870;--light:#A0B8A0;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:#1C1410;
+  color:var(--ink);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ══════════════════════════════════════
+   HEADER
+══════════════════════════════════════ */
+header{
+  padding:0 64px;
+  min-height:68px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  position:sticky;top:0;z-index:100;
+  background:rgba(28,20,16,.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  transition:background .4s ease,border-color .4s ease,box-shadow .4s ease;
+}
+body.theme-personal header,
+body.theme-household header,
+body.theme-outdoor header {
+  background:var(--header-bg);
+  border-bottom:none;
+  box-shadow:0 2px 16px rgba(0,0,0,.14);
+}
+.logo-wrap{display:flex;align-items:center;gap:11px;cursor:pointer;padding:12px 0;}
+.logo-icon{
+  width:38px;height:38px;border-radius:9px;
+  background:var(--accent);
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+  transition:background .4s;
+}
+/* On home screen the logo icon uses a neutral color */
+body:not(.theme-personal):not(.theme-household):not(.theme-outdoor) .logo-icon{
+  background:rgba(255,255,255,.18);
+}
+.logo-text{
+  font-family:'Playfair Display',serif;
+  font-size:24px;font-weight:900;
+  letter-spacing:-.01em;
+}
+/* Home screen: white logo text */
+body:not(.theme-personal):not(.theme-household):not(.theme-outdoor) .logo-text{color:#fff;}
+/* Analyzer screen: dark logo text */
+body.theme-personal .logo-text,
+body.theme-household .logo-text,
+body.theme-outdoor .logo-text { color:var(--ink); }
+
+.logo-text span{opacity:.75;}
+.header-right{display:flex;align-items:center;gap:10px;}
+
+.category-pill{
+  display:none;align-items:center;gap:7px;
+  background:rgba(28,14,24,.12);
+  border:1px solid rgba(28,14,24,.20);
+  border-radius:30px;padding:6px 15px;
+  font-size:13px;font-weight:600;
+  color:var(--ink);
+}
+.category-pill.visible{display:flex;}
+.cat-pill-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);transition:background .4s;}
+
+.btn-home{
+  display:none;
+  background:rgba(28,14,24,.10);
+  border:1px solid rgba(28,14,24,.20);
+  border-radius:30px;padding:6px 17px;
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:600;
+  color:var(--ink);cursor:pointer;transition:background var(--t);
+}
+.btn-home.visible{display:block;}
+.btn-home:hover{background:rgba(28,14,24,.18);}
+
+/* ══════════════════════════════════════
+   HOME SCREEN — dark
+══════════════════════════════════════ */
+#homeScreen{
+  background:#1C1410;
+  min-height:calc(100vh - 68px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:60px 64px 80px;
+  position:relative;z-index:5;
+}
+#homeScreen::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 0%,rgba(255,220,180,.07) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 60% at 100% 100%,rgba(100,30,60,.08) 0%,transparent 60%);
+}
+.home-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:.30em;text-transform:uppercase;
+  color:#C9845A;margin-bottom:20px;text-align:center;
+  position:relative;z-index:1;
+  animation:fadeUp .6s ease both;
+}
+.home-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(52px,7vw,96px);font-weight:900;line-height:1.0;
+  text-align:center;color:#fff;letter-spacing:-.03em;
+  margin-bottom:24px;position:relative;z-index:1;
+  animation:fadeUp .6s .08s ease both;
+}
+.home-title em{font-style:italic;color:#C9845A;}
+.home-sub{
+  font-size:18px;font-weight:400;color:rgba(255,255,255,.55);
+  text-align:center;max-width:520px;line-height:1.75;
+  margin-bottom:60px;position:relative;z-index:1;
+  animation:fadeUp .6s .16s ease both;
+}
+.categories-label{
+  font-size:14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:#C9845A;margin-bottom:24px;text-align:center;
+  position:relative;z-index:1;
+  opacity:1;
+}
+.categories-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  width:100%;max-width:920px;
+  position:relative;z-index:1;
+  animation:fadeUp .6s .28s ease both;
+}
+.cat-card{
+  border-radius:var(--r-xl);overflow:hidden;cursor:pointer;
+  border:1px solid rgba(255,255,255,.10);
+  transition:transform .28s ease,box-shadow .28s ease;
+}
+.cat-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,.35);}
+.cat-card-personal{background:linear-gradient(155deg,#C9A08A,#8A5848);}
+.cat-card-household{background:linear-gradient(155deg,#7A96A8,#3A5870);}
+.cat-card-outdoor {background:linear-gradient(155deg,#8FA888,#3A6048);}
+.cat-card-inner{padding:36px 28px 28px;}
+.cat-icon{font-size:40px;margin-bottom:16px;display:block;}
+.cat-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:800;color:#fff;margin-bottom:9px;line-height:1.2;}
+.cat-desc{font-size:14.5px;color:rgba(255,255,255,.80);line-height:1.68;margin-bottom:20px;}
+.cat-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px;}
+.cat-tag{font-size:11.5px;font-weight:600;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.18);color:rgba(255,255,255,.90);border:1px solid rgba(255,255,255,.22);}
+.cat-cta{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid rgba(255,255,255,.18);}
+.cat-cta-text{font-size:14px;font-weight:700;color:#fff;}
+.cat-cta-arrow{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.20);display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;transition:transform .2s,background .2s;}
+.cat-card:hover .cat-cta-arrow{transform:translateX(4px);background:rgba(255,255,255,.32);}
+
+/* ══════════════════════════════════════
+   ANALYZER SCREEN
+══════════════════════════════════════ */
+#analyzerScreen{display:none;background:#ffffff;}
+#analyzerScreen.visible{display:block;}
+
+.analyzer-banner{padding:30px 64px;transition:background .4s ease;}
+.analyzer-banner-inner{max-width:1080px;margin:0 auto;}
+.analyzer-banner-eyebrow{font-size:14px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--ink);margin-bottom:6px;}
+.analyzer-banner-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:800;color:var(--ink);}
+
+main{max-width:1080px;margin:0 auto;padding:44px 64px 60px;}
+
+/* Input Card */
+.input-card{
+  background:var(--card);border-radius:var(--r-xl);padding:40px;
+  box-shadow:var(--shadow-lg);margin-bottom:28px;
+  border:1.5px solid rgba(28,14,24,.08);
+  transition:background .5s ease;
+}
+.input-label{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:block;transition:color .5s;}
+.input-hint{font-size:14px;color:var(--body);margin-bottom:16px;line-height:1.65;}
+
+.tabs{display:flex;gap:4px;background:var(--card2);border-radius:var(--r-md);padding:5px;margin-bottom:28px;width:fit-content;border:1px solid rgba(28,14,24,.10);transition:background .5s;}
+.tab-btn{padding:11px 26px;border-radius:13px;font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;border:none;background:none;cursor:pointer;color:var(--muted);display:flex;align-items:center;gap:8px;transition:all var(--t);}
+.tab-btn.active{background:var(--accent);color:#fff;box-shadow:0 3px 14px rgba(0,0,0,.18);transition:background .5s ease;}
+.tab-btn:hover:not(.active){color:var(--body);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+textarea#textInput{width:100%;min-height:130px;resize:vertical;border:1.5px solid rgba(28,14,24,.14);border-radius:var(--r-md);padding:16px 18px;font-family:'Inter',sans-serif;font-size:14px;color:var(--ink);background:var(--card2);line-height:1.7;transition:border-color var(--t),background .5s;}
+textarea#textInput:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,34,87,.10);}
+textarea#textInput::placeholder{color:var(--light);}
+
+.drop-zone{border:2px dashed rgba(28,14,24,.18);border-radius:var(--r-lg);padding:50px 24px;text-align:center;cursor:pointer;background:var(--card2);position:relative;transition:all var(--t);}
+.drop-zone:hover,.drop-zone.dragover{border-color:var(--accent);background:var(--accent-lt);}
+.drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.drop-icon{font-size:40px;margin-bottom:12px;}
+.drop-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.drop-subtitle{font-size:13px;color:var(--muted);}
+.drop-formats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px;}
+.format-tag{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;background:rgba(28,14,24,.07);color:var(--body);}
+.image-preview-wrap{display:none;margin-top:20px;}
+.image-preview-wrap.visible{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;}
+.image-preview{width:150px;height:150px;object-fit:cover;border-radius:var(--r-md);border:2px solid rgba(28,14,24,.10);}
+.img-info{flex:1;min-width:120px;}
+.img-filename{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.img-size{font-size:12px;color:var(--muted);}
+.btn-remove-img{margin-top:10px;font-size:12px;font-weight:600;color:var(--flag-fg);background:var(--flag-bg);border:1px solid var(--flag-border);border-radius:8px;padding:5px 12px;cursor:pointer;font-family:'Inter',sans-serif;}
+
+.camera-frame{width:100%;aspect-ratio:4/3;max-height:340px;background:#0A0A0A;border-radius:var(--r-lg);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;border:2px solid rgba(28,14,24,.15);}
+#videoEl{width:100%;height:100%;object-fit:cover;display:none;}
+#canvasEl{display:none;}
+.camera-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;}
+.camera-overlay.hidden{display:none;}
+.camera-overlay .cam-icon{font-size:40px;opacity:.30;}
+.camera-overlay p{font-size:13px;color:rgba(255,255,255,.35);max-width:200px;line-height:1.5;}
+.viewfinder{position:absolute;inset:10%;border:2px solid rgba(255,255,255,.35);border-radius:8px;pointer-events:none;display:none;}
+.viewfinder.visible{display:block;}
+.vf-corner{position:absolute;width:18px;height:18px;}
+.vf-corner.tl{top:-2px;left:-2px;border-top:3px solid #fff;border-left:3px solid #fff;border-radius:4px 0 0 0;}
+.vf-corner.tr{top:-2px;right:-2px;border-top:3px solid #fff;border-right:3px solid #fff;border-radius:0 4px 0 0;}
+.vf-corner.bl{bottom:-2px;left:-2px;border-bottom:3px solid #fff;border-left:3px solid #fff;border-radius:0 0 0 4px;}
+.vf-corner.br{bottom:-2px;right:-2px;border-bottom:3px solid #fff;border-right:3px solid #fff;border-radius:0 0 4px 0;}
+.scan-controls{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;align-items:center;}
+#capturePreview{width:130px;height:98px;object-fit:cover;border-radius:var(--r-sm);border:2px solid rgba(28,14,24,.12);display:none;}
+#capturePreview.visible{display:block;}
+
+.actions-row{display:flex;gap:10px;margin-top:22px;align-items:center;flex-wrap:wrap;}
+.btn-primary{background:var(--accent);color:#fff;border:none;border-radius:40px;padding:15px 36px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;cursor:pointer;display:flex;align-items:center;gap:9px;box-shadow:0 6px 20px rgba(0,0,0,.18);transition:background .5s ease,transform var(--t),box-shadow var(--t);}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 8px 26px rgba(0,0,0,.24);}
+.btn-primary:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none;}
+.btn-secondary{background:var(--card2);border:1.5px solid rgba(28,14,24,.14);border-radius:40px;padding:14px 26px;font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;color:var(--body);cursor:pointer;transition:all var(--t);}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
+.btn-ghost{background:none;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--light);cursor:pointer;transition:color var(--t);}
+.btn-ghost:hover{color:var(--accent);}
+.btn-cam{background:var(--card2);border:1.5px solid rgba(28,14,24,.14);border-radius:var(--r-sm);padding:11px 20px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--body);cursor:pointer;display:flex;align-items:center;gap:7px;transition:all var(--t);}
+.btn-cam:hover{border-color:var(--accent);color:var(--accent);}
+.btn-cam-capture{background:var(--accent);color:#fff;border:none;border-radius:50%;width:54px;height:54px;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.18);transition:all var(--t);}
+.btn-cam-capture:hover{transform:scale(1.08);}
+.btn-cam-capture:disabled{opacity:.40;cursor:not-allowed;transform:none;}
+
+/* Loading */
+#loadingSection{display:none;text-align:center;padding:80px 20px;}
+#loadingSection.visible{display:block;}
+.loading-orb{width:68px;height:68px;margin:0 auto 28px;border-radius:50%;border:3px solid rgba(28,14,24,.12);border-top-color:var(--accent);animation:spin .9s linear infinite;transition:border-top-color .5s;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loading-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--ink);margin-bottom:8px;}
+.loading-sub{font-size:14px;color:var(--muted);}
+.loading-steps{display:flex;gap:22px;justify-content:center;margin-top:28px;flex-wrap:wrap;}
+.load-step{font-size:12.5px;font-weight:600;color:var(--light);display:flex;align-items:center;gap:7px;transition:color .4s;}
+.load-step.active{color:var(--accent);}
+.step-dot{width:7px;height:7px;border-radius:50%;background:rgba(28,14,24,.12);transition:background .4s;}
+.load-step.active .step-dot{background:var(--accent);animation:blink 1.2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Error */
+#errorSection{display:none;margin-bottom:22px;}
+#errorSection.visible{display:block;}
+.error-box{background:var(--flag-bg);border:1.5px solid var(--flag-border);border-radius:var(--r-md);padding:18px 22px;}
+.error-title{font-size:14px;font-weight:700;color:var(--flag-fg);margin-bottom:4px;}
+.error-msg{font-size:13px;color:var(--body);line-height:1.65;}
+
+/* Results */
+#resultsSection{display:none;}
+#resultsSection.visible{display:block;}
+.product-banner{background:var(--card);border:1.5px solid rgba(28,14,24,.10);border-radius:var(--r-xl);padding:24px 30px;margin-bottom:22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:var(--shadow-md);transition:background .5s;}
+.product-icon{font-size:32px;}
+.product-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;color:var(--ink);}
+.product-name-sub{font-size:12px;font-weight:500;color:var(--muted);margin-top:3px;}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin-bottom:22px;}
+.stat-card{background:var(--card);border-radius:var(--r-md);padding:22px 16px;text-align:center;box-shadow:var(--shadow-sm);border:1.5px solid rgba(28,14,24,.08);transition:transform var(--t),background .5s;}
+.stat-card:hover{transform:translateY(-3px);}
+.stat-num{font-family:'Playfair Display',serif;font-size:44px;font-weight:900;line-height:1;margin-bottom:5px;color:var(--accent);transition:color .5s;}
+.stat-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.stat-safe .stat-num{color:var(--safe-fg);}
+.stat-caution .stat-num{color:var(--caution-fg);}
+.stat-flag .stat-num{color:var(--flag-fg);}
+.summary-notes{background:var(--card);border:1.5px solid rgba(28,14,24,.08);border-radius:var(--r-md);padding:20px 26px;margin-bottom:20px;display:none;grid-template-columns:1fr 1fr;gap:18px;box-shadow:var(--shadow-sm);transition:background .5s;}
+.summary-notes.has-content{display:grid;}
+@media(max-width:600px){.summary-notes{grid-template-columns:1fr;}}
+.note-label{font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;transition:color .5s;}
+.note-text{font-size:15px;color:var(--body);line-height:1.72;}
+.concerns-banner{border-radius:var(--r-md);padding:14px 20px;margin-bottom:20px;display:flex;align-items:flex-start;gap:12px;border:1.5px solid;}
+.safe-banner{background:var(--safe-bg);border-color:var(--safe-border);}
+.caution-banner{background:var(--caution-bg);border-color:var(--caution-border);}
+.flag-banner{background:var(--flag-bg);border-color:var(--flag-border);}
+.concerns-banner-icon{font-size:18px;flex-shrink:0;margin-top:2px;}
+.concerns-banner-title{font-size:14px;font-weight:700;margin-bottom:5px;}
+.safe-banner .concerns-banner-title{color:var(--safe-fg);}
+.caution-banner .concerns-banner-title{color:var(--caution-fg);}
+.flag-banner .concerns-banner-title{color:var(--flag-fg);}
+.concerns-list-inline{display:flex;flex-wrap:wrap;gap:5px;}
+.concern-chip{font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;background:rgba(28,14,24,.07);color:var(--body);}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:20px;}
+.filter-label-txt{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--light);margin-right:4px;}
+.filter-pill{border:1.5px solid rgba(28,14,24,.12);border-radius:40px;padding:9px 20px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;background:var(--card);color:var(--muted);display:flex;align-items:center;gap:6px;transition:all .18s;}
+.filter-pill .pill-count{background:var(--card2);border-radius:20px;padding:1px 7px;font-size:11px;font-weight:700;color:var(--muted);}
+.filter-pill:hover{border-color:var(--accent);color:var(--accent);}
+.filter-pill.active{background:var(--accent);color:#fff;border-color:transparent;box-shadow:0 3px 12px rgba(0,0,0,.14);}
+.filter-pill.active .pill-count{background:rgba(255,255,255,.22);color:#fff;}
+.filter-pill.f-safe.active{background:var(--safe-fg);}
+.filter-pill.f-caution.active{background:var(--caution-fg);}
+.filter-pill.f-flag.active{background:var(--flag-fg);}
+#ingredientsGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;}
+.ing-card{background:var(--card);border:1.5px solid rgba(28,14,24,.08);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform var(--t),box-shadow var(--t),background .5s;animation:cardIn .3s ease both;}
+.ing-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.card-strip{height:5px;}
+.strip-safe{background:linear-gradient(90deg,#34C97A,#A8D5B5);}
+.strip-caution{background:linear-gradient(90deg,#E8A030,#F0C87A);}
+.strip-flag{background:linear-gradient(90deg,#C93050,#E8A0B0);}
+.card-head{padding:18px 20px 12px;display:flex;align-items:flex-start;gap:12px;}
+.safety-bubble{flex-shrink:0;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;margin-top:1px;}
+.bubble-safe{background:var(--safe-bg);color:var(--safe-fg);}
+.bubble-caution{background:var(--caution-bg);color:var(--caution-fg);}
+.bubble-flag{background:var(--flag-bg);color:var(--flag-fg);}
+.card-head-text{flex:1;min-width:0;}
+.card-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:3px;}
+.card-inci{font-size:12px;color:var(--muted);font-style:italic;line-height:1.3;}
+.card-badge{flex-shrink:0;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-top:2px;white-space:nowrap;}
+.badge-safe{background:var(--safe-bg);color:var(--safe-fg);border:1px solid var(--safe-border);}
+.badge-caution{background:var(--caution-bg);color:var(--caution-fg);border:1px solid var(--caution-border);}
+.badge-flag{background:var(--flag-bg);color:var(--flag-fg);border:1px solid var(--flag-border);}
+.card-body{padding:0 20px 16px;}
+.card-desc{font-size:14px;color:var(--body);line-height:1.75;margin-bottom:14px;}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.cat-tag-sm{font-size:11px;font-weight:600;padding:3px 10px;border-radius:8px;background:var(--accent-lt);color:var(--accent);border:1px solid rgba(28,14,24,.10);transition:background .5s,color .5s;}
+.card-duo{display:flex;gap:16px;flex-wrap:wrap;}
+.card-list-block{flex:1;min-width:90px;}
+.card-list-title{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--light);margin-bottom:7px;}
+.card-list-block ul{list-style:none;}
+.card-list-block ul li{font-size:12.5px;color:var(--body);padding:2px 0 2px 14px;position:relative;line-height:1.55;}
+.card-list-block ul li::before{content:'•';position:absolute;left:0;font-size:13px;line-height:1.3;}
+.benefits-block ul li::before{color:var(--safe-fg);}
+.concerns-block ul li::before{color:var(--flag-fg);}
+.card-list-block ul li.empty{color:var(--light);font-style:italic;}
+.card-foot{padding:10px 20px 14px;border-top:1.5px solid rgba(28,14,24,.07);display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+.foot-item{font-size:11.5px;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:5px;}
+.foot-item strong{font-weight:700;color:var(--body);}
+.comed-meter{display:flex;gap:3px;}
+.c-pip{width:8px;height:8px;border-radius:2px;background:rgba(28,14,24,.10);}
+.c-pip.lit{background:var(--accent);transition:background .5s;}
+.banned-wrap{padding:8px 20px 12px;border-top:1.5px solid rgba(28,14,24,.07);display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.banned-label{font-size:11px;font-weight:700;color:var(--muted);}
+.banned-chip{font-size:11px;font-weight:600;padding:2px 9px;border-radius:6px;background:var(--flag-bg);color:var(--flag-fg);border:1px solid var(--flag-border);}
+.empty-filter{grid-column:1/-1;text-align:center;padding:50px;color:var(--light);}
+.empty-filter p{font-size:14px;margin-top:10px;}
+
+/* Footer */
+footer{
+  background:var(--header-bg);
+  padding:26px 64px;
+  display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:space-between;
+  border-top:1px solid rgba(28,14,24,.10);
+  transition:background .4s ease;
+}
+.footer-note{font-size:12.5px;color:var(--body);line-height:1.65;max-width:540px;}
+.footer-note strong{font-weight:700;color:var(--ink);}
+.footer-badge{font-size:12px;font-weight:700;color:#fff;display:flex;align-items:center;gap:7px;background:var(--accent);padding:7px 16px;border-radius:20px;transition:background .4s;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Tablet ── */
+@media(max-width:900px){
+  .categories-grid{grid-template-columns:1fr;}
+  .cat-card-inner{padding:28px 22px 22px;}
+  main{padding:36px 32px 80px;}
+}
+
+/* ── Mobile ── */
+@media(max-width:768px){
+  /* Header */
+  header{padding:0 16px;min-height:60px;}
+  .logo-text{font-size:20px;}
+  .logo-icon{width:34px;height:34px;font-size:15px;}
+  .category-pill{font-size:12px;padding:5px 12px;}
+  .btn-home{font-size:12px;padding:5px 13px;}
+
+  /* Home screen */
+  #homeScreen{padding:36px 16px 52px;justify-content:flex-start;padding-top:48px;}
+  .home-title{font-size:38px;letter-spacing:-.02em;}
+  .home-sub{font-size:15px;margin-bottom:36px;padding:0 4px;}
+  .categories-label{font-size:12px;margin-bottom:18px;}
+  .categories-grid{gap:14px;}
+  .cat-card-inner{padding:24px 20px 20px;}
+  .cat-icon{font-size:32px;margin-bottom:12px;}
+  .cat-title{font-size:20px;}
+  .cat-desc{font-size:13px;margin-bottom:14px;}
+  .cat-tags{gap:5px;margin-bottom:18px;}
+  .cat-tag{font-size:11px;padding:3px 10px;}
+  .cat-cta-text{font-size:13px;}
+
+  /* Analyzer banner */
+  .analyzer-banner{padding:20px 16px;}
+  .analyzer-banner-eyebrow{font-size:12px;}
+  .analyzer-banner-title{font-size:24px;}
+
+  /* Main & input card */
+  main{padding:20px 12px 60px;}
+  .input-card{padding:20px 16px;border-radius:22px;}
+
+  /* Tabs — full width, equal buttons */
+  .tabs{width:100%;border-radius:12px;}
+  .tab-btn{flex:1;justify-content:center;padding:10px 4px;font-size:12.5px;gap:5px;}
+
+  /* Input */
+  .input-label{font-size:12px;}
+  .input-hint{font-size:14px;}
+  textarea#textInput{font-size:14px;min-height:110px;}
+
+  /* Buttons */
+  .btn-primary{padding:14px 24px;font-size:14px;border-radius:32px;}
+  .btn-secondary{padding:13px 20px;font-size:13px;}
+  .actions-row{gap:8px;}
+
+  /* Drop zone */
+  .drop-zone{padding:36px 16px;}
+  .drop-title{font-size:17px;}
+  .drop-subtitle{font-size:13px;}
+
+  /* Scan controls */
+  .scan-controls{gap:10px;}
+  .btn-cam{padding:9px 14px;font-size:12.5px;}
+
+  /* Results */
+  .stats-row{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .stat-num{font-size:38px;}
+  .stat-label{font-size:10.5px;}
+  .product-banner{padding:18px 16px;border-radius:20px;}
+  .product-name{font-size:18px;}
+
+  /* Summary notes */
+  .summary-notes{grid-template-columns:1fr;padding:16px 18px;}
+
+  /* Filter bar — horizontal scroll */
+  .filter-bar{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;}
+  .filter-bar::-webkit-scrollbar{display:none;}
+  .filter-pill{white-space:nowrap;flex-shrink:0;padding:8px 16px;font-size:13px;}
+
+  /* Ingredient cards */
+  #ingredientsGrid{grid-template-columns:1fr;gap:14px;}
+  .card-head{padding:14px 16px 10px;}
+  .card-body{padding:0 16px 14px;}
+  .card-name{font-size:15px;}
+  .card-desc{font-size:13.5px;}
+  .card-foot{padding:10px 16px 14px;gap:12px;}
+  .foot-item{font-size:11px;}
+
+  /* Concerns banner */
+  .concerns-banner{padding:12px 16px;}
+  .concerns-banner-title{font-size:14px;}
+
+  /* Footer */
+  footer{padding:20px 16px;flex-direction:column;align-items:flex-start;gap:12px;}
+  .footer-note{font-size:12px;}
+}
+
+/* ── Small phones (375px and below) ── */
+@media(max-width:400px){
+  .home-title{font-size:32px;}
+  .tab-btn{font-size:11.5px;padding:9px 2px;}
+  .btn-primary{font-size:13.5px;padding:13px 18px;}
+  .stat-num{font-size:34px;}
+}
+</style>
+</head>
+<body>
+
+<header id="mainHeader">
+  <div class="logo-wrap" onclick="goHome()">
+    <div class="logo-icon">🔬</div>
+    <div class="logo-text">Ingredient<span>IQ</span></div>
+  </div>
+  <div class="header-right">
+    <div class="category-pill" id="categoryPill"><span class="cat-pill-dot"></span><span id="categoryPillText">Personal Care</span></div>
+    <button class="btn-home" id="btnHome" onclick="goHome()">← All Categories</button>
+  </div>
+</header>
+
+<!-- HOME SCREEN -->
+<div id="homeScreen">
+  <h1 class="home-title">Know what's in<br><em>everything.</em></h1>
+  <p class="home-sub">From your moisturizer to your weed killer — IngredientIQ analyzes ingredients in any product and flags what you need to know. Powered by Claude AI.</p>
+  <div class="categories-label">Choose a category to begin</div>
+  <div class="categories-grid">
+    <article class="cat-card cat-card-personal" onclick="selectCategory('personal')" role="button" tabindex="0">
+      <div class="cat-card-inner">
+        <span class="cat-icon">🌸</span>
+        <div class="cat-title">Personal Care</div>
+        <div class="cat-desc">Skincare, body wash, soaps, shampoo, deodorant, perfume & sunscreen.</div>
+        <div class="cat-tags"><span class="cat-tag">Moisturizers</span><span class="cat-tag">Shampoo</span><span class="cat-tag">Soaps</span><span class="cat-tag">Perfume</span><span class="cat-tag">Deodorant</span></div>
+        <div class="cat-cta"><span class="cat-cta-text">Analyze ingredients</span><div class="cat-cta-arrow">→</div></div>
+      </div>
+    </article>
+    <article class="cat-card cat-card-household" onclick="selectCategory('household')" role="button" tabindex="0">
+      <div class="cat-card-inner">
+        <span class="cat-icon">🏠</span>
+        <div class="cat-title">Household</div>
+        <div class="cat-desc">Laundry detergent, dish soap, fabric softener, all-purpose cleaners & air fresheners.</div>
+        <div class="cat-tags"><span class="cat-tag">Detergents</span><span class="cat-tag">Dish Soap</span><span class="cat-tag">Cleaners</span><span class="cat-tag">Fabric Softener</span></div>
+        <div class="cat-cta"><span class="cat-cta-text">Analyze ingredients</span><div class="cat-cta-arrow">→</div></div>
+      </div>
+    </article>
+    <article class="cat-card cat-card-outdoor" onclick="selectCategory('outdoor')" role="button" tabindex="0">
+      <div class="cat-card-inner">
+        <span class="cat-icon">🌿</span>
+        <div class="cat-title">Outdoor & Garden</div>
+        <div class="cat-desc">Bug spray, insect repellent, weed killers, pesticides & gardening chemicals.</div>
+        <div class="cat-tags"><span class="cat-tag">Bug Spray</span><span class="cat-tag">Weed Killers</span><span class="cat-tag">Pesticides</span><span class="cat-tag">Repellents</span></div>
+        <div class="cat-cta"><span class="cat-cta-text">Analyze ingredients</span><div class="cat-cta-arrow">→</div></div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<!-- ANALYZER SCREEN -->
+<div id="analyzerScreen">
+  <div class="analyzer-banner">
+    <div class="analyzer-banner-inner">
+      <div class="analyzer-banner-eyebrow" id="analyzerEyebrow">Personal Care — Skincare, Soaps & Beauty</div>
+      <div class="analyzer-banner-title">Analyze Ingredients</div>
+    </div>
+  </div>
+  <main>
+    <div class="input-card" id="inputCard">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('text',this)">✍️ Type</button>
+        <button class="tab-btn" onclick="switchTab('upload',this)">📷 Upload Photo</button>
+        <button class="tab-btn" onclick="switchTab('scan',this)">📡 Live Scan</button>
+      </div>
+      <div class="tab-panel active" id="panel-text">
+        <label class="input-label" for="textInput">Product Name or Ingredient List</label>
+        <p class="input-hint" id="textHint">Type a product name or paste the full ingredient list from your label.</p>
+        <textarea id="textInput" placeholder="e.g.  CeraVe Moisturizing Cream&#10;— or —&#10;Water, Glycerin, Niacinamide, Retinol, Fragrance..."></textarea>
+        <div class="actions-row">
+          <button class="btn-primary" onclick="runAnalysis('text')">✦ Analyze Ingredients</button>
+          <button class="btn-secondary" onclick="loadSample()">Try a Sample</button>
+          <button class="btn-ghost" onclick="clearAll()">Clear</button>
+        </div>
+      </div>
+      <div class="tab-panel" id="panel-upload">
+        <label class="input-label">Upload Label Photo</label>
+        <p class="input-hint">Photograph the ingredients list on the back of your product and upload it here.</p>
+        <div class="drop-zone" id="dropZone">
+          <input type="file" id="fileInput" accept="image/*" onchange="handleFileSelect(event)">
+          <div class="drop-icon">📸</div>
+          <div class="drop-title">Drop your photo here</div>
+          <div class="drop-subtitle">or click to browse from your device</div>
+          <div class="drop-formats"><span class="format-tag">JPG</span><span class="format-tag">PNG</span><span class="format-tag">WEBP</span><span class="format-tag">HEIC</span></div>
+        </div>
+        <div class="image-preview-wrap" id="imgPreviewWrap">
+          <img class="image-preview" id="imgPreviewEl" src="" alt="Label preview">
+          <div class="img-info">
+            <div class="img-filename" id="imgFilename"></div>
+            <div class="img-size" id="imgFilesize"></div>
+            <button class="btn-remove-img" onclick="removeUploadedImg()">✕ Remove</button>
+          </div>
+        </div>
+        <div class="actions-row">
+          <button class="btn-primary" id="btnAnalyzeUpload" onclick="runAnalysis('upload')" disabled>✦ Analyze Label</button>
+        </div>
+      </div>
+      <div class="tab-panel" id="panel-scan">
+        <label class="input-label">Live Camera Scan</label>
+        <p class="input-hint">Point your camera at the ingredient list on a product label. When in focus, tap capture.</p>
+        <div class="camera-frame" id="cameraFrame">
+          <video id="videoEl" playsinline autoplay muted></video>
+          <canvas id="canvasEl"></canvas>
+          <div class="viewfinder" id="viewfinder">
+            <div class="vf-corner tl"></div><div class="vf-corner tr"></div>
+            <div class="vf-corner bl"></div><div class="vf-corner br"></div>
+          </div>
+          <div class="camera-overlay" id="cameraOverlay">
+            <div class="cam-icon">📷</div>
+            <p>Grant camera permission to begin scanning.</p>
+          </div>
+        </div>
+        <div class="scan-controls">
+          <button class="btn-cam" id="btnStartCam" onclick="startCamera()">📷 Start Camera</button>
+          <button class="btn-cam-capture" id="btnCapture" onclick="captureFrame()" disabled>⬤</button>
+          <button class="btn-cam" id="btnStopCam" onclick="stopCamera()" style="display:none">⏹ Stop</button>
+          <img id="capturePreview" alt="Captured frame">
+        </div>
+        <div class="actions-row">
+          <button class="btn-primary" id="btnAnalyzeScan" onclick="runAnalysis('scan')" disabled>✦ Analyze Captured Image</button>
+          <button class="btn-ghost" onclick="clearCapture()">Clear</button>
+        </div>
+      </div>
+    </div>
+    <div id="errorSection">
+      <div class="error-box">
+        <div class="error-title">⚠️ Analysis Failed</div>
+        <div class="error-msg" id="errorMsg">Something went wrong. Please try again.</div>
+      </div>
+    </div>
+    <div id="loadingSection">
+      <div class="loading-orb"></div>
+      <div class="loading-title">Analyzing Ingredients…</div>
+      <div class="loading-sub">Claude AI is identifying and evaluating every ingredient</div>
+      <div class="loading-steps">
+        <div class="load-step active" id="step1"><span class="step-dot"></span> Extracting ingredients</div>
+        <div class="load-step" id="step2"><span class="step-dot"></span> Checking safety data</div>
+        <div class="load-step" id="step3"><span class="step-dot"></span> Generating report</div>
+      </div>
+    </div>
+    <div id="resultsSection">
+      <div class="product-banner" id="productBanner" style="display:none">
+        <span class="product-icon">🧴</span>
+        <div><div class="product-name" id="productNameEl"></div><div class="product-name-sub">AI-identified product</div></div>
+        <button class="btn-secondary" style="margin-left:auto" onclick="resetToInput()">+ New Analysis</button>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:22px" id="newAnalysisRow">
+        <button class="btn-secondary" onclick="resetToInput()">+ New Analysis</button>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card stat-total"><div class="stat-num" id="statTotal">0</div><div class="stat-label">Total Found</div></div>
+        <div class="stat-card stat-safe"><div class="stat-num" id="statSafe">0</div><div class="stat-label">Safe</div></div>
+        <div class="stat-card stat-caution"><div class="stat-num" id="statCaution">0</div><div class="stat-label">Caution</div></div>
+        <div class="stat-card stat-flag"><div class="stat-num" id="statFlag">0</div><div class="stat-label">Flagged</div></div>
+      </div>
+      <div class="summary-notes" id="summaryNotes"></div>
+      <div class="concerns-banner" id="concernsBanner" style="display:none"></div>
+      <div class="filter-bar">
+        <span class="filter-label-txt">Show:</span>
+        <button class="filter-pill active" data-filter="all" onclick="setFilter('all',this)">All <span class="pill-count" id="fc-all">0</span></button>
+        <button class="filter-pill f-safe" data-filter="safe" onclick="setFilter('safe',this)">✓ Safe <span class="pill-count" id="fc-safe">0</span></button>
+        <button class="filter-pill f-caution" data-filter="caution" onclick="setFilter('caution',this)">⚠ Caution <span class="pill-count" id="fc-caution">0</span></button>
+        <button class="filter-pill f-flag" data-filter="flag" onclick="setFilter('flag',this)">🚩 Flagged <span class="pill-count" id="fc-flag">0</span></button>
+      </div>
+      <div id="ingredientsGrid"></div>
+    </div>
+  </main>
+  <footer>
+    <p class="footer-note"><strong>Educational use only.</strong> IngredientIQ provides general ingredient information based on available research. Always consult a professional for personalized advice.</p>
+    <div class="footer-badge">🔬 Powered by Claude AI</div>
+  </footer>
+</div>
+
+<script>
+let uploadedFile=null,capturedDataUrl=null,capturedMimeType=null;
+let currentStream=null,allIngredients=[],activeFilter='all',loadingStepTimer=null;
+let currentCategory='personal';
+const CFG={
+  personal:{theme:'theme-personal',label:'Personal Care',eyebrow:'Personal Care — Skincare, Soaps & Beauty',hint:'Type a product name like "CeraVe Moisturizing Cream" or paste the full ingredient list from your label.',sample:'Water, Glycerin, Niacinamide, Sodium Hyaluronate, Dimethicone, Cetyl Alcohol, Glycolic Acid, Phenoxyethanol, Retinol, Tocopherol, Fragrance, Salicylic Acid, Centella Asiatica Extract, Linalool, DMDM Hydantoin, Oxybenzone, Methylparaben'},
+  household:{theme:'theme-household',label:'Household',eyebrow:'Household — Detergents, Soaps & Cleaners',hint:'Type a product name like "Tide Original Detergent" or paste the full ingredient list from your label.',sample:'Water, Linear Alkylbenzene Sulfonate, Sodium Carbonate, Sodium Silicate, Alcohol Ethoxylate, Fragrance, Optical Brighteners, Lauryl Dimethyl Amine Oxide, Polyethylene Glycol, 1,4-Dioxane, Methylisothiazolinone, Benzalkonium Chloride'},
+  outdoor:{theme:'theme-outdoor',label:'Outdoor & Garden',eyebrow:'Outdoor & Garden — Bug Spray, Weed Killers & More',hint:'Type a product name like "Raid Ant Killer" or paste the full ingredient list from your label.',sample:'DEET (N,N-Diethyl-meta-toluamide), Ethanol, Water, Fragrance, Glyphosate, Isopropylamine Salt, Permethrin, Piperonyl Butoxide, Petroleum Distillates, Propane, Isobutane'}
+};
+function selectCategory(cat){
+  currentCategory=cat;const c=CFG[cat];
+  document.body.className=c.theme;
+  document.getElementById('categoryPillText').textContent=c.label;
+  document.getElementById('categoryPill').classList.add('visible');
+  document.getElementById('btnHome').classList.add('visible');
+  document.getElementById('analyzerEyebrow').textContent=c.eyebrow;
+  document.getElementById('textHint').textContent=c.hint;
+  document.getElementById('homeScreen').style.display='none';
+  document.getElementById('analyzerScreen').classList.add('visible');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goHome(){
+  document.body.className='';
+  document.getElementById('homeScreen').style.display='flex';
+  document.getElementById('analyzerScreen').classList.remove('visible');
+  document.getElementById('categoryPill').classList.remove('visible');
+  document.getElementById('btnHome').classList.remove('visible');
+  resetToInput();window.scrollTo({top:0,behavior:'smooth'});
+}
+function switchTab(n,b){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));document.getElementById('panel-'+n).classList.add('active');b.classList.add('active');hideError();}
+function loadSample(){document.getElementById('textInput').value=CFG[currentCategory].sample;}
+function clearAll(){document.getElementById('textInput').value='';hideError();}
+function handleFileSelect(e){const f=e.target.files[0];if(f)setUploadedFile(f);}
+const dz=document.getElementById('dropZone');
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('dragover');});
+dz.addEventListener('dragleave',()=>dz.classList.remove('dragover'));
+dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('dragover');const f=e.dataTransfer.files[0];if(f&&f.type.startsWith('image/'))setUploadedFile(f);});
+function setUploadedFile(file){
+  uploadedFile=file;const r=new FileReader();
+  r.onload=ev=>{document.getElementById('imgPreviewEl').src=ev.target.result;document.getElementById('imgPreviewWrap').classList.add('visible');document.getElementById('imgFilename').textContent=file.name;document.getElementById('imgFilesize').textContent=formatBytes(file.size);document.getElementById('btnAnalyzeUpload').disabled=false;};
+  r.readAsDataURL(file);
+}
+function removeUploadedImg(){uploadedFile=null;document.getElementById('imgPreviewWrap').classList.remove('visible');document.getElementById('imgPreviewEl').src='';document.getElementById('fileInput').value='';document.getElementById('btnAnalyzeUpload').disabled=true;}
+function formatBytes(b){if(b<1024)return b+' B';if(b<1048576)return(b/1024).toFixed(1)+' KB';return(b/1048576).toFixed(1)+' MB';}
+async function startCamera(){
+  try{const s=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}}});currentStream=s;const v=document.getElementById('videoEl');v.srcObject=s;v.style.display='block';document.getElementById('cameraOverlay').classList.add('hidden');document.getElementById('viewfinder').classList.add('visible');document.getElementById('btnCapture').disabled=false;document.getElementById('btnStartCam').style.display='none';document.getElementById('btnStopCam').style.display='flex';}
+  catch(e){showError('Camera access denied: '+e.message+'. Try the Upload tab instead.');}
+}
+function stopCamera(){if(currentStream){currentStream.getTracks().forEach(t=>t.stop());currentStream=null;}const v=document.getElementById('videoEl');v.style.display='none';v.srcObject=null;document.getElementById('cameraOverlay').classList.remove('hidden');document.getElementById('viewfinder').classList.remove('visible');document.getElementById('btnCapture').disabled=true;document.getElementById('btnStartCam').style.display='flex';document.getElementById('btnStopCam').style.display='none';}
+function captureFrame(){const v=document.getElementById('videoEl'),c=document.getElementById('canvasEl');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);const d=c.toDataURL('image/jpeg',0.9);capturedDataUrl=d;capturedMimeType='image/jpeg';const p=document.getElementById('capturePreview');p.src=d;p.classList.add('visible');document.getElementById('btnAnalyzeScan').disabled=false;}
+function clearCapture(){capturedDataUrl=null;capturedMimeType=null;const p=document.getElementById('capturePreview');p.src='';p.classList.remove('visible');document.getElementById('btnAnalyzeScan').disabled=true;}
+async function runAnalysis(mode){
+  hideError();let payload={};
+  if(mode==='text'){const t=document.getElementById('textInput').value.trim();if(!t){showError('Please enter a product name or ingredient list.');return;}payload={mode:'text',content:t,category:currentCategory};}
+  else if(mode==='upload'){if(!uploadedFile){showError('Please select an image file first.');return;}const b=await fileToBase64(uploadedFile);payload={mode:'image',content:b,mimeType:uploadedFile.type||'image/jpeg',category:currentCategory};}
+  else if(mode==='scan'){if(!capturedDataUrl){showError('Please capture an image first.');return;}payload={mode:'image',content:capturedDataUrl.split(',')[1],mimeType:capturedMimeType,category:currentCategory};}
+  showLoading();startLoadingSteps();
+  try{const res=await fetch('/.netlify/functions/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await res.json();if(!res.ok)throw new Error(data.error||`HTTP ${res.status}`);hideLoading();renderResults(data);}
+  catch(e){hideLoading();showError('Analysis failed: '+e.message);}
+}
+function fileToBase64(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=ev=>{const img=new Image();img.onload=()=>{const MAX=1200;let w=img.width,h=img.height;if(w>MAX||h>MAX){if(w>h){h=Math.round(h*MAX/w);w=MAX;}else{w=Math.round(w*MAX/h);h=MAX;}}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);res(c.toDataURL('image/jpeg',0.82).split(',')[1]);};img.onerror=rej;img.src=ev.target.result;};r.onerror=rej;r.readAsDataURL(file);});}
+function showLoading(){document.getElementById('inputCard').style.display='none';document.getElementById('loadingSection').classList.add('visible');document.getElementById('resultsSection').classList.remove('visible');}
+function hideLoading(){document.getElementById('loadingSection').classList.remove('visible');clearInterval(loadingStepTimer);['step1','step2','step3'].forEach(id=>document.getElementById(id).classList.remove('active'));document.getElementById('step1').classList.add('active');}
+function startLoadingSteps(){['step1','step2','step3'].forEach(id=>document.getElementById(id).classList.remove('active'));document.getElementById('step1').classList.add('active');let step=1;loadingStepTimer=setInterval(()=>{step++;if(step>3){clearInterval(loadingStepTimer);return;}document.getElementById('step'+step).classList.add('active');},1800);}
+function renderResults(data){
+  allIngredients=data.ingredients||[];const s=data.summary||{};
+  const banner=document.getElementById('productBanner'),newRow=document.getElementById('newAnalysisRow');
+  if(data.productName){document.getElementById('productNameEl').textContent=data.productName;banner.style.display='flex';newRow.style.display='none';}else{banner.style.display='none';newRow.style.display='flex';}
+  document.getElementById('statTotal').textContent=allIngredients.length;
+  document.getElementById('statSafe').textContent=s.safeCount??allIngredients.filter(i=>i.safety==='safe').length;
+  document.getElementById('statCaution').textContent=s.cautionCount??allIngredients.filter(i=>i.safety==='caution').length;
+  document.getElementById('statFlag').textContent=s.flagCount??allIngredients.filter(i=>i.safety==='flag').length;
+  const counts={all:allIngredients.length,safe:allIngredients.filter(i=>i.safety==='safe').length,caution:allIngredients.filter(i=>i.safety==='caution').length,flag:allIngredients.filter(i=>i.safety==='flag').length};
+  Object.entries(counts).forEach(([k,v])=>{const el=document.getElementById('fc-'+k);if(el)el.textContent=v;});
+  const notesEl=document.getElementById('summaryNotes');notesEl.innerHTML='';
+  if(s.skinTypeNotes||s.usageNotes)notesEl.innerHTML+=`<div><div class="note-label">Usage Notes</div><div class="note-text">${escHtml(s.skinTypeNotes||s.usageNotes)}</div></div>`;
+  if(s.pregnancyNote||s.safetyNote)notesEl.innerHTML+=`<div><div class="note-label">Safety Note</div><div class="note-text">${escHtml(s.pregnancyNote||s.safetyNote)}</div></div>`;
+  notesEl.classList.toggle('has-content',!!notesEl.innerHTML);
+  const bEl=document.getElementById('concernsBanner');
+  const ov=s.overallSafety||(s.flagCount>0?'flag':s.cautionCount>0?'caution':'safe');
+  const bc=ov==='flag'?'flag-banner':ov==='caution'?'caution-banner':'safe-banner';
+  const bi=ov==='flag'?'🚩':ov==='caution'?'⚠️':'✅';
+  const bt=ov==='flag'?'Flagged Ingredients Found':ov==='caution'?'Some Ingredients Need Caution':'Ingredients Look Generally Safe';
+  let bh=`<span class="concerns-banner-icon">${bi}</span><div><div class="concerns-banner-title">${bt}</div>`;
+  if(s.topConcerns?.length)bh+=`<div class="concerns-list-inline">${s.topConcerns.map(c=>`<span class="concern-chip">${escHtml(c)}</span>`).join('')}</div>`;
+  bh+='</div>';bEl.className=`concerns-banner ${bc}`;bEl.innerHTML=bh;bEl.style.display='flex';
+  activeFilter='all';document.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));document.querySelector('.filter-pill[data-filter="all"]').classList.add('active');
+  renderCards();document.getElementById('resultsSection').classList.add('visible');document.getElementById('resultsSection').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function renderCards(){
+  const grid=document.getElementById('ingredientsGrid');
+  const filtered=activeFilter==='all'?allIngredients:allIngredients.filter(i=>i.safety===activeFilter);
+  grid.innerHTML='';
+  if(!filtered.length){grid.innerHTML=`<div class="empty-filter"><div style="font-size:36px;opacity:.3">🔬</div><p>No ${activeFilter} ingredients found.</p></div>`;return;}
+  filtered.forEach((ing,idx)=>grid.appendChild(buildCard(ing,idx)));
+}
+function buildCard(ing,idx){
+  const s=ing.safety||'safe';const bi=s==='safe'?'✓':s==='caution'?'!':'✕';
+  const comed=Math.min(5,Math.max(0,ing.comedogenic??0));
+  let cm='<div class="comed-meter">';for(let i=0;i<5;i++)cm+=`<div class="c-pip${i<comed?' lit':''}"></div>`;cm+='</div>';
+  const ben=(ing.benefits||[]).slice(0,4),con=(ing.concerns||[]).slice(0,4),cats=(ing.category||[]).slice(0,4);
+  const pr=ing.pregnancySafe;const pt=pr===true?'Pregnancy safe':pr===false?'Avoid in pregnancy':'Consult doctor';const pi=pr===true?'✅':pr===false?'❌':'❔';
+  const ewg=ing.ewgScore,ban=ing.bannedRegions||[];
+  const card=document.createElement('div');card.className='ing-card';card.style.animationDelay=(idx*0.04)+'s';
+  card.innerHTML=`
+    <div class="card-strip strip-${s}"></div>
+    <div class="card-head">
+      <div class="safety-bubble bubble-${s}">${bi}</div>
+      <div class="card-head-text"><div class="card-name">${escHtml(ing.name||'Unknown')}</div><div class="card-inci">${escHtml(ing.inci||'')}</div></div>
+      <div class="card-badge badge-${s}">${s==='safe'?'Safe':s==='caution'?'Caution':'Flagged'}</div>
+    </div>
+    <div class="card-body">
+      <p class="card-desc">${escHtml(ing.description||'')}</p>
+      ${cats.length?`<div class="card-tags">${cats.map(c=>`<span class="cat-tag-sm">${escHtml(c)}</span>`).join('')}</div>`:''}
+      <div class="card-duo">
+        <div class="card-list-block benefits-block"><div class="card-list-title">Benefits</div><ul>${ben.length?ben.map(b=>`<li>${escHtml(b)}</li>`).join(''):'<li class="empty">—</li>'}</ul></div>
+        <div class="card-list-block concerns-block"><div class="card-list-title">Concerns</div><ul>${con.length?con.map(c=>`<li>${escHtml(c)}</li>`).join(''):'<li class="empty">None noted</li>'}</ul></div>
+      </div>
+    </div>
+    <div class="card-foot">
+      <div class="foot-item">Comedogenic ${cm} <strong>${comed}/5</strong></div>
+      <div class="foot-item"><span>${pi}</span> <span>${pt}</span></div>
+      ${ewg!=null?`<div class="foot-item">EWG <strong>${ewg}/10</strong></div>`:''}
+    </div>
+    ${ban.length?`<div class="banned-wrap"><span class="banned-label">Restricted:</span>${ban.map(r=>`<span class="banned-chip">${escHtml(r)}</span>`).join('')}</div>`:''}
+  `;return card;
+}
+function setFilter(filter,btn){activeFilter=filter;document.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderCards();}
+function resetToInput(){document.getElementById('resultsSection').classList.remove('visible');document.getElementById('inputCard').style.display='block';allIngredients=[];hideError();}
+function showError(msg){document.getElementById('errorMsg').textContent=msg;document.getElementById('errorSection').classList.add('visible');document.getElementById('inputCard').style.display='block';}
+function hideError(){document.getElementById('errorSection').classList.remove('visible');}
+function escHtml(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+document.querySelectorAll('.cat-card').forEach(c=>{c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();c.click();}});});
+</script>
+</body>
+</html>
