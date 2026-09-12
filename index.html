@@ -604,26 +604,6 @@ footer{
   display:inline-flex;align-items:center;gap:7px;
 }
 .btn-reanalyze:hover{background:#6B3D08;}
-
-/* ══ CATEGORY MISMATCH BANNER ══ */
-.mismatch-banner{
-  background:#EBF4FA;border:1.5px solid #B0D4EA;
-  border-radius:var(--r-md);padding:16px 20px;
-  margin-bottom:20px;display:none;
-}
-.mismatch-banner.visible{display:flex;align-items:flex-start;gap:14px;}
-.mismatch-icon{font-size:20px;flex-shrink:0;margin-top:1px;}
-.mismatch-body{flex:1;}
-.mismatch-title{font-size:14px;font-weight:700;color:#1A4F72;margin-bottom:5px;}
-.mismatch-text{font-size:13.5px;color:#2A4A5A;line-height:1.65;margin-bottom:10px;}
-.btn-switch-cat{
-  background:#1A4F72;color:#fff;border:none;
-  border-radius:30px;padding:8px 20px;
-  font-family:'Inter',sans-serif;font-size:13px;font-weight:700;
-  cursor:pointer;transition:background .2s;
-  display:inline-flex;align-items:center;gap:6px;
-}
-.btn-switch-cat:hover{background:#246A9A;}
 </style>
 </head>
 <body>
@@ -792,9 +772,7 @@ footer{
           <button class="btn-reanalyze" onclick="reanalyzeEdited()">↻ Re-analyze with My Edits</button>
         </div>
       </div>
-      <div class="mismatch-banner" id="mismatchBanner">
-        <div class="mismatch-icon">🔄</div>
-        <div class="mismatch-body">
+<div class="mismatch-body">
           <div class="mismatch-title" id="mismatchTitle">Wrong category selected</div>
           <div class="mismatch-text" id="mismatchText">This product belongs to a different category. We've analyzed it with the correct safety context, but you may want to switch categories for future searches.</div>
           <button class="btn-switch-cat" id="mismatchBtn" onclick="switchToDetectedCategory()">Switch Category</button>
@@ -1024,15 +1002,6 @@ function hideLoading(){
   if(subMsg)subMsg.textContent='';
 }
 function startLoadingSteps(){['step1','step2','step3'].forEach(id=>document.getElementById(id).classList.remove('active'));document.getElementById('step1').classList.add('active');let step=1;loadingStepTimer=setInterval(()=>{step++;if(step>3){clearInterval(loadingStepTimer);return;}document.getElementById('step'+step).classList.add('active');},1800);}
-let detectedType='';
-function switchToDetectedCategory(){
-  if(detectedType&&detectedType!==currentCategory){
-    selectCategory(detectedType);
-  }
-}
-
-const CATEGORY_LABELS={personal:'Personal Care',household:'Household',outdoor:'Outdoor & Garden'};
-
 function renderResults(data){
   allIngredients=data.ingredients||[];const s=data.summary||{};
 
@@ -1044,19 +1013,6 @@ function renderResults(data){
     document.getElementById('ingredientEditorText').value=ingList;
   }else{disc.classList.remove('visible');}
 
-  // Check for category mismatch
-  const mismatchBanner=document.getElementById('mismatchBanner');
-  detectedType=data.detectedProductType||currentCategory;
-  if(detectedType&&detectedType!==currentCategory){
-    const detected=CATEGORY_LABELS[detectedType]||detectedType;
-    const selected=CATEGORY_LABELS[currentCategory]||currentCategory;
-    document.getElementById('mismatchTitle').textContent='This looks like a '+detected+' product';
-    document.getElementById('mismatchText').textContent='You selected '+selected+' but this appears to be a '+detected+' product. We've analyzed it with the correct safety context. Switch categories to keep your searches organized.';
-    document.getElementById('mismatchBtn').textContent='Switch to '+detected+' →';
-    mismatchBanner.classList.add('visible');
-  }else{
-    mismatchBanner.classList.remove('visible');
-  }
   const banner=document.getElementById('productBanner'),newRow=document.getElementById('newAnalysisRow');
   if(data.productName){document.getElementById('productNameEl').textContent=data.productName;banner.style.display='flex';newRow.style.display='none';}else{banner.style.display='none';newRow.style.display='flex';}
   document.getElementById('statTotal').textContent=allIngredients.length;
@@ -1138,7 +1094,6 @@ function resetToInput(){
   lastAnalysisMode='';
   try{hideError();}catch(e){}
   try{const disc=document.getElementById('disclaimerBanner');if(disc)disc.classList.remove('visible');}catch(e){}
-  try{const mb=document.getElementById('mismatchBanner');if(mb)mb.classList.remove('visible');}catch(e){}
   try{closeFeedback();}catch(e){}
   try{document.getElementById('fwButtons').style.display='flex';}catch(e){}
   try{document.getElementById('fwSuggest').style.display='none';}catch(e){}
