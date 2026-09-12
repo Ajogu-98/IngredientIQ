@@ -673,14 +673,10 @@ footer{
       <div class="tab-panel active" id="panel-text">
         <label class="input-label" for="textInput">Product Name or Ingredient List</label>
         <p class="input-hint" id="textHint">Type a product name or paste the full ingredient list from your label.</p>
-        <div style="margin-bottom:14px;">
-          <div style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Popular Products</div>
-          <div id="productSuggestions" style="display:flex;flex-wrap:wrap;gap:7px;"></div>
-        </div>
-        <textarea id="textInput" placeholder="e.g.  CeraVe Moisturizing Cream&#10;— or —&#10;Water, Glycerin, Niacinamide, Retinol, Fragrance..."></textarea>
+<textarea id="textInput" placeholder="e.g.  CeraVe Moisturizing Cream&#10;— or —&#10;Water, Glycerin, Niacinamide, Retinol, Fragrance..."></textarea>
         <div class="actions-row">
           <button class="btn-primary" onclick="runAnalysis('text')">✦ Analyze Ingredients</button>
-          <button class="btn-secondary" onclick="loadSample()">Try a Sample List</button>
+          <button class="btn-secondary" onclick="loadSample()">Try a Sample</button>
           <button class="btn-ghost" onclick="clearAll()">Clear</button>
         </div>
       </div>
@@ -829,22 +825,8 @@ function selectCategory(cat){
   document.getElementById('btnHome').classList.add('visible');
   document.getElementById('analyzerEyebrow').textContent=c.eyebrow;
   document.getElementById('textHint').textContent=c.hint;
-  // Render product suggestion chips
-  const suggestEl=document.getElementById('productSuggestions');
-  suggestEl.innerHTML='';
-  c.products.forEach(p=>{
-    const chip=document.createElement('button');
-    chip.className='product-chip';
-    chip.textContent=p;
-    chip.onclick=()=>{
-      document.getElementById('textInput').value=p;
-      suggestEl.querySelectorAll('.product-chip').forEach(c=>c.style.background='');
-      chip.style.background='var(--accent)';
-      chip.style.color='#fff';
-      chip.style.borderColor='transparent';
-    };
-    suggestEl.appendChild(chip);
-  });
+  // Update hint text per category
+  document.getElementById('textHint').textContent=c.hint;
   document.getElementById('homeScreen').style.display='none';
   document.getElementById('analyzerScreen').classList.add('visible');
   window.scrollTo({top:0,behavior:'smooth'});
@@ -942,7 +924,6 @@ function renderResults(data){
   const counts={all:allIngredients.length,safe:allIngredients.filter(i=>i.safety==='safe').length,caution:allIngredients.filter(i=>i.safety==='caution').length,flag:allIngredients.filter(i=>i.safety==='flag').length};
   Object.entries(counts).forEach(([k,v])=>{const el=document.getElementById('fc-'+k);if(el)el.textContent=v;});
   const notesEl=document.getElementById('summaryNotes');notesEl.innerHTML='';
-  if(s.skinTypeNotes||s.usageNotes)notesEl.innerHTML+=`<div><div class="note-label">Usage Notes</div><div class="note-text">${escHtml(s.skinTypeNotes||s.usageNotes)}</div></div>`;
   if(s.pregnancyNote||s.safetyNote)notesEl.innerHTML+=`<div><div class="note-label">Safety Note</div><div class="note-text">${escHtml(s.pregnancyNote||s.safetyNote)}</div></div>`;
   notesEl.classList.toggle('has-content',!!notesEl.innerHTML);
   const bEl=document.getElementById('concernsBanner');
