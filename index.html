@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D1XVKXLBQF"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -507,6 +507,61 @@ footer{
   .btn-primary{font-size:13.5px;padding:13px 18px;}
   .stat-num{font-size:34px;}
 }
+
+/* ══ FEEDBACK WIDGET ══ */
+#feedbackWidget{
+  display:none;
+  position:fixed;bottom:28px;right:28px;z-index:999;
+  background:#fff;border-radius:20px;
+  box-shadow:0 8px 32px rgba(0,0,0,.15);
+  border:1.5px solid #E4E4E4;
+  padding:18px 22px;
+  max-width:280px;
+  animation:slideUp .3s ease both;
+}
+#feedbackWidget.visible{display:block;}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fw-title{font-size:14px;font-weight:700;color:#111;margin-bottom:4px;}
+.fw-sub{font-size:12.5px;color:#777;margin-bottom:14px;line-height:1.5;}
+.fw-buttons{display:flex;gap:10px;}
+.fw-btn{
+  flex:1;border:1.5px solid #E4E4E4;border-radius:12px;
+  padding:10px;font-size:13px;font-weight:600;
+  cursor:pointer;background:#fff;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  transition:all .18s;
+}
+.fw-btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.10);}
+.fw-btn.yes:hover{background:#E8F5EE;border-color:#A8D5B5;color:#1B5E35;}
+.fw-btn.no:hover{background:#FEF2F2;border-color:#FECACA;color:#991B1B;}
+.fw-close{
+  position:absolute;top:10px;right:12px;
+  background:none;border:none;cursor:pointer;
+  font-size:16px;color:#BBB;line-height:1;
+}
+.fw-close:hover{color:#777;}
+.fw-thanks{
+  display:none;text-align:center;
+  font-size:14px;font-weight:600;color:#1B5E35;
+  padding:4px 0;
+}
+.fw-suggest{
+  display:none;margin-top:12px;
+}
+.fw-suggest textarea{
+  width:100%;border:1.5px solid #E4E4E4;border-radius:10px;
+  padding:10px 12px;font-family:'Inter',sans-serif;
+  font-size:13px;resize:none;height:80px;
+  color:#111;background:#F7F7F7;
+}
+.fw-suggest textarea:focus{outline:none;border-color:var(--accent);}
+.fw-send{
+  margin-top:8px;width:100%;background:var(--accent);color:#fff;
+  border:none;border-radius:10px;padding:9px;
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:700;
+  cursor:pointer;transition:background .2s;
+}
+.fw-send:hover{background:var(--accent2);}
 </style>
 </head>
 <body>
@@ -684,6 +739,22 @@ footer{
       <a href="/terms.html" style="font-size:13px;font-weight:600;color:var(--body);text-decoration:none;">Terms of Use</a>
     </div>
   </footer>
+
+  <!-- FEEDBACK WIDGET -->
+  <div id="feedbackWidget">
+    <button class="fw-close" onclick="closeFeedback()">✕</button>
+    <div class="fw-title">Was this analysis helpful?</div>
+    <div class="fw-sub">Your feedback helps us improve IngredientIQ.</div>
+    <div class="fw-buttons" id="fwButtons">
+      <button class="fw-btn yes" onclick="submitFeedback(true)">👍 Yes</button>
+      <button class="fw-btn no" onclick="submitFeedback(false)">👎 No</button>
+    </div>
+    <div class="fw-suggest" id="fwSuggest">
+      <textarea id="fwText" placeholder="What could we do better? (optional)"></textarea>
+      <button class="fw-send" onclick="sendSuggestion()">Send Feedback</button>
+    </div>
+    <div class="fw-thanks" id="fwThanks">✓ Thanks for your feedback!</div>
+  </div>
 </div>
 
 <script>
@@ -773,7 +844,7 @@ function renderResults(data){
   if(s.topConcerns?.length)bh+=`<div class="concerns-list-inline">${s.topConcerns.map(c=>`<span class="concern-chip">${escHtml(c)}</span>`).join('')}</div>`;
   bh+='</div>';bEl.className=`concerns-banner ${bc}`;bEl.innerHTML=bh;bEl.style.display='flex';
   activeFilter='all';document.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));document.querySelector('.filter-pill[data-filter="all"]').classList.add('active');
-  renderCards();document.getElementById('resultsSection').classList.add('visible');document.getElementById('resultsSection').scrollIntoView({behavior:'smooth',block:'start'});
+  renderCards();document.getElementById('resultsSection').classList.add('visible');document.getElementById('resultsSection').scrollIntoView({behavior:'smooth',block:'start'});showFeedbackWidget();
 }
 function renderCards(){
   const grid=document.getElementById('ingredientsGrid');
@@ -814,10 +885,43 @@ function buildCard(ing,idx){
   `;return card;
 }
 function setFilter(filter,btn){activeFilter=filter;document.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderCards();}
-function resetToInput(){document.getElementById('resultsSection').classList.remove('visible');document.getElementById('inputCard').style.display='block';allIngredients=[];hideError();}
+function resetToInput(){document.getElementById('resultsSection').classList.remove('visible');document.getElementById('inputCard').style.display='block';allIngredients=[];hideError();closeFeedback();document.getElementById('fwButtons').style.display='flex';document.getElementById('fwSuggest').style.display='none';document.getElementById('fwThanks').style.display='none';}
 function showError(msg){document.getElementById('errorMsg').textContent=msg;document.getElementById('errorSection').classList.add('visible');document.getElementById('inputCard').style.display='block';}
 function hideError(){document.getElementById('errorSection').classList.remove('visible');}
 function escHtml(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// ── Feedback Widget ──
+let feedbackTimer = null;
+function showFeedbackWidget(){
+  clearTimeout(feedbackTimer);
+  feedbackTimer = setTimeout(()=>{
+    document.getElementById('feedbackWidget').classList.add('visible');
+  }, 3000);
+}
+function closeFeedback(){
+  document.getElementById('feedbackWidget').classList.remove('visible');
+  clearTimeout(feedbackTimer);
+}
+function submitFeedback(positive){
+  document.getElementById('fwButtons').style.display='none';
+  if(positive){
+    document.getElementById('fwThanks').style.display='block';
+    setTimeout(closeFeedback, 2500);
+    // Track in GA
+    if(typeof gtag!=='undefined') gtag('event','feedback_positive',{event_category:'feedback'});
+  } else {
+    document.getElementById('fwSuggest').style.display='block';
+    if(typeof gtag!=='undefined') gtag('event','feedback_negative',{event_category:'feedback'});
+  }
+}
+function sendSuggestion(){
+  const text = document.getElementById('fwText').value.trim();
+  if(typeof gtag!=='undefined') gtag('event','feedback_suggestion',{event_category:'feedback',event_label:text});
+  document.getElementById('fwSuggest').style.display='none';
+  document.getElementById('fwThanks').style.display='block';
+  setTimeout(closeFeedback, 2500);
+}
+
 document.querySelectorAll('.cat-card').forEach(c=>{c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();c.click();}});});
 </script>
 </body>
