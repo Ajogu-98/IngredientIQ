@@ -1049,7 +1049,12 @@ function fileToBase64(file){
     r.readAsDataURL(file);
   });
 }
-function showLoading(){document.getElementById('inputCard').style.display='none';document.getElementById('loadingSection').classList.add('visible');document.getElementById('resultsSection').classList.remove('visible');document.getElementById('wrongCategorySection').classList.remove('visible');}
+function showLoading(){
+  try{document.getElementById('inputCard').style.display='none';}catch(e){}
+  try{document.getElementById('loadingSection').classList.add('visible');}catch(e){}
+  try{document.getElementById('resultsSection').classList.remove('visible');}catch(e){}
+  try{const wc=document.getElementById('wrongCategorySection');if(wc)wc.classList.remove('visible');}catch(e){}
+}
 function hideLoading(){
   document.getElementById('loadingSection').classList.remove('visible');
   clearInterval(loadingStepTimer);
@@ -1085,7 +1090,7 @@ function switchAndReanalyze(){
 function renderResults(data){
   allIngredients=data.ingredients||[];const s=data.summary||{};
 
-  document.getElementById('wrongCategorySection').classList.remove('visible');
+  try{const wc=document.getElementById('wrongCategorySection');if(wc)wc.classList.remove('visible');}catch(e){}
 
   // Show disclaimer if analysis was from a product name
   const disc=document.getElementById('disclaimerBanner');
