@@ -575,6 +575,35 @@ footer{
   background:var(--accent);color:#fff;
   border-color:transparent;
 }
+
+/* ══ DISCLAIMER BANNER ══ */
+.disclaimer-banner{
+  background:#FEF9EC;border:1.5px solid #F0D080;
+  border-radius:var(--r-md);padding:16px 20px;
+  margin-bottom:20px;display:none;
+}
+.disclaimer-banner.visible{display:block;}
+.disclaimer-title{font-size:14px;font-weight:700;color:#854D0E;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.disclaimer-text{font-size:13.5px;color:#7A4A00;line-height:1.70;margin-bottom:14px;}
+.ingredient-editor{margin-top:12px;}
+.ingredient-editor-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#854D0E;margin-bottom:8px;display:block;}
+.ingredient-editor textarea{
+  width:100%;min-height:90px;resize:vertical;
+  border:1.5px solid #F0D080;border-radius:var(--r-sm);
+  padding:12px 14px;font-family:'Inter',sans-serif;
+  font-size:13.5px;color:var(--ink);background:#FFFDF5;
+  line-height:1.65;
+}
+.ingredient-editor textarea:focus{outline:none;border-color:#854D0E;}
+.btn-reanalyze{
+  margin-top:10px;
+  background:#854D0E;color:#fff;border:none;
+  border-radius:40px;padding:11px 26px;
+  font-family:'Inter',sans-serif;font-size:13.5px;font-weight:700;
+  cursor:pointer;transition:background .2s;
+  display:inline-flex;align-items:center;gap:7px;
+}
+.btn-reanalyze:hover{background:#6B3D08;}
 </style>
 </head>
 <body>
@@ -593,7 +622,7 @@ footer{
 <!-- HOME SCREEN -->
 <div id="homeScreen">
   <h1 class="home-title">Know what's in<br><em>everything.</em></h1>
-  <p class="home-sub">From your moisturizer to your weed killer — IngredientIQ analyzes ingredients in any product and flags what you need to know. Powered by Claude AI.</p>
+  <p class="home-sub">From your moisturizer to your weed killer — IngredientIQ analyzes ingredients in any product and flags what you need to know.</p>
   <div class="categories-label">Choose a category to begin</div>
   <div class="categories-grid">
     <article class="cat-card cat-card-personal" onclick="selectCategory('personal')" role="button" tabindex="0">
@@ -713,7 +742,7 @@ footer{
     <div id="loadingSection">
       <div class="loading-orb"></div>
       <div class="loading-title">Analyzing Ingredients…</div>
-      <div class="loading-sub">Claude AI is identifying and evaluating every ingredient</div>
+      <div class="loading-sub">Identifying and evaluating every ingredient</div>
       <div class="loading-steps">
         <div class="load-step active" id="step1"><span class="step-dot"></span> Extracting ingredients</div>
         <div class="load-step" id="step2"><span class="step-dot"></span> Checking safety data</div>
@@ -737,6 +766,15 @@ footer{
       </div>
       <div class="summary-notes" id="summaryNotes"></div>
       <div class="concerns-banner" id="concernsBanner" style="display:none"></div>
+      <div class="disclaimer-banner" id="disclaimerBanner">
+        <div class="disclaimer-title">⚠️ Results Based on AI Knowledge — Not Your Actual Label</div>
+        <div class="disclaimer-text">Because you typed a product name instead of the ingredient list, these results are based on what our AI knows about this product. The actual formula of your specific product may differ — ingredients can vary by region, size, or product version. For accurate results, paste the ingredient list directly from your label or upload a photo.</div>
+        <div class="ingredient-editor">
+          <span class="ingredient-editor-label">Review & edit the ingredient list used for this analysis:</span>
+          <textarea id="ingredientEditorText"></textarea>
+          <button class="btn-reanalyze" onclick="reanalyzeEdited()">↻ Re-analyze with My Edits</button>
+        </div>
+      </div>
       <div class="filter-bar">
         <span class="filter-label-txt">Show:</span>
         <button class="filter-pill active" data-filter="all" onclick="setFilter('all',this)">All <span class="pill-count" id="fc-all">0</span></button>
@@ -841,21 +879,60 @@ async function startCamera(){
 function stopCamera(){if(currentStream){currentStream.getTracks().forEach(t=>t.stop());currentStream=null;}const v=document.getElementById('videoEl');v.style.display='none';v.srcObject=null;document.getElementById('cameraOverlay').classList.remove('hidden');document.getElementById('viewfinder').classList.remove('visible');document.getElementById('btnCapture').disabled=true;document.getElementById('btnStartCam').style.display='flex';document.getElementById('btnStopCam').style.display='none';}
 function captureFrame(){const v=document.getElementById('videoEl'),c=document.getElementById('canvasEl');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);const d=c.toDataURL('image/jpeg',0.9);capturedDataUrl=d;capturedMimeType='image/jpeg';const p=document.getElementById('capturePreview');p.src=d;p.classList.add('visible');document.getElementById('btnAnalyzeScan').disabled=false;}
 function clearCapture(){capturedDataUrl=null;capturedMimeType=null;const p=document.getElementById('capturePreview');p.src='';p.classList.remove('visible');document.getElementById('btnAnalyzeScan').disabled=true;}
+let lastAnalysisMode='';
 async function runAnalysis(mode){
   hideError();let payload={};
-  if(mode==='text'){const t=document.getElementById('textInput').value.trim();if(!t){showError('Please enter a product name or ingredient list.');return;}payload={mode:'text',content:t,category:currentCategory};}
+  if(mode==='text'){const t=document.getElementById('textInput').value.trim();if(!t){showError('Please enter a product name or ingredient list.');return;}
+  // Detect if it looks like a product name (few commas) or an ingredient list
+  const commaCount=(t.match(/,/g)||[]).length;
+  lastAnalysisMode=commaCount<3?'name':'list';
+  payload={mode:'text',content:t,category:currentCategory};}
   else if(mode==='upload'){if(!uploadedFile){showError('Please select an image file first.');return;}const b=await fileToBase64(uploadedFile);payload={mode:'image',content:b,mimeType:uploadedFile.type||'image/jpeg',category:currentCategory};}
   else if(mode==='scan'){if(!capturedDataUrl){showError('Please capture an image first.');return;}payload={mode:'image',content:capturedDataUrl.split(',')[1],mimeType:capturedMimeType,category:currentCategory};}
   showLoading();startLoadingSteps();
   try{const res=await fetch('/.netlify/functions/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await res.json();if(!res.ok)throw new Error(data.error||`HTTP ${res.status}`);hideLoading();renderResults(data);}
   catch(e){hideLoading();showError('Analysis failed: '+e.message);}
 }
-function fileToBase64(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=ev=>{const img=new Image();img.onload=()=>{const MAX=1200;let w=img.width,h=img.height;if(w>MAX||h>MAX){if(w>h){h=Math.round(h*MAX/w);w=MAX;}else{w=Math.round(w*MAX/h);h=MAX;}}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);res(c.toDataURL('image/jpeg',0.82).split(',')[1]);};img.onerror=rej;img.src=ev.target.result;};r.onerror=rej;r.readAsDataURL(file);});}
+function fileToBase64(file){
+  return new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=ev=>{
+      const dataUrl=ev.target.result;
+      const raw=dataUrl.split(',')[1];
+      if(!raw){rej(new Error('Could not read image file'));return;}
+      // Try canvas compression — if it fails (e.g. HEIC on iPhone), send raw
+      const img=new Image();
+      img.onload=()=>{
+        try{
+          const MAX=1200;let w=img.width||800,h=img.height||600;
+          if(w>MAX||h>MAX){if(w>h){h=Math.round(h*MAX/w);w=MAX;}else{w=Math.round(w*MAX/h);h=MAX;}}
+          const c=document.createElement('canvas');
+          c.width=w;c.height=h;
+          c.getContext('2d').drawImage(img,0,0,w,h);
+          const compressed=c.toDataURL('image/jpeg',0.82).split(',')[1];
+          res(compressed||raw);
+        }catch(e){res(raw);}
+      };
+      img.onerror=()=>{res(raw);};
+      img.src=dataUrl;
+    };
+    r.onerror=rej;
+    r.readAsDataURL(file);
+  });
+}
 function showLoading(){document.getElementById('inputCard').style.display='none';document.getElementById('loadingSection').classList.add('visible');document.getElementById('resultsSection').classList.remove('visible');}
 function hideLoading(){document.getElementById('loadingSection').classList.remove('visible');clearInterval(loadingStepTimer);['step1','step2','step3'].forEach(id=>document.getElementById(id).classList.remove('active'));document.getElementById('step1').classList.add('active');}
 function startLoadingSteps(){['step1','step2','step3'].forEach(id=>document.getElementById(id).classList.remove('active'));document.getElementById('step1').classList.add('active');let step=1;loadingStepTimer=setInterval(()=>{step++;if(step>3){clearInterval(loadingStepTimer);return;}document.getElementById('step'+step).classList.add('active');},1800);}
 function renderResults(data){
   allIngredients=data.ingredients||[];const s=data.summary||{};
+  // Show disclaimer if analysis was from a product name
+  const disc=document.getElementById('disclaimerBanner');
+  if(lastAnalysisMode==='name'){
+    disc.classList.add('visible');
+    // Pre-fill editor with extracted ingredient list
+    const ingList=data.extractedIngredientText||(allIngredients.map(i=>i.name).join(', '));
+    document.getElementById('ingredientEditorText').value=ingList;
+  }else{disc.classList.remove('visible');}
   const banner=document.getElementById('productBanner'),newRow=document.getElementById('newAnalysisRow');
   if(data.productName){document.getElementById('productNameEl').textContent=data.productName;banner.style.display='flex';newRow.style.display='none';}else{banner.style.display='none';newRow.style.display='flex';}
   document.getElementById('statTotal').textContent=allIngredients.length;
@@ -918,7 +995,16 @@ function buildCard(ing,idx){
   `;return card;
 }
 function setFilter(filter,btn){activeFilter=filter;document.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderCards();}
-function resetToInput(){document.getElementById('resultsSection').classList.remove('visible');document.getElementById('inputCard').style.display='block';allIngredients=[];hideError();closeFeedback();document.getElementById('fwButtons').style.display='flex';document.getElementById('fwSuggest').style.display='none';document.getElementById('fwThanks').style.display='none';}
+function reanalyzeEdited(){
+  const edited=document.getElementById('ingredientEditorText').value.trim();
+  if(!edited){return;}
+  document.getElementById('textInput').value=edited;
+  lastAnalysisMode='list';
+  document.getElementById('disclaimerBanner').classList.remove('visible');
+  document.getElementById('resultsSection').classList.remove('visible');
+  runAnalysis('text');
+}
+function resetToInput(){document.getElementById('resultsSection').classList.remove('visible');document.getElementById('inputCard').style.display='block';allIngredients=[];hideError();lastAnalysisMode='';document.getElementById('disclaimerBanner').classList.remove('visible');closeFeedback();document.getElementById('fwButtons').style.display='flex';document.getElementById('fwSuggest').style.display='none';document.getElementById('fwThanks').style.display='none';}
 function showError(msg){document.getElementById('errorMsg').textContent=msg;document.getElementById('errorSection').classList.add('visible');document.getElementById('inputCard').style.display='block';}
 function hideError(){document.getElementById('errorSection').classList.remove('visible');}
 function escHtml(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
