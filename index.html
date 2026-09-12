@@ -907,10 +907,24 @@ let lastAnalysisMode='';
 const BATCH_SIZE=10;
 
 async function callAnalyze(payload){
-  const res=await fetch('/.netlify/functions/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-  const data=await res.json();
-  if(!res.ok)throw new Error(data.error||'HTTP '+res.status);
-  return data;
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),20000); // 20 second max
+  try{
+    const res=await fetch('/.netlify/functions/analyze',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload),
+      signal:controller.signal
+    });
+    clearTimeout(timeout);
+    const data=await res.json();
+    if(!res.ok)throw new Error(data.error||'HTTP '+res.status);
+    return data;
+  }catch(e){
+    clearTimeout(timeout);
+    if(e.name==='AbortError')throw new Error('Request timed out. Please check your Anthropic API credits at console.anthropic.com and try again.');
+    throw e;
+  }
 }
 
 function updateLoadingMsg(msg){
