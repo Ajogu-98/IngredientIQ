@@ -739,6 +739,7 @@ footer{
       <div class="loading-orb"></div>
       <div class="loading-title">Analyzing Ingredients…</div>
       <div class="loading-sub">Identifying and evaluating every ingredient</div>
+      <div class="loading-sub" id="loadingSubMsg" style="margin-top:6px;font-size:13px;color:var(--accent);font-weight:600;min-height:20px;"></div>
       <div class="loading-steps">
         <div class="load-step active" id="step1"><span class="step-dot"></span> Extracting ingredients</div>
         <div class="load-step" id="step2"><span class="step-dot"></span> Checking safety data</div>
@@ -862,18 +863,98 @@ function stopCamera(){if(currentStream){currentStream.getTracks().forEach(t=>t.s
 function captureFrame(){const v=document.getElementById('videoEl'),c=document.getElementById('canvasEl');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);const d=c.toDataURL('image/jpeg',0.9);capturedDataUrl=d;capturedMimeType='image/jpeg';const p=document.getElementById('capturePreview');p.src=d;p.classList.add('visible');document.getElementById('btnAnalyzeScan').disabled=false;}
 function clearCapture(){capturedDataUrl=null;capturedMimeType=null;const p=document.getElementById('capturePreview');p.src='';p.classList.remove('visible');document.getElementById('btnAnalyzeScan').disabled=true;}
 let lastAnalysisMode='';
+const BATCH_SIZE=10;
+
+async function callAnalyze(payload){
+  const res=await fetch('/.netlify/functions/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const data=await res.json();
+  if(!res.ok)throw new Error(data.error||'HTTP '+res.status);
+  return data;
+}
+
+function updateLoadingMsg(msg){
+  const el=document.getElementById('loadingSubMsg');
+  if(el)el.textContent=msg;
+}
+
+function mergeBatchResults(batches){
+  if(batches.length===1)return batches[0];
+  const merged={
+    productName:batches[0].productName||null,
+    extractedIngredientText:batches.map(b=>b.extractedIngredientText||'').filter(Boolean).join(', '),
+    ingredients:[],
+    summary:{overallSafety:'safe',safeCount:0,cautionCount:0,flagCount:0,topConcerns:[],pregnancyNote:'',safetyNote:''}
+  };
+  batches.forEach(b=>{
+    merged.ingredients=merged.ingredients.concat(b.ingredients||[]);
+    merged.summary.safeCount+=(b.summary&&b.summary.safeCount)||0;
+    merged.summary.cautionCount+=(b.summary&&b.summary.cautionCount)||0;
+    merged.summary.flagCount+=(b.summary&&b.summary.flagCount)||0;
+    if(b.summary&&b.summary.topConcerns)merged.summary.topConcerns=merged.summary.topConcerns.concat(b.summary.topConcerns);
+    if(b.summary&&b.summary.pregnancyNote&&!merged.summary.pregnancyNote)merged.summary.pregnancyNote=b.summary.pregnancyNote;
+    if(b.summary&&b.summary.safetyNote&&!merged.summary.safetyNote)merged.summary.safetyNote=b.summary.safetyNote;
+  });
+  merged.summary.topConcerns=[...new Set(merged.summary.topConcerns)].slice(0,5);
+  const f=merged.summary.flagCount,c=merged.summary.cautionCount;
+  merged.summary.overallSafety=f>0?'flag':c>0?'caution':'safe';
+  return merged;
+}
+
 async function runAnalysis(mode){
-  hideError();let payload={};
-  if(mode==='text'){const t=document.getElementById('textInput').value.trim();if(!t){showError('Please enter a product name or ingredient list.');return;}
-  // Detect if it looks like a product name (few commas) or an ingredient list
-  const commaCount=(t.match(/,/g)||[]).length;
-  lastAnalysisMode=commaCount<3?'name':'list';
-  payload={mode:'text',content:t,category:currentCategory};}
-  else if(mode==='upload'){if(!uploadedFile){showError('Please select an image file first.');return;}const b=await fileToBase64(uploadedFile);payload={mode:'image',content:b,mimeType:uploadedFile.type||'image/jpeg',category:currentCategory};}
-  else if(mode==='scan'){if(!capturedDataUrl){showError('Please capture an image first.');return;}payload={mode:'image',content:capturedDataUrl.split(',')[1],mimeType:capturedMimeType,category:currentCategory};}
+  hideError();
   showLoading();startLoadingSteps();
-  try{const res=await fetch('/.netlify/functions/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await res.json();if(!res.ok)throw new Error(data.error||`HTTP ${res.status}`);hideLoading();renderResults(data);}
-  catch(e){hideLoading();showError('Analysis failed: '+e.message);}
+  try{
+    if(mode==='text'){
+      const t=document.getElementById('textInput').value.trim();
+      if(!t){hideLoading();showError('Please enter a product name or ingredient list.');return;}
+      const commas=(t.match(/,/g)||[]).length;
+      lastAnalysisMode=commas<3?'name':'list';
+      if(lastAnalysisMode==='name'||commas<BATCH_SIZE){
+        // Single call for product names or small lists
+        const data=await callAnalyze({mode:'text',content:t,category:currentCategory});
+        hideLoading();renderResults(data);
+      } else {
+        // Batch processing for long ingredient lists
+        const allIngredients=t.split(',').map(s=>s.trim()).filter(Boolean);
+        const batches=[];
+        for(let i=0;i<allIngredients.length;i+=BATCH_SIZE)batches.push(allIngredients.slice(i,i+BATCH_SIZE));
+        const results=[];
+        for(let i=0;i<batches.length;i++){
+          updateLoadingMsg('Analyzing batch '+(i+1)+' of '+batches.length+'...');
+          const data=await callAnalyze({mode:'text',content:batches[i].join(', '),category:currentCategory});
+          results.push(data);
+        }
+        hideLoading();renderResults(mergeBatchResults(results));
+      }
+    } else if(mode==='upload'||mode==='scan'){
+      let imgBase64,imgMime;
+      if(mode==='upload'){
+        if(!uploadedFile){hideLoading();showError('Please select an image file first.');return;}
+        imgBase64=await fileToBase64(uploadedFile);
+        imgMime=uploadedFile.type||'image/jpeg';
+      } else {
+        if(!capturedDataUrl){hideLoading();showError('Please capture an image first.');return;}
+        imgBase64=capturedDataUrl.split(',')[1];
+        imgMime=capturedMimeType;
+      }
+      // Step 1: Extract ingredient text from image
+      updateLoadingMsg('Reading label...');
+      const extracted=await callAnalyze({mode:'image',content:imgBase64,mimeType:imgMime,category:currentCategory,extractOnly:true});
+      const ingText=extracted.extractedText||'';
+      if(!ingText){hideLoading();showError('Could not read ingredient list from image. Please try a clearer photo.');return;}
+      // Step 2: Batch analyze extracted ingredients
+      const allIngredients=ingText.split(',').map(s=>s.trim()).filter(Boolean);
+      const batches=[];
+      for(let i=0;i<allIngredients.length;i+=BATCH_SIZE)batches.push(allIngredients.slice(i,i+BATCH_SIZE));
+      const results=[];
+      for(let i=0;i<batches.length;i++){
+        updateLoadingMsg('Analyzing batch '+(i+1)+' of '+batches.length+'...');
+        const data=await callAnalyze({mode:'text',content:batches[i].join(', '),category:currentCategory});
+        results.push(data);
+      }
+      hideLoading();renderResults(mergeBatchResults(results));
+    }
+  } catch(e){hideLoading();showError('Analysis failed: '+e.message);}
 }
 function fileToBase64(file){
   return new Promise((res,rej)=>{
