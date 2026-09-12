@@ -562,6 +562,19 @@ footer{
   cursor:pointer;transition:background .2s;
 }
 .fw-send:hover{background:var(--accent2);}
+
+/* ══ PRODUCT SUGGESTION CHIPS ══ */
+.product-chip{
+  font-size:12.5px;font-weight:600;
+  padding:6px 14px;border-radius:20px;
+  background:var(--card2);border:1.5px solid rgba(28,14,24,.12);
+  color:var(--body);cursor:pointer;
+  transition:all .18s;white-space:nowrap;
+}
+.product-chip:hover{
+  background:var(--accent);color:#fff;
+  border-color:transparent;
+}
 </style>
 </head>
 <body>
@@ -631,10 +644,14 @@ footer{
       <div class="tab-panel active" id="panel-text">
         <label class="input-label" for="textInput">Product Name or Ingredient List</label>
         <p class="input-hint" id="textHint">Type a product name or paste the full ingredient list from your label.</p>
+        <div style="margin-bottom:14px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Popular Products</div>
+          <div id="productSuggestions" style="display:flex;flex-wrap:wrap;gap:7px;"></div>
+        </div>
         <textarea id="textInput" placeholder="e.g.  CeraVe Moisturizing Cream&#10;— or —&#10;Water, Glycerin, Niacinamide, Retinol, Fragrance..."></textarea>
         <div class="actions-row">
           <button class="btn-primary" onclick="runAnalysis('text')">✦ Analyze Ingredients</button>
-          <button class="btn-secondary" onclick="loadSample()">Try a Sample</button>
+          <button class="btn-secondary" onclick="loadSample()">Try a Sample List</button>
           <button class="btn-ghost" onclick="clearAll()">Clear</button>
         </div>
       </div>
@@ -774,6 +791,22 @@ function selectCategory(cat){
   document.getElementById('btnHome').classList.add('visible');
   document.getElementById('analyzerEyebrow').textContent=c.eyebrow;
   document.getElementById('textHint').textContent=c.hint;
+  // Render product suggestion chips
+  const suggestEl=document.getElementById('productSuggestions');
+  suggestEl.innerHTML='';
+  c.products.forEach(p=>{
+    const chip=document.createElement('button');
+    chip.className='product-chip';
+    chip.textContent=p;
+    chip.onclick=()=>{
+      document.getElementById('textInput').value=p;
+      suggestEl.querySelectorAll('.product-chip').forEach(c=>c.style.background='');
+      chip.style.background='var(--accent)';
+      chip.style.color='#fff';
+      chip.style.borderColor='transparent';
+    };
+    suggestEl.appendChild(chip);
+  });
   document.getElementById('homeScreen').style.display='none';
   document.getElementById('analyzerScreen').classList.add('visible');
   window.scrollTo({top:0,behavior:'smooth'});
