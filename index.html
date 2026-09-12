@@ -606,6 +606,42 @@ footer{
 .btn-reanalyze:hover{background:#6B3D08;}
 
 
+
+/* ══ HEADER NAV ══ */
+.header-nav{display:flex;align-items:center;gap:24px;}
+.header-nav a{
+  font-family:'Inter',sans-serif;
+  font-size:14px;font-weight:600;
+  color:var(--ink);
+  text-decoration:none;
+  opacity:0.80;
+  transition:opacity .2s;
+  letter-spacing:.01em;
+}
+.header-nav a:hover{opacity:1;}
+body.theme-personal .header-nav a,
+body.theme-household .header-nav a,
+body.theme-outdoor .header-nav a{color:var(--ink);}
+
+/* ══ TYPOGRAPHY IMPROVEMENTS ══ */
+body{font-size:16px;line-height:1.65;}
+.input-hint{font-size:15px;font-weight:400;line-height:1.72;}
+.input-label{font-size:13px;font-weight:700;letter-spacing:.14em;}
+.card-desc{font-size:14.5px;line-height:1.75;}
+.card-name{font-size:16px;}
+.cat-desc{font-size:14px;}
+.note-text{font-size:15px;line-height:1.75;}
+.foot-item{font-size:13px;}
+.card-list-block ul li{font-size:13.5px;line-height:1.65;}
+.analyzer-banner-title{font-size:32px;}
+.analyzer-banner-eyebrow{font-size:13px;font-weight:700;letter-spacing:.12em;}
+.concerns-banner-title{font-size:15px;font-weight:700;}
+.filter-label-txt{font-size:13px;}
+.filter-pill{font-size:14px;}
+.stat-label{font-size:12px;font-weight:700;letter-spacing:.10em;}
+
+/* Hide header nav on home screen */
+#homeScreen ~ * .header-nav{display:flex;}
 </style>
 </head>
 <body>
@@ -829,6 +865,9 @@ const CFG={
 function selectCategory(cat){
   currentCategory=cat;const c=CFG[cat];
   document.body.className=c.theme;
+  // Show nav links on analyzer pages
+  const nav=document.getElementById('headerNav');
+  if(nav)nav.style.display='flex';
   document.getElementById('categoryPillText').textContent=c.label;
   document.getElementById('categoryPill').classList.add('visible');
   document.getElementById('btnHome').classList.add('visible');
@@ -843,6 +882,9 @@ function selectCategory(cat){
 function goHome(){
   document.body.className='';
   document.getElementById('homeScreen').style.display='flex';
+  // Hide nav on home screen
+  const nav=document.getElementById('headerNav');
+  if(nav)nav.style.display='none';
   document.getElementById('analyzerScreen').classList.remove('visible');
   document.getElementById('categoryPill').classList.remove('visible');
   document.getElementById('btnHome').classList.remove('visible');
