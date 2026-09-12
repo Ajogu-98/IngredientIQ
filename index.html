@@ -673,7 +673,7 @@ footer{
       <div class="tab-panel active" id="panel-text">
         <label class="input-label" for="textInput">Product Name or Ingredient List</label>
         <p class="input-hint" id="textHint">Type a product name or paste the full ingredient list from your label.</p>
-<textarea id="textInput" placeholder="e.g.  CeraVe Moisturizing Cream&#10;— or —&#10;Water, Glycerin, Niacinamide, Retinol, Fragrance..."></textarea>
+<textarea id="textInput" autocomplete="off" placeholder="e.g.  CeraVe Moisturizing Cream&#10;— or —&#10;Water, Glycerin, Niacinamide, Retinol, Fragrance..."></textarea>
         <div class="actions-row">
           <button class="btn-primary" onclick="runAnalysis('text')">✦ Analyze Ingredients</button>
           <button class="btn-secondary" onclick="loadSample()">Try a Sample</button>
@@ -913,6 +913,7 @@ async function runAnalysis(mode){
       lastAnalysisMode=commas<3?'name':'list';
       if(lastAnalysisMode==='name'||commas<BATCH_SIZE){
         // Single call for product names or small lists
+        updateLoadingMsg(lastAnalysisMode==='name'?'Looking up product ingredients...':'Analyzing ingredient list...');
         const data=await callAnalyze({mode:'text',content:t,category:currentCategory});
         hideLoading();renderResults(data);
       } else {
@@ -1076,21 +1077,25 @@ function reanalyzeEdited(){
   runAnalysis('text');
 }
 function resetToInput(){
-  document.getElementById('resultsSection').classList.remove('visible');
-  document.getElementById('inputCard').style.display='block';
-  document.getElementById('textInput').value='';
-  document.getElementById('fileInput').value='';
-  removeUploadedImg();
-  clearCapture();
+  try{document.getElementById('resultsSection').classList.remove('visible');}catch(e){}
+  try{document.getElementById('inputCard').style.display='block';}catch(e){}
+  try{document.getElementById('textInput').value='';}catch(e){}
+  try{document.getElementById('fileInput').value='';}catch(e){}
+  try{removeUploadedImg();}catch(e){}
+  try{clearCapture();}catch(e){}
   allIngredients=[];
-  hideError();
   lastAnalysisMode='';
-  const disc=document.getElementById('disclaimerBanner');
-  if(disc)disc.classList.remove('visible');
-  closeFeedback();
-  document.getElementById('fwButtons').style.display='flex';
-  document.getElementById('fwSuggest').style.display='none';
-  document.getElementById('fwThanks').style.display='none';
+  try{hideError();}catch(e){}
+  try{const disc=document.getElementById('disclaimerBanner');if(disc)disc.classList.remove('visible');}catch(e){}
+  try{closeFeedback();}catch(e){}
+  try{document.getElementById('fwButtons').style.display='flex';}catch(e){}
+  try{document.getElementById('fwSuggest').style.display='none';}catch(e){}
+  try{document.getElementById('fwThanks').style.display='none';}catch(e){}
+  // Force clear after any browser autofill
+  setTimeout(()=>{
+    const t=document.getElementById('textInput');
+    if(t)t.value='';
+  },50);
 }
 function showError(msg){document.getElementById('errorMsg').textContent=msg;document.getElementById('errorSection').classList.add('visible');document.getElementById('inputCard').style.display='block';}
 function hideError(){document.getElementById('errorSection').classList.remove('visible');}
