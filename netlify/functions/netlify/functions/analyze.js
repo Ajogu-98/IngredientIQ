@@ -44,7 +44,7 @@ exports.handler = async function(event) {
     userMessage = [
       {
         type: 'image',
-        source: { type: 'base64', media_type: mimeType || 'image/jpeg', data: content }
+        source: { type: 'base64', media_type: (mimeType && mimeType.startsWith('image/') && !mimeType.includes('heic') && !mimeType.includes('heif')) ? mimeType : 'image/jpeg', data: content }
       },
       {
         type: 'text',
