@@ -145,3 +145,8 @@ Return ONLY the JSON. No explanation, no markdown, no code fences.`;
     return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
   }
 };
+
+// Set function timeout to 26 seconds
+exports.config = {
+  timeout: 26
+};
