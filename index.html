@@ -980,22 +980,11 @@ async function runAnalysis(mode){
         imgBase64=capturedDataUrl.split(',')[1];
         imgMime=capturedMimeType;
       }
-      // Step 1: Extract ingredient text from image
-      updateLoadingMsg('Reading label...');
-      const extracted=await callAnalyze({mode:'image',content:imgBase64,mimeType:imgMime,category:currentCategory,extractOnly:true});
-      const ingText=extracted.extractedText||'';
-      if(!ingText){hideLoading();showError('Could not read ingredient list from image. Please try a clearer photo.');return;}
-      // Step 2: Batch analyze extracted ingredients
-      const allIngredients=ingText.split(',').map(s=>s.trim()).filter(Boolean);
-      const batches=[];
-      for(let i=0;i<allIngredients.length;i+=BATCH_SIZE)batches.push(allIngredients.slice(i,i+BATCH_SIZE));
-      const results=[];
-      for(let i=0;i<batches.length;i++){
-        updateLoadingMsg('Analyzing batch '+(i+1)+' of '+batches.length+'...');
-        const data=await callAnalyze({mode:'text',content:batches[i].join(', '),category:currentCategory});
-        results.push(data);
-      }
-      hideLoading();renderResults(mergeBatchResults(results));
+      lastAnalysisPayload={mode:mode,imgBase64:imgBase64,imgMime:imgMime};
+      // Direct single call - extract and analyze in one shot
+      updateLoadingMsg('Reading and analyzing label...');
+      const data=await callAnalyze({mode:'image',content:imgBase64,mimeType:imgMime,category:currentCategory});
+      hideLoading();renderResults(data);
     }
   } catch(e){hideLoading();showError('Analysis failed: '+e.message);}
 }
