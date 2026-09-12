@@ -17,85 +17,59 @@ exports.handler = async function(event) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Missing mode or content' }) };
   }
 
-  // EXTRACT ONLY — fast image OCR, no analysis
+  // EXTRACT ONLY — image OCR
   if (extractOnly && mode === 'image') {
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const r = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
         body: JSON.stringify({
           model: 'claude-haiku-4-5-20251001',
           max_tokens: 300,
-          messages: [{
-            role: 'user',
-            content: [
-              { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: content } },
-              { type: 'text', text: 'List only the ingredients from this label as a comma-separated list. No other text.' }
-            ]
-          }]
+          messages: [{ role: 'user', content: [
+            { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: content } },
+            { type: 'text', text: 'List only the ingredients from this product label as a plain comma-separated list. Nothing else.' }
+          ]}]
         })
       });
-      if (!response.ok) return { statusCode: 500, body: JSON.stringify({ error: 'Extract failed' }) };
-      const data = await response.json();
-      return {
-        statusCode: 200,
-        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ extractedText: data.content[0].text.trim() })
-      };
-    } catch(err) {
-      return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+      const d = await r.json();
+      return { statusCode: 200, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ extractedText: d.content[0].text.trim() }) };
+    } catch(e) {
+      return { statusCode: 500, body: JSON.stringify({ error: e.message }) };
     }
   }
 
-  // ANALYZE — text ingredients only
-  const catMap = {
-    personal: 'skincare/personal care',
-    household: 'household cleaner/detergent',
-    outdoor: 'outdoor/garden chemical'
-  };
-  const catLabel = catMap[category] || catMap.personal;
-
+  // ANALYZE
   const commas = (content.match(/,/g) || []).length;
   const isName = commas < 3 && content.trim().length < 80;
-
   const userMsg = isName
-    ? 'List and analyze up to 8 key ingredients in "' + content + '" (' + catLabel + ').'
-    : 'Analyze these ' + catLabel + ' ingredients: ' + content;
+    ? 'Analyze up to 8 key ingredients of "' + content + '". Category: ' + category
+    : 'Analyze these ingredients (' + category + '): ' + content;
 
-  const systemPrompt = 'Product safety analyst. Return ONLY valid JSON, no markdown.\n{"productName":null,"detectedProductType":"personal","ingredients":[{"name":"","inci":"","safety":"safe","category":[],"description":"","benefits":[],"concerns":[],"comedogenic":0,"pregnancySafe":true,"bannedRegions":[],"ewgScore":1}],"summary":{"overallSafety":"safe","safeCount":0,"cautionCount":0,"flagCount":0,"topConcerns":[],"pregnancyNote":"","safetyNote":""}}\ndetectedProductType: personal|household|outdoor. safety: safe|caution|flag. Max 2 benefits, 2 concerns. One-sentence descriptions. JSON only.';
+  const sys = 'Return ONLY a JSON object. No markdown. Structure: {"productName":null,"ingredients":[{"name":"","inci":"","safety":"safe","category":[],"description":"","benefits":[],"concerns":[],"comedogenic":0,"pregnancySafe":true,"bannedRegions":[],"ewgScore":1}],"summary":{"overallSafety":"safe","safeCount":0,"cautionCount":0,"flagCount":0,"topConcerns":[],"pregnancyNote":"","safetyNote":""}} Rules: safety=safe/caution/flag, max 2 benefits/concerns, brief descriptions.';
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 1500,
-        system: systemPrompt,
-        messages: [{ role: 'user', content: userMsg }]
-      })
+      body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 1500, system: sys, messages: [{ role: 'user', content: userMsg }] })
     });
 
-    if (!response.ok) {
-      const err = await response.text();
-      return { statusCode: 500, body: JSON.stringify({ error: 'API error: ' + err.slice(0, 200) }) };
+    if (!r.ok) {
+      const e = await r.text();
+      return { statusCode: 500, body: JSON.stringify({ error: 'API: ' + e.slice(0, 100) }) };
     }
 
-    const data = await response.json();
-    const text = data.content[0].text.trim();
-    const clean = text.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+    const d = await r.json();
+    const txt = d.content[0].text.trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/i,'').trim();
 
     let parsed;
-    try { parsed = JSON.parse(clean); }
-    catch(e) { return { statusCode: 500, body: JSON.stringify({ error: 'Parse failed: ' + clean.slice(0, 200) }) }; }
+    try { parsed = JSON.parse(txt); }
+    catch(e) { return { statusCode: 500, body: JSON.stringify({ error: 'Parse error: ' + txt.slice(0,100) }) }; }
 
-    return {
-      statusCode: 200,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify(parsed)
-    };
+    return { statusCode: 200, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify(parsed) };
 
-  } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+  } catch(e) {
+    return { statusCode: 500, body: JSON.stringify({ error: e.message }) };
   }
 };
