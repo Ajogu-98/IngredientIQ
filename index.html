@@ -907,24 +907,20 @@ let lastAnalysisMode='';
 const BATCH_SIZE=10;
 
 async function callAnalyze(payload){
-  const controller=new AbortController();
-  const timeout=setTimeout(()=>controller.abort(),20000); // 20 second max
-  try{
-    const res=await fetch('/.netlify/functions/analyze',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(payload),
-      signal:controller.signal
-    });
-    clearTimeout(timeout);
-    const data=await res.json();
-    if(!res.ok)throw new Error(data.error||'HTTP '+res.status);
-    return data;
-  }catch(e){
-    clearTimeout(timeout);
-    if(e.name==='AbortError')throw new Error('Request timed out. Please check your Anthropic API credits at console.anthropic.com and try again.');
-    throw e;
-  }
+  const fetchPromise=fetch('/.netlify/functions/analyze',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  });
+  const timeoutPromise=new Promise((_,reject)=>
+    setTimeout(()=>reject(new Error('Request timed out after 20 seconds. Please try again.')),20000)
+  );
+  const res=await Promise.race([fetchPromise,timeoutPromise]);
+  let data;
+  try{data=await res.json();}
+  catch(e){throw new Error('Server returned an invalid response. Please try again.');}
+  if(!res.ok)throw new Error(data.error||'HTTP '+res.status);
+  return data;
 }
 
 function updateLoadingMsg(msg){
@@ -1089,20 +1085,6 @@ function switchAndReanalyze(){
 function renderResults(data){
   allIngredients=data.ingredients||[];const s=data.summary||{};
 
-  // Check for category mismatch FIRST — block results if wrong category
-  lastDetectedType=data.detectedProductType||'';
-  if(lastDetectedType&&lastDetectedType!==currentCategory){
-    const detectedLabel=CATEGORY_LABELS[lastDetectedType]||lastDetectedType;
-    const selectedLabel=CATEGORY_LABELS[currentCategory]||currentCategory;
-    const detectedIcon=CATEGORY_ICONS[lastDetectedType]||'';
-    document.getElementById('wcTitle').textContent='Wrong Category: This is a '+detectedLabel+' Product';
-    document.getElementById('wcSubtitle').textContent='You selected '+selectedLabel+', but this product belongs to '+detectedLabel+'. Switch to the correct category for an accurate and relevant safety analysis.';
-    document.getElementById('wcDetected').textContent=detectedIcon+' Switch to: '+detectedLabel;
-    document.getElementById('wcSwitchBtn').textContent='Switch to '+detectedLabel+' & Re-analyze';
-    document.getElementById('wrongCategorySection').classList.add('visible');
-    document.getElementById('inputCard').style.display='block';
-    return; // Stop here — do not show results
-  }
   document.getElementById('wrongCategorySection').classList.remove('visible');
 
   // Show disclaimer if analysis was from a product name
