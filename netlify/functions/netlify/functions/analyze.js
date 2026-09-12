@@ -10,20 +10,20 @@ exports.handler = async function(event) {
 
   let body;
   try { body = JSON.parse(event.body); }
-  catch { return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON' }) }; }
+  catch { return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON body' }) }; }
 
   const { mode, content, mimeType, category = 'personal' } = body;
   if (!mode || !content) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Missing mode or content' }) };
   }
 
-  const categoryNotes = {
-    personal: 'Focus on: skin safety, irritation, parabens, sulfates, fragrances, endocrine disruptors, pregnancy safety, comedogenic rating.',
-    household: 'Focus on: skin contact safety, respiratory risks, aquatic toxicity, VOCs, optical brighteners, surfactants.',
-    outdoor: 'Focus on: human/pet/environmental toxicity, carcinogens, neurotoxins, banned substances, EPA status.'
+  const categoryContext = {
+    personal: 'personal care product (skincare, body wash, soap, shampoo, deodorant, sunscreen). Focus on skin safety, parabens, sulfates, fragrances, endocrine disruptors, pregnancy safety.',
+    household: 'household product (laundry detergent, dish soap, cleaner, fabric softener). Focus on skin contact safety, respiratory risks, aquatic toxicity, VOCs.',
+    outdoor: 'outdoor/garden product (bug spray, weed killer, pesticide). Focus on human/pet/environmental toxicity, carcinogens, neurotoxins, banned substances.'
   };
 
-  const notes = categoryNotes[category] || categoryNotes.personal;
+  const ctx = categoryContext[category] || categoryContext.personal;
 
   let userMessage;
   if (mode === 'image') {
@@ -36,30 +36,21 @@ exports.handler = async function(event) {
           data: content
         }
       },
-      { type: 'text', text: `Extract and analyze all ingredients from this product label. ${notes}` }
+      { type: 'text', text: 'Extract and analyze the ingredients from this product label. ' + ctx }
     ];
   } else {
     const commas = (content.match(/,/g) || []).length;
     const isName = commas < 3 && content.trim().length < 80;
-    userMessage = isName
-      ? `List and analyze the ingredients in "${content}". ${notes}`
-      : `Analyze these ingredients: ${content}\n${notes}`;
+    if (isName) {
+      userMessage = 'Analyze the main ingredients in "' + content + '". ' + ctx;
+    } else {
+      // Limit to first 10 ingredients to ensure fast response
+      const ingList = content.split(',').map(function(s) { return s.trim(); }).filter(Boolean).slice(0, 10);
+      userMessage = 'Analyze these ingredients from a ' + ctx + ':\n\n' + ingList.join(', ');
+    }
   }
 
-  // Compact prompt — less text = faster response = no timeout
-  const systemPrompt = `You are a product safety analyst. Return ONLY valid JSON, no markdown, no code fences.
-
-JSON structure:
-{"productName":null,"extractedIngredientText":"","ingredients":[{"name":"","inci":"","safety":"safe|caution|flag","category":[],"description":"","benefits":[],"concerns":[],"comedogenic":0,"pregnancySafe":true,"bannedRegions":[],"ewgScore":1}],"summary":{"overallSafety":"safe","safeCount":0,"cautionCount":0,"flagCount":0,"topConcerns":[],"skinTypeNotes":"","usageNotes":"","pregnancyNote":"","safetyNote":""}}
-
-Rules:
-- safety: safe=well studied/safe, caution=mild concerns, flag=hazardous/banned/carcinogen
-- comedogenic: 0-5 (0=none, 5=highly)
-- ewgScore: 1-10 (1=safest)
-- pregnancySafe: true/false/null
-- Keep descriptions under 20 words
-- Keep benefits/concerns arrays to max 3 items each
-- Return ONLY the JSON object`;
+  const systemPrompt = 'You are an expert product safety analyst. Analyze ingredients and return ONLY a valid JSON object with no extra text, no markdown, no code fences.\n\nReturn this exact structure:\n{\n  "productName": "string or null",\n  "extractedIngredientText": "comma separated ingredient list",\n  "ingredients": [\n    {\n      "name": "Common name",\n      "inci": "INCI name",\n      "safety": "safe",\n      "category": ["category"],\n      "description": "One sentence description",\n      "benefits": ["benefit"],\n      "concerns": ["concern"],\n      "comedogenic": 0,\n      "pregnancySafe": true,\n      "bannedRegions": [],\n      "ewgScore": 1\n    }\n  ],\n  "summary": {\n    "overallSafety": "safe",\n    "safeCount": 0,\n    "cautionCount": 0,\n    "flagCount": 0,\n    "topConcerns": [],\n    "pregnancyNote": "string",\n    "safetyNote": "string"\n  }\n}\n\nRules:\n- safety must be: safe, caution, or flag\n- comedogenic: 0-5 scale\n- ewgScore: 1-10 scale\n- pregnancySafe: true, false, or null\n- Keep descriptions to one sentence\n- Maximum 3 items in benefits and concerns arrays\n- Return ONLY the JSON object, nothing else';
 
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -79,7 +70,7 @@ Rules:
 
     if (!response.ok) {
       const err = await response.text();
-      return { statusCode: 500, body: JSON.stringify({ error: `API error: ${err}` }) };
+      return { statusCode: 500, body: JSON.stringify({ error: 'API error: ' + err }) };
     }
 
     const data = await response.json();
@@ -87,9 +78,10 @@ Rules:
     const clean = text.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
 
     let parsed;
-    try { parsed = JSON.parse(clean); }
-    catch {
-      return { statusCode: 500, body: JSON.stringify({ error: 'Failed to parse response', raw: clean.slice(0, 300) }) };
+    try {
+      parsed = JSON.parse(clean);
+    } catch(e) {
+      return { statusCode: 500, body: JSON.stringify({ error: 'Failed to parse response', raw: clean.slice(0, 500) }) };
     }
 
     return {
