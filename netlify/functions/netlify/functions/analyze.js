@@ -17,63 +17,68 @@ exports.handler = async function(event) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Missing mode or content' }) };
   }
 
-  const categoryContext = {
-    personal: 'personal care product (skincare, body wash, soap, shampoo, deodorant, sunscreen). Focus on skin safety, parabens, sulfates, fragrances, endocrine disruptors, pregnancy safety.',
-    household: 'household product (laundry detergent, dish soap, cleaner, fabric softener). Focus on skin contact safety, respiratory risks, aquatic toxicity, VOCs.',
-    outdoor: 'outdoor/garden product (bug spray, weed killer, pesticide). Focus on human/pet/environmental toxicity, carcinogens, neurotoxins, banned substances.'
-  };
-  const ctx = categoryContext[category] || categoryContext.personal;
-
-  // EXTRACT ONLY mode — used for images to get ingredient list before batching
+  // EXTRACT ONLY — fast image OCR, no analysis
   if (extractOnly && mode === 'image') {
-    const extractPrompt = 'Extract ONLY the ingredient list from this product label image. Return a plain comma-separated list of ingredients exactly as they appear on the label. No analysis, no JSON, no explanation — just the comma-separated ingredient names.';
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 500,
-        messages: [{
-          role: 'user',
-          content: [
-            { type: 'image', source: { type: 'base64', media_type: (mimeType && mimeType.startsWith('image/') && !mimeType.includes('heic') && !mimeType.includes('heif')) ? mimeType : 'image/jpeg', data: content } },
-            { type: 'text', text: extractPrompt }
-          ]
-        }]
-      })
-    });
-    if (!response.ok) { return { statusCode: 500, body: JSON.stringify({ error: 'Extraction failed' }) }; }
-    const data = await response.json();
-    return { statusCode: 200, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ extractedText: data.content[0].text.trim() }) };
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
+        body: JSON.stringify({
+          model: 'claude-haiku-4-5-20251001',
+          max_tokens: 300,
+          messages: [{
+            role: 'user',
+            content: [
+              { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: content } },
+              { type: 'text', text: 'List only the ingredients from this label as a comma-separated list. No other text.' }
+            ]
+          }]
+        })
+      });
+      if (!response.ok) return { statusCode: 500, body: JSON.stringify({ error: 'Extract failed' }) };
+      const data = await response.json();
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({ extractedText: data.content[0].text.trim() })
+      };
+    } catch(err) {
+      return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+    }
   }
 
-  // ANALYZE mode — analyze a batch of ingredients (text only, max 10)
-  let userMessage;
-  if (mode === 'image') {
-    userMessage = [
-      { type: 'image', source: { type: 'base64', media_type: (mimeType && mimeType.startsWith('image/') && !mimeType.includes('heic') && !mimeType.includes('heif')) ? mimeType : 'image/jpeg', data: content } },
-      { type: 'text', text: 'Extract and analyze the ingredients from this product label. ' + ctx }
-    ];
-  } else {
-    const commas = (content.match(/,/g) || []).length;
-    const isName = commas < 3 && content.trim().length < 80;
-    userMessage = isName
-      ? 'Analyze the main ingredients in "' + content + '". ' + ctx
-      : 'Analyze these ingredients from a ' + ctx + ':\n\n' + content;
-  }
+  // ANALYZE — text ingredients only
+  const catMap = {
+    personal: 'skincare/personal care',
+    household: 'household cleaner/detergent',
+    outdoor: 'outdoor/garden chemical'
+  };
+  const catLabel = catMap[category] || catMap.personal;
 
-  const systemPrompt = 'You are an expert product safety analyst. Analyze ingredients and return ONLY a valid JSON object with no extra text, no markdown, no code fences.\n\nReturn this exact structure:\n{\n  "productName": "string or null",\n  "detectedProductType": "personal|household|outdoor",\n  "extractedIngredientText": "comma separated ingredient list",\n  "ingredients": [\n    {\n      "name": "Common name",\n      "inci": "INCI name",\n      "safety": "safe",\n      "category": ["category"],\n      "description": "One sentence description",\n      "benefits": ["benefit"],\n      "concerns": ["concern"],\n      "comedogenic": 0,\n      "pregnancySafe": true,\n      "bannedRegions": [],\n      "ewgScore": 1\n    }\n  ],\n  "summary": {\n    "overallSafety": "safe",\n    "safeCount": 0,\n    "cautionCount": 0,\n    "flagCount": 0,\n    "topConcerns": [],\n    "pregnancyNote": "string",\n    "safetyNote": "string"\n  }\n}\n\nRules:\n- detectedProductType: classify the product as personal (skincare/soap/shampoo/deodorant/sunscreen), household (detergent/cleaner/dish soap/fabric softener), or outdoor (bug spray/weed killer/pesticide/herbicide)\n- safety must be: safe, caution, or flag\n- comedogenic: 0-5 scale (use 0 for non-skincare)\n- ewgScore: 1-10 scale\n- pregnancySafe: true, false, or null\n- Keep descriptions to one sentence\n- Maximum 3 items in benefits and concerns arrays\n- Always analyze with the correct safety context for the DETECTED product type, not just the selected category\n- Return ONLY the JSON object, nothing else';
+  const commas = (content.match(/,/g) || []).length;
+  const isName = commas < 3 && content.trim().length < 80;
+
+  const userMsg = isName
+    ? 'List and analyze up to 8 key ingredients in "' + content + '" (' + catLabel + ').'
+    : 'Analyze these ' + catLabel + ' ingredients: ' + content;
+
+  const systemPrompt = 'Product safety analyst. Return ONLY valid JSON, no markdown.\n{"productName":null,"detectedProductType":"personal","ingredients":[{"name":"","inci":"","safety":"safe","category":[],"description":"","benefits":[],"concerns":[],"comedogenic":0,"pregnancySafe":true,"bannedRegions":[],"ewgScore":1}],"summary":{"overallSafety":"safe","safeCount":0,"cautionCount":0,"flagCount":0,"topConcerns":[],"pregnancyNote":"","safetyNote":""}}\ndetectedProductType: personal|household|outdoor. safety: safe|caution|flag. Max 2 benefits, 2 concerns. One-sentence descriptions. JSON only.';
 
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 3000, system: systemPrompt, messages: [{ role: 'user', content: userMessage }] })
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1500,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userMsg }]
+      })
     });
 
     if (!response.ok) {
       const err = await response.text();
-      return { statusCode: 500, body: JSON.stringify({ error: 'API error: ' + err }) };
+      return { statusCode: 500, body: JSON.stringify({ error: 'API error: ' + err.slice(0, 200) }) };
     }
 
     const data = await response.json();
@@ -82,7 +87,7 @@ exports.handler = async function(event) {
 
     let parsed;
     try { parsed = JSON.parse(clean); }
-    catch(e) { return { statusCode: 500, body: JSON.stringify({ error: 'Failed to parse response', raw: clean.slice(0, 500) }) }; }
+    catch(e) { return { statusCode: 500, body: JSON.stringify({ error: 'Parse failed: ' + clean.slice(0, 200) }) }; }
 
     return {
       statusCode: 200,
