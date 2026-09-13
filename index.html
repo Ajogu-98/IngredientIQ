@@ -812,7 +812,6 @@ body.theme-outdoor .header-nav a{color:var(--ink);}
           <button class="btn-reanalyze" onclick="reanalyzeEdited()">↻ Re-analyze with My Edits</button>
         </div>
       </div>
-</div>
       <div class="filter-bar">
         <span class="filter-label-txt">Show:</span>
         <button class="filter-pill active" data-filter="all" onclick="setFilter('all',this)">All <span class="pill-count" id="fc-all">0</span></button>
@@ -821,6 +820,7 @@ body.theme-outdoor .header-nav a{color:var(--ink);}
         <button class="filter-pill f-flag" data-filter="flag" onclick="setFilter('flag',this)">🚩 Flagged <span class="pill-count" id="fc-flag">0</span></button>
       </div>
       <div id="ingredientsGrid"></div>
+      </div>
     </div>
   </main>
   <footer>
@@ -1169,6 +1169,7 @@ function resetToInput(){
   try{clearCapture();}catch(e){}
   allIngredients=[];
   lastAnalysisMode='';
+  try{document.getElementById('ingredientsGrid').innerHTML='';}catch(e){}
   try{hideError();}catch(e){}
   try{const disc=document.getElementById('disclaimerBanner');if(disc)disc.classList.remove('visible');}catch(e){}
   try{closeFeedback();}catch(e){}
