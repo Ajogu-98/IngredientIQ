@@ -983,7 +983,14 @@ async function runAnalysis(mode){
         // Single call for product names or small lists
         updateLoadingMsg(lastAnalysisMode==='name'?'Looking up product ingredients...':'Analyzing ingredient list...');
         const data=await callAnalyze({mode:'text',content:t,category:currentCategory});
-        hideLoading();renderResults(data);
+        hideLoading();
+        // Wrong-category check for typed product names
+        const detN=data.detectedCategory;
+        if(lastAnalysisMode==='name'&&detN&&CATEGORY_LABELS[detN]&&detN!==currentCategory){
+          showError('This looks like a '+CATEGORY_LABELS[detN]+' product, but you\'re in '+(CATEGORY_LABELS[currentCategory]||'this')+'. Go back to All Categories and choose '+CATEGORY_LABELS[detN]+' for accurate results.');
+          return;
+        }
+        renderResults(data);
       } else {
         // Batch processing for long ingredient lists
         const allIngredients=t.split(',').map(s=>s.trim()).filter(Boolean);
