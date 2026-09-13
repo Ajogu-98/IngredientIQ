@@ -834,6 +834,16 @@ body.theme-outdoor .header-nav a{color:var(--ink);}
   </footer>
 
   <!-- FEEDBACK WIDGET -->
+  <!-- Netlify Forms: hidden so the build bot registers the fields; submissions are POSTed from JS -->
+  <form name="feedback" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="rating">
+    <input type="text" name="category">
+    <input type="text" name="input_mode">
+    <textarea name="ingredients"></textarea>
+    <textarea name="message"></textarea>
+    <input type="text" name="page">
+    <input type="text" name="bot-field">
+  </form>
   <div id="feedbackWidget">
     <button class="fw-close" onclick="closeFeedback()">✕</button>
     <div class="fw-title">Was this analysis helpful?</div>
@@ -1205,14 +1215,28 @@ function submitFeedback(positive){
     setTimeout(closeFeedback, 2500);
     // Track in GA
     if(typeof gtag!=='undefined') gtag('event','feedback_positive',{event_category:'feedback'});
+    postFeedback('positive','');
   } else {
     document.getElementById('fwSuggest').style.display='block';
     if(typeof gtag!=='undefined') gtag('event','feedback_negative',{event_category:'feedback'});
   }
 }
+function postFeedback(rating,message){
+  const body=new URLSearchParams({
+    'form-name':'feedback',
+    rating:rating,
+    category:(CATEGORY_LABELS&&CATEGORY_LABELS[currentCategory])||currentCategory,
+    input_mode:lastAnalysisMode||'',
+    ingredients:(allIngredients||[]).map(i=>i.name).join(', ').slice(0,1000),
+    message:message||'',
+    page:location.href
+  });
+  return fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()}).catch(()=>{});
+}
 function sendSuggestion(){
   const text = document.getElementById('fwText').value.trim();
-  if(typeof gtag!=='undefined') gtag('event','feedback_suggestion',{event_category:'feedback',event_label:text});
+  if(typeof gtag!=='undefined') gtag('event','feedback_suggestion',{event_category:'feedback',event_label:text.slice(0,100)});
+  postFeedback('negative',text);
   document.getElementById('fwSuggest').style.display='none';
   document.getElementById('fwThanks').style.display='block';
   setTimeout(closeFeedback, 2500);
