@@ -912,7 +912,8 @@ function stopCamera(){if(currentStream){currentStream.getTracks().forEach(t=>t.s
 function captureFrame(){const v=document.getElementById('videoEl'),c=document.getElementById('canvasEl');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);const d=c.toDataURL('image/jpeg',0.9);capturedDataUrl=d;capturedMimeType='image/jpeg';const p=document.getElementById('capturePreview');p.src=d;p.classList.add('visible');document.getElementById('btnAnalyzeScan').disabled=false;}
 function clearCapture(){capturedDataUrl=null;capturedMimeType=null;const p=document.getElementById('capturePreview');p.src='';p.classList.remove('visible');document.getElementById('btnAnalyzeScan').disabled=true;}
 let lastAnalysisMode='';
-const BATCH_SIZE=10;
+const BATCH_SIZE=6;
+const CATEGORY_LABELS={personal:'Personal Care',household:'Household',outdoor:'Outdoor & Garden'};
 
 async function callAnalyze(payload){
   const fetchPromise=fetch('/.netlify/functions/analyze',{
@@ -1003,6 +1004,12 @@ async function runAnalysis(mode){
       hideLoading();
       const ingText=(extracted.extractedText||'').trim();
       if(!ingText){showError('Could not read ingredient list from image. Please try a clearer photo or type the ingredients manually.');return;}
+      // Wrong-category check (image only)
+      const det=extracted.detectedCategory;
+      if(det&&CATEGORY_LABELS[det]&&det!==currentCategory){
+        showError('This looks like a '+CATEGORY_LABELS[det]+' product, but you\'re in '+(CATEGORY_LABELS[currentCategory]||'this')+'. Go back to All Categories and choose '+CATEGORY_LABELS[det]+' for accurate results.');
+        return;
+      }
       // Step 2: Show extracted text in textarea and switch to Type tab
       document.getElementById('textInput').value=ingText;
       lastAnalysisMode='list';
