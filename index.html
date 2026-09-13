@@ -1181,7 +1181,7 @@ function resetToInput(){
     if(t)t.value='';
   },50);
 }
-function showError(msg){document.getElementById('errorMsg').textContent=msg;document.getElementById('errorSection').classList.add('visible');document.getElementById('inputCard').style.display='block';}
+function showError(msg){document.getElementById('errorMsg').textContent=msg;document.getElementById('errorSection').classList.add('visible');document.getElementById('inputCard').style.display='block';try{document.getElementById('resultsSection').classList.remove('visible');}catch(e){}try{closeFeedback();}catch(e){}}
 function hideError(){document.getElementById('errorSection').classList.remove('visible');}
 function escHtml(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
