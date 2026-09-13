@@ -28,12 +28,19 @@ exports.handler = async function(event) {
           max_tokens: 300,
           messages: [{ role: 'user', content: [
             { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: content } },
-            { type: 'text', text: 'List only the ingredients from this product label as a plain comma-separated list. Nothing else.' }
+            { type: 'text', text: 'Read this product label. Return ONLY compact JSON, no markdown: {"detectedCategory":"personal|household|outdoor","ingredients":"comma-separated ingredient list"}. detectedCategory: personal = skincare, hair, body, cosmetics, oral care; household = cleaning, laundry, dish, air freshener; outdoor = pest control, garden, lawn, pool, automotive. If no ingredient list is visible, use an empty string.' }
           ]}]
         })
       });
       const d = await r.json();
-      return { statusCode: 200, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ extractedText: d.content[0].text.trim() }) };
+      const raw = (d.content && d.content[0] && d.content[0].text || '').trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/i,'').trim();
+      let extractedText = raw, detectedCategory = null;
+      try {
+        const j = JSON.parse(raw);
+        if (j && typeof j.ingredients === 'string') extractedText = j.ingredients.trim();
+        if (['personal','household','outdoor'].includes(j.detectedCategory)) detectedCategory = j.detectedCategory;
+      } catch(e) { /* fall back to raw text */ }
+      return { statusCode: 200, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ extractedText, detectedCategory }) };
     } catch(e) {
       return { statusCode: 500, body: JSON.stringify({ error: e.message }) };
     }
@@ -46,13 +53,13 @@ exports.handler = async function(event) {
     ? 'Analyze up to 8 key ingredients of "' + content + '". Category: ' + category
     : 'Analyze these ingredients (' + category + '): ' + content;
 
-  const sys = 'Return ONLY a JSON object. No markdown. Structure: {"productName":null,"ingredients":[{"name":"","inci":"","safety":"safe","category":[],"description":"","benefits":[],"concerns":[],"comedogenic":0,"pregnancySafe":true,"bannedRegions":[],"ewgScore":1}],"summary":{"overallSafety":"safe","safeCount":0,"cautionCount":0,"flagCount":0,"topConcerns":[],"pregnancyNote":"","safetyNote":""}} Rules: safety=safe/caution/flag, max 2 benefits/concerns, brief descriptions.';
+  const sys = 'Return ONLY a JSON object. No markdown. Structure: {"productName":null,"ingredients":[{"name":"","inci":"","safety":"safe","category":[],"description":"","benefits":[],"concerns":[],"comedogenic":0,"pregnancySafe":true,"bannedRegions":[],"ewgScore":1}],"summary":{"overallSafety":"safe","safeCount":0,"cautionCount":0,"flagCount":0,"topConcerns":[],"pregnancyNote":"","safetyNote":""}} Rules: safety=safe/caution/flag, max 2 benefits/concerns, descriptions under 15 words, bannedRegions max 3. Output compact single-line JSON with no whitespace between tokens.';
 
   try {
     const r = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 1500, system: sys, messages: [{ role: 'user', content: userMsg }] })
+      body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 3000, system: sys, messages: [{ role: 'user', content: userMsg }] })
     });
 
     if (!r.ok) {
@@ -61,11 +68,14 @@ exports.handler = async function(event) {
     }
 
     const d = await r.json();
-    const txt = d.content[0].text.trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/i,'').trim();
+    if (d.stop_reason === 'max_tokens') {
+      return { statusCode: 500, body: JSON.stringify({ error: 'The ingredient list was too long to analyze in one pass. Please try a shorter list.' }) };
+    }
+    const txt = (d.content && d.content[0] && d.content[0].text || '').trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/i,'').trim();
 
     let parsed;
     try { parsed = JSON.parse(txt); }
-    catch(e) { return { statusCode: 500, body: JSON.stringify({ error: 'Parse error: ' + txt.slice(0,100) }) }; }
+    catch(e) { return { statusCode: 500, body: JSON.stringify({ error: 'We could not read the analysis results. Please try again.' }) }; }
 
     return { statusCode: 200, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify(parsed) };
 
