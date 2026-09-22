@@ -24,11 +24,11 @@ exports.handler = async function(event) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
         body: JSON.stringify({
-          model: 'claude-haiku-4-5-20251001',
+          model: 'claude-haiku-4-5-20251001', temperature: 0,
           max_tokens: 300,
           messages: [{ role: 'user', content: [
             { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: content } },
-            { type: 'text', text: 'Read this product label. Return ONLY compact JSON, no markdown: {"detectedCategory":"personal|household|outdoor","ingredients":"comma-separated ingredient list"}. detectedCategory: personal = skincare, hair, body, cosmetics, oral care; household = cleaning, laundry, dish, air freshener; outdoor = pest control, garden, lawn, pool, automotive. If no ingredient list is visible, use an empty string.' }
+            { type: 'text', text: 'Read this product label. Return ONLY compact JSON, no markdown: {"detectedCategory":"personal|household|outdoor","ingredients":"comma-separated ingredient list"}. For ingredients: list every named substance shown, including active ingredients and any named inactive or other ingredients, in label order. Include a generic entry such as "Other Ingredients" only if the label shows one and names no substances for it. Do not include percentages, weights, or warning text. For detectedCategory: personal = skincare, hair, body, cosmetics, oral care; household = cleaning, laundry, dish soap, air freshener, surface disinfectant; outdoor = ANY insecticide, insect repellent, insect killer, pest control, garden, lawn, pool, or automotive product, including ones used indoors such as ant, roach, fly, or wasp sprays. If no ingredient list is visible, use an empty string.' }
           ]}]
         })
       });
@@ -53,13 +53,13 @@ exports.handler = async function(event) {
     ? 'Analyze up to 8 key ingredients of "' + content + '". Category: ' + category
     : 'Analyze these ingredients (' + category + '): ' + content;
 
-  const sys = 'Return ONLY a JSON object. No markdown. Structure: {"productName":null,"detectedCategory":"personal|household|outdoor","ingredients":[{"name":"","inci":"","safety":"safe","category":[],"description":"","benefits":[],"concerns":[],"comedogenic":0,"pregnancySafe":true,"bannedRegions":[],"ewgScore":1}],"summary":{"overallSafety":"safe","safeCount":0,"cautionCount":0,"flagCount":0,"topConcerns":[],"pregnancyNote":"","safetyNote":""}} Rules: detectedCategory = the category this product actually belongs to (personal = skincare/hair/body/cosmetics/oral care, household = cleaning/laundry/dish/air care, outdoor = pest control/garden/lawn/pool/automotive), regardless of the category given. safety=safe/caution/flag, max 2 benefits/concerns, descriptions under 12 words, max 2 tags, bannedRegions max 2. Output compact single-line JSON with no whitespace between tokens.';
+  const sys = 'Return ONLY a JSON object. No markdown. Structure: {"productName":null,"detectedCategory":"personal|household|outdoor","ingredients":[{"name":"","inci":"","safety":"safe","category":[],"description":"","benefits":[],"concerns":[],"comedogenic":0,"pregnancySafe":true,"bannedRegions":[],"ewgScore":1}],"summary":{"overallSafety":"safe","safeCount":0,"cautionCount":0,"flagCount":0,"topConcerns":[],"pregnancyNote":"","safetyNote":""}} Rules: detectedCategory = the category this product actually belongs to (personal = skincare/hair/body/cosmetics/oral care, household = cleaning/laundry/dish/air care/surface disinfectant, outdoor = any insecticide, insect repellent or killer, pest control, garden, lawn, pool or automotive product, including indoor-use bug sprays), regardless of the category given. safety=safe/caution/flag, max 2 benefits/concerns, descriptions under 12 words, max 2 tags, bannedRegions max 2. Output compact single-line JSON with no whitespace between tokens.';
 
   try {
     const r = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 2000, system: sys, messages: [{ role: 'user', content: userMsg }] })
+      body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', temperature: 0, max_tokens: 2000, system: sys, messages: [{ role: 'user', content: userMsg }] })
     });
 
     if (!r.ok) {
