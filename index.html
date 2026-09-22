@@ -993,6 +993,8 @@ async function runBatchesParallel(batches,totalIngredients){
     }
   }
   await Promise.all(Array.from({length:Math.min(MAX_CONCURRENT,batches.length)},worker));
+  const got=results.filter(Boolean).reduce((n,r)=>n+((r&&r.ingredients&&r.ingredients.length)||0),0);
+  if(!got)throw new Error('No ingredients could be analyzed. Please try again or paste the list as text.');
   return results;
 }
 function setLoadingProgress(frac){
