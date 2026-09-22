@@ -925,7 +925,7 @@ function stopCamera(){if(currentStream){currentStream.getTracks().forEach(t=>t.s
 function captureFrame(){const v=document.getElementById('videoEl'),c=document.getElementById('canvasEl');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);const d=c.toDataURL('image/jpeg',0.9);capturedDataUrl=d;capturedMimeType='image/jpeg';const p=document.getElementById('capturePreview');p.src=d;p.classList.add('visible');document.getElementById('btnAnalyzeScan').disabled=false;}
 function clearCapture(){capturedDataUrl=null;capturedMimeType=null;const p=document.getElementById('capturePreview');p.src='';p.classList.remove('visible');document.getElementById('btnAnalyzeScan').disabled=true;}
 let lastAnalysisMode='';
-const BATCH_SIZE=6;
+const BATCH_SIZE=5;
 const CATEGORY_LABELS={personal:'Personal Care',household:'Household',outdoor:'Outdoor & Garden'};
 
 async function callAnalyze(payload){
@@ -973,6 +973,31 @@ function mergeBatchResults(batches){
   return merged;
 }
 
+// Run batches concurrently (capped) and render progressively as they land
+async function runBatchesParallel(batches){
+  const MAX_CONCURRENT=4;
+  const results=new Array(batches.length);
+  let done=0, firstRendered=false, next=0;
+  const total=batches.length;
+  updateLoadingMsg('Analyzing '+total+' groups of ingredients...');
+  async function worker(){
+    while(true){
+      const i=next++;
+      if(i>=batches.length)return;
+      results[i]=await callAnalyze({mode:'text',content:batches[i].join(', '),category:currentCategory});
+      done++;
+      updateLoadingMsg('Analyzed '+done+' of '+total+' groups...');
+      // Show partial results as soon as the first batch lands
+      const ready=results.filter(Boolean);
+      if(ready.length&&(!firstRendered||done===total)){
+        if(!firstRendered){hideLoading();firstRendered=true;}
+        try{renderResults(mergeBatchResults(ready));}catch(e){}
+      }
+    }
+  }
+  await Promise.all(Array.from({length:Math.min(MAX_CONCURRENT,batches.length)},worker));
+  return results;
+}
 async function runAnalysis(mode){
   hideError();
   showLoading();startLoadingSteps();
@@ -999,13 +1024,8 @@ async function runAnalysis(mode){
         const allIngredients=t.split(',').map(s=>s.trim()).filter(Boolean);
         const batches=[];
         for(let i=0;i<allIngredients.length;i+=BATCH_SIZE)batches.push(allIngredients.slice(i,i+BATCH_SIZE));
-        const results=[];
-        for(let i=0;i<batches.length;i++){
-          updateLoadingMsg('Analyzing batch '+(i+1)+' of '+batches.length+'...');
-          const data=await callAnalyze({mode:'text',content:batches[i].join(', '),category:currentCategory});
-          results.push(data);
-        }
-        hideLoading();renderResults(mergeBatchResults(results));
+        const results=await runBatchesParallel(batches);
+        hideLoading();renderResults(mergeBatchResults(results.filter(Boolean)));
       }
     } else if(mode==='upload'||mode==='scan'){
       let imgBase64,imgMime;
@@ -1046,13 +1066,8 @@ async function runAnalysis(mode){
       const allIngs=ingText.split(',').map(s=>s.trim()).filter(Boolean);
       const batches=[];
       for(let i=0;i<allIngs.length;i+=BATCH_SIZE)batches.push(allIngs.slice(i,i+BATCH_SIZE));
-      const results=[];
-      for(let i=0;i<batches.length;i++){
-        updateLoadingMsg('Analyzing batch '+(i+1)+' of '+batches.length+'...');
-        const data=await callAnalyze({mode:'text',content:batches[i].join(', '),category:currentCategory});
-        results.push(data);
-      }
-      hideLoading();renderResults(mergeBatchResults(results));
+      const results=await runBatchesParallel(batches);
+      hideLoading();renderResults(mergeBatchResults(results.filter(Boolean)));
     }
   } catch(e){hideLoading();showError('Analysis failed: '+e.message);}
 }
