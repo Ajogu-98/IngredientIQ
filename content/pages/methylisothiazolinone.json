@@ -1,0 +1,79 @@
+{
+  "type": "ingredient",
+  "slug": "methylisothiazolinone",
+  "category": "personal",
+  "name": "Methylisothiazolinone",
+  "title": "Is Methylisothiazolinone (MI) Safe? Allergy Risk, Bans & What to Know — IngredientIQ",
+  "description": "Methylisothiazolinone (MI/MIT) is a preservative behind a wave of contact allergies. Banned in EU leave-on cosmetics since 2017. Here's what it means for your lotion, wipes, and shampoo.",
+  "subtitle": "A powerful preservative that keeps products mould-free — and one of the most common causes of cosmetic contact allergy in the last decade.",
+  "rating": "flag",
+  "quickAnswer": "Methylisothiazolinone is a strong skin sensitiser. It is not considered toxic or cancer-causing, but it triggers allergic contact dermatitis often enough that the EU banned it from all leave-on cosmetics in 2017 and capped it at 15 ppm in rinse-off products. If you have eczema, sensitive skin, or unexplained rashes, avoiding it is a reasonable precaution. It is still legal and common in the United States.",
+  "aliases": ["MI", "MIT", "2-methyl-4-isothiazolin-3-one", "Kathon (with MCI)", "Neolone"],
+  "function": "Preservative (antimicrobial)",
+  "foundInShort": "Wipes, shampoo, lotion, dish soap, paint",
+  "mainConcern": "Allergic contact dermatitis",
+  "updated": "2026-09-22",
+  "whatItIs": [
+    "Methylisothiazolinone (usually shortened to MI or MIT) is a synthetic preservative from the isothiazolinone family. It kills bacteria, yeast, and mould in water-based products, which is why manufacturers add it to anything that would otherwise spoil on the shelf.",
+    "It rose to prominence in the late 2000s as a replacement for parabens and formaldehyde-releasing preservatives, which consumers had started avoiding. At the concentrations then permitted (up to 100 ppm in the EU), dermatologists began recording a sharp jump in patients reacting to it — enough that the American Contact Dermatitis Society named it Contact Allergen of the Year in 2013.",
+    "You'll also see it paired with its stronger cousin methylchloroisothiazolinone (MCI) in a blend sold under the trade name Kathon CG."
+  ],
+  "whatItDoes": [
+    "Its only job is preservation. Without a preservative, a bottle of lotion or baby wipes would grow microbes within weeks, and contaminated products are a real safety hazard. MI is effective at very low concentrations, has no smell, and works across a wide pH range, which is exactly why formulators like it.",
+    "It does nothing for your skin or hair directly. If a product lists it, that's the manufacturer protecting the product, not you."
+  ],
+  "safety": [
+    "The concern is allergy, not toxicity. MI is a potent sensitiser: repeated exposure through the skin can 'train' the immune system to react to it, and once that happens the reaction is usually lifelong. Symptoms range from itchy red patches to weeping eczema, most often on the face, hands, and around the eyes — places that get lotion, wipes, and shampoo residue.",
+    "Leave-on products (moisturisers, sunscreens, wipes) are the biggest problem because the preservative sits on skin for hours. Rinse-off products (shampoo, body wash) carry less risk at the low concentrations now permitted in Europe, though people who are already sensitised can react even to those.",
+    "There is no established link to cancer, hormone disruption, or reproductive harm, and it is not absorbed in meaningful amounts through intact skin. Pregnancy is not a specific concern beyond the allergy risk.",
+    "Baby wipes deserve a special mention: MI-containing wipes were behind a well-documented cluster of infant facial and nappy-area dermatitis cases around 2012–2014, and most major brands have since removed it."
+  ],
+  "whoShouldAvoid": [
+    "Anyone with a known isothiazolinone allergy (you may have been patch-tested for 'MI/MCI')",
+    "People with eczema or chronically sensitive skin",
+    "Parents choosing wipes or lotion for babies and toddlers",
+    "Anyone with an unexplained facial or hand rash that improves on holiday and returns at home — a classic sign of a leave-on product reaction",
+    "Hairdressers, cleaners, and painters who get repeated occupational exposure"
+  ],
+  "regulatory": [
+    { "region": "European Union", "status": "Banned in leave-on cosmetics since February 2017 (Regulation 2016/1198). Rinse-off products limited to 15 ppm (0.0015%) since April 2018 (Regulation 2017/1224)." },
+    { "region": "United Kingdom", "status": "Retains the EU restrictions post-Brexit: prohibited in leave-on, 15 ppm max in rinse-off." },
+    { "region": "Canada", "status": "Prohibited in leave-on products; limited to 15 ppm in rinse-off products under the Cosmetic Ingredient Hotlist." },
+    { "region": "United States", "status": "No FDA restriction. Industry Cosmetic Ingredient Review panel considers it safe up to 100 ppm in rinse-off products and in leave-on products only when formulated to be non-sensitising. Still widely used." },
+    { "region": "Australia", "status": "Permitted; industry guidance follows EU limits. Household product use largely unrestricted." }
+  ],
+  "commonProducts": [
+    "Baby wipes and cleansing wipes (older or budget formulations)",
+    "Shampoo, conditioner, and body wash",
+    "Hand soap and dish soap",
+    "Moisturisers and sunscreens sold in the US",
+    "Laundry detergent and fabric softener",
+    "Water-based paints, wall paint, and household glues — a major source of airborne exposure"
+  ],
+  "alternatives": [
+    "Phenoxyethanol — lower allergy rate, widely used replacement",
+    "Sodium benzoate and potassium sorbate — food-grade preservatives, effective at low pH",
+    "Ethylhexylglycerin — often paired with phenoxyethanol to boost it",
+    "Products labelled 'MI-free' or bearing an allergy-certification mark"
+  ],
+  "faqs": [
+    { "q": "Is methylisothiazolinone the same as methylchloroisothiazolinone?", "a": "No, but they're closely related and often used together. Methylchloroisothiazolinone (MCI) is the stronger sensitiser of the two and has been restricted to rinse-off products at 15 ppm in the EU since 2016. If you react to one you will very likely react to the other." },
+    { "q": "Is MI banned in the United States?", "a": "No. The FDA has not restricted it. Many US brands have voluntarily removed it from leave-on products, but it's still common in wipes, shampoos, hand soaps, and cleaning products. Check the label — it will be listed by its full name." },
+    { "q": "I've used products with MI for years with no problem. Am I safe?", "a": "Sensitisation can develop at any time after repeated exposure, so past tolerance doesn't guarantee future tolerance. That said, most people never react. If you have no symptoms there's no reason to throw anything out; just be aware of it if a rash appears." },
+    { "q": "Can MI in paint cause a reaction?", "a": "Yes. Airborne MI from freshly painted rooms is a recognised cause of facial dermatitis in sensitised people, sometimes lasting weeks after the paint has dried. If you're allergic, ask for MI-free paint or ventilate thoroughly." },
+    { "q": "How do I know if I'm allergic?", "a": "A dermatologist can patch-test for MI/MCI. It's part of the standard patch-test series in most countries. Don't try to self-diagnose by dabbing a product on your skin — that's exactly the kind of exposure that causes sensitisation." }
+  ],
+  "related": [
+    { "label": "Phenoxyethanol — the usual replacement", "href": "/ingredient/phenoxyethanol/" },
+    { "label": "Parabens — the preservatives MI replaced", "href": "/ingredient/parabens/" },
+    { "label": "Benzalkonium chloride — another household sensitiser", "href": "/ingredient/benzalkonium-chloride/" },
+    { "label": "Pregnancy-safe skincare ingredients", "href": "/guides/pregnancy-safe-skincare-ingredients/" }
+  ],
+  "sources": [
+    "European Commission, Regulation (EU) 2016/1198 and 2017/1224 amending Annex V of the Cosmetics Regulation",
+    "Scientific Committee on Consumer Safety (SCCS), Opinion on Methylisothiazolinone, 2013 and 2015",
+    "American Contact Dermatitis Society, Contact Allergen of the Year 2013",
+    "Health Canada Cosmetic Ingredient Hotlist",
+    "Cosmetic Ingredient Review, Amended Safety Assessment of Methylisothiazolinone"
+  ]
+}

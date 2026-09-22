@@ -1,0 +1,49 @@
+{
+  "type":"ingredient","slug":"2-4-d","category":"outdoor","name":"2,4-D",
+  "title":"Is 2,4-D Safe? The Lawn Weedkiller, Pets, and Cancer Questions — IngredientIQ",
+  "description":"2,4-D is the active in most 'weed and feed' and broadleaf lawn herbicides. Low acute toxicity, a disputed cancer classification, and a clear rule about dogs on treated lawns. What to know.",
+  "subtitle":"The chemical that kills dandelions and leaves grass alone. Eighty years old, everywhere, and still debated.",
+  "rating":"caution",
+  "quickAnswer":"2,4-D is a selective herbicide that kills broadleaf weeds like dandelions and clover without harming grass, which is why it's in most lawn weedkillers and 'weed and feed' products. It has low acute toxicity to people and pets at label rates but is a skin and eye irritant in concentrate. IARC classifies it as 'possibly carcinogenic' (Group 2B); the EPA and EU do not consider it carcinogenic at expected exposures. Dogs are the practical concern: studies find 2,4-D in dogs' urine after lawn treatments, and keeping pets and children off treated grass until it's dry — and ideally 48 hours — is the standard advice.",
+  "aliases":["2,4-Dichlorophenoxyacetic acid","2,4-D amine","2,4-D ester","Weed-B-Gon, Trimec, Weed & Feed (as one of several actives)","Component of Agent Orange (historical)"],
+  "function":"Herbicide (selective, broadleaf)","foundInShort":"Lawn weedkillers, weed-and-feed, brush killers","mainConcern":"Pet exposure; possible carcinogen (IARC 2B)",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "2,4-D was one of the first synthetic herbicides, developed in the 1940s. It mimics a plant growth hormone (auxin), causing broadleaf plants to grow uncontrollably and die while grasses, which handle auxin differently, are unaffected. That selectivity is why it's the backbone of lawn weed control.",
+    "It's sold as amine salts (less volatile, the usual choice for lawns) and esters (more effective in cool weather, more prone to drifting as vapour). It's usually combined with other broadleaf herbicides like dicamba and MCPP in consumer products."
+  ],
+  "whatItDoes":[
+    "It kills dandelions, clover, plantain, chickweed, thistle, and most other broadleaf weeds in lawns, and controls brush and woody plants at higher rates. It's absorbed through leaves and moves through the plant.",
+    "It does nothing to grass at label rates and doesn't prevent new weeds germinating. Weed-and-feed products combine it with fertiliser, which means the herbicide is spread over the whole lawn whether or not weeds are present."
+  ],
+  "safety":[
+    "Acute toxicity to humans and pets is low at diluted rates. Concentrate irritates skin and eyes and can cause vomiting if swallowed; the amine forms are generally less toxic than esters. It's absorbed through skin only poorly and cleared from the body within a few days.",
+    "The cancer classification is contested along the same lines as glyphosate. IARC's 2015 review found 'inadequate' evidence in humans and 'limited' in animals, but strong mechanistic evidence of oxidative stress, and rated it Group 2B, possibly carcinogenic. The EPA's 2005 and later reviews and the EU's 2015 renewal found no carcinogenic risk at expected exposures. Several older epidemiological studies associated farm use of phenoxy herbicides with non-Hodgkin lymphoma, but they couldn't separate 2,4-D from other exposures.",
+    "The Agent Orange association causes confusion. That defoliant was a 50/50 mix of 2,4-D and 2,4,5-T; the health effects were caused by dioxin (TCDD) contaminating the 2,4,5-T. 2,4-D manufactured today is not contaminated with TCDD, and 2,4,5-T is banned.",
+    "Dogs are where household exposure is most measurable. Studies have detected 2,4-D in the urine of dogs after lawn applications, including some whose own lawns weren't treated (from neighbours' lawns), and some older studies linked phenoxy-herbicide-treated lawns to higher lymphoma rates in dogs, though the findings are inconsistent. Cats groom themselves and can ingest residue from paws. Waiting until sprays are dry (or granules are watered in and dry) before letting pets or children on the grass is the minimum; 48 hours is the cautious standard."
+  ],
+  "whoShouldAvoid":[
+    "Keep dogs, cats, and children off treated lawns until dry, ideally 48 hours; remove shoes at the door afterward",
+    "Don't apply weed-and-feed to the whole lawn if weeds are only in patches — spot-treat instead",
+    "Avoid ester formulations in warm weather; they vaporise and drift onto vegetable gardens and neighbours' plants",
+    "Anyone applying frequently over years should wear gloves and long sleeves and avoid mist",
+    "Don't spray near vegetable beds, tomatoes, or grapes — they're extremely sensitive to drift"
+  ],
+  "regulatory":[
+    {"region":"United States","status":"EPA-registered; 2005 reregistration and 2017–2022 review found no cancer risk at expected exposures. Widely available to consumers."},
+    {"region":"European Union","status":"Approved plant-protection active, renewed 2015. Consumer lawn-herbicide sales restricted or banned in several member states (e.g. France, Belgium, Netherlands, Denmark) under cosmetic-pesticide rules."},
+    {"region":"United Kingdom","status":"Approved; available in consumer lawn products."},
+    {"region":"Canada","status":"Health Canada re-evaluation (2008) concluded it meets safety standards. Banned for cosmetic lawn use in Ontario, Quebec, Nova Scotia, and several other provinces and municipalities."},
+    {"region":"IARC (WHO)","status":"Group 2B, possibly carcinogenic to humans (2015)."}
+  ],
+  "commonProducts":["Lawn weedkiller concentrates and ready-to-use sprays","Weed-and-feed fertiliser-herbicide granules","Broadleaf 'three-way' herbicides (2,4-D + dicamba + MCPP)","Brush and vine killers (with triclopyr)","Agricultural cereal and pasture herbicides"],
+  "alternatives":["Hand-pulling with a dandelion tool — effective for small numbers","Iron HEDTA (chelated iron) selective herbicides — kill broadleaf weeds, safe for pets once dry, no cancer questions","Corn gluten meal as a pre-emergent (mixed evidence)","Raise mowing height and overseed to crowd out weeds","Accept clover — it fixes nitrogen and feeds bees"],
+  "faqs":[
+    {"q":"Is 2,4-D safe for dogs?","a":"Once completely dry and, for granules, watered in and dry, exposure is low. The concern is contact with wet spray or fresh granules and then licking paws. Keep dogs off for at least 24 hours and ideally 48, and wipe paws afterward if you're cautious. Store concentrate out of reach."},
+    {"q":"Does 2,4-D cause cancer?","a":"IARC says 'possibly' (Group 2B), a category that also includes aloe vera extract and pickled vegetables. The EPA, EU, and Health Canada found no cancer risk at expected exposures. The human evidence is from farm workers with heavy mixed exposures, not homeowners."},
+    {"q":"Is 2,4-D the same as Agent Orange?","a":"It was half of Agent Orange, but the harm from Agent Orange came from dioxin contamination of the other half, 2,4,5-T. Modern 2,4-D isn't contaminated with dioxin and 2,4,5-T is no longer made."},
+    {"q":"How long after spraying can kids play on the lawn?","a":"Labels typically say until dry. Most experts suggest waiting 24–48 hours and watering the lawn once in between to move residue off the grass blades."}
+  ],
+  "related":[{"label":"Glyphosate — the non-selective weedkiller","href":"/ingredient/glyphosate/"},{"label":"Imidacloprid — often in the same lawn products","href":"/ingredient/imidacloprid/"},{"label":"Cleaning products safe for pets","href":"/guides/cleaning-products-safe-for-pets/"}],
+  "sources":["US EPA, 2,4-D Reregistration Eligibility Decision, 2005, and Registration Review, 2022","IARC Monographs Vol. 113, 2,4-D, 2018","Health Canada, Re-evaluation Decision RVD2008-11, 2,4-D","Knapp et al., Detection of herbicides in the urine of pet dogs following home lawn chemical application, Science of the Total Environment, 2013","National Pesticide Information Center, 2,4-D General Fact Sheet"]
+}

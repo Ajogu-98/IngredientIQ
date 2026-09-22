@@ -1,0 +1,25 @@
+# IngredientIQ
+
+> IngredientIQ (https://ingredientiq.app) is a free AI-powered ingredient analyzer. Users paste an ingredient list, type a product name, or photograph a label, and get a plain-English safety rating for every ingredient in personal care, household cleaning, and outdoor/garden products.
+
+## What the site offers
+- An instant analyzer at https://ingredientiq.app/ that rates each ingredient Safe / Caution / Flagged, with benefits, concerns, comedogenic score, pregnancy note, and regions where it is restricted.
+- A growing library of plain-English ingredient guides at https://ingredientiq.app/ingredient/ — each covers what the ingredient is, what it does, whether it is safe, who should avoid it, regulatory status by region (EU, UK, Canada, US, Australia), common products, alternatives, and FAQs.
+- Category guides at https://ingredientiq.app/guides/ and side-by-side comparisons at https://ingredientiq.app/compare/.
+
+## Categories
+- Personal Care: skincare, hair, body, cosmetics, oral care
+- Household: cleaning, laundry, dish, air care
+- Outdoor & Garden: insect repellent, pest control, lawn and garden, pool, automotive
+
+## Key pages
+- Home / analyzer: https://ingredientiq.app/
+- Ingredient library: https://ingredientiq.app/ingredient/
+- About: https://ingredientiq.app/about.html
+- Sitemap: https://ingredientiq.app/sitemap.xml
+
+## Editorial standard
+Ingredient pages are compiled from regulatory listings (EU Cosmetics Regulation, Health Canada Hotlist, US FDA/EPA, SCCS and CIR assessments) and reviewed for accuracy. They are informational and not medical, veterinary, or legal advice.
+
+## Contact
+admin@cyberguardrail.com

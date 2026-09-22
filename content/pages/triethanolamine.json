@@ -1,0 +1,48 @@
+{
+  "type":"ingredient","slug":"triethanolamine","category":"personal","name":"Triethanolamine (TEA)",
+  "title":"Is Triethanolamine Safe? The Nitrosamine Question Explained — IngredientIQ",
+  "description":"Triethanolamine adjusts pH and thickens creams and cleansers. It's restricted in the EU because of a nitrosamine contamination risk. What that means for your product.",
+  "subtitle":"A workhorse pH adjuster that's harmless on its own — the concern is what it can turn into when formulated carelessly.",
+  "rating":"caution",
+  "quickAnswer":"Triethanolamine itself is low in toxicity and rarely allergenic. The EU restricts it to 2.5% in leave-on products and, more importantly, requires that it not be combined with 'nitrosating' ingredients — because under those conditions it can form N-nitrosodiethanolamine (NDELA), a probable human carcinogen. Reputable manufacturers formulate around this. The practical concern is with products where the maker's controls are unknown.",
+  "aliases":["TEA","Trolamine","Tris(2-hydroxyethyl)amine","TEA-lauryl sulfate (as a salt)"],
+  "function":"pH adjuster; emulsifier","foundInShort":"Lotions, sunscreen, cleansers, foundation, shaving cream","mainConcern":"Nitrosamine formation (NDELA)",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Triethanolamine is an amine — a nitrogen-containing compound — that's mildly alkaline. Formulators use it to raise the pH of acidic mixtures into the range where thickeners like carbomer gel properly and where skin is comfortable.",
+    "It also appears as part of salts such as TEA-lauryl sulfate and TEA-stearate, where it's been reacted with a fatty acid or surfactant to make an emulsifier."
+  ],
+  "whatItDoes":[
+    "Two jobs. First, it neutralises acids so a cream or gel reaches the right pH and texture — many carbomer-based gels wouldn't thicken without it. Second, when combined with fatty acids it forms soap-like emulsifiers that keep oil and water mixed.",
+    "It has no direct benefit for skin. It's a processing aid that makes the product work."
+  ],
+  "safety":[
+    "On its own, triethanolamine is only mildly irritating at high concentrations and is a rare cause of allergic contact dermatitis. Skin absorption is low. The Cosmetic Ingredient Review considers it safe in rinse-off products and in leave-on products up to 5%.",
+    "The real concern is chemical: secondary amines present as impurities in TEA (chiefly diethanolamine) can react with nitrosating agents — some preservatives, nitrites, or even air over time — to form N-nitrosodiethanolamine. NDELA is classified by the IARC as possibly carcinogenic (Group 2B) and has been detected in some cosmetics. It is readily absorbed through skin.",
+    "Europe's response was to permit TEA only with strict limits on impurity (maximum 0.5% secondary amine), a purity requirement for the raw material, and a rule that it must not be used with nitrosating systems. Products made under those rules carry very low risk. The concern is with low-cost or poorly controlled products where those safeguards may not exist.",
+    "Related ingredient diethanolamine (DEA) and its derivatives (cocamide DEA) are treated more strictly and are banned in cosmetics in the EU."
+  ],
+  "whoShouldAvoid":[
+    "Anyone with a confirmed ethanolamine allergy on patch testing",
+    "If you buy from sources without clear regulatory oversight, prefer products that avoid TEA altogether",
+    "Avoid products combining TEA with bronopol (2-bromo-2-nitropropane-1,3-diol) or other nitrosating preservatives — the EU bans this pairing",
+    "People with very sensitive skin, at leave-on concentrations near the 2.5% EU limit"
+  ],
+  "regulatory":[
+    {"region":"European Union","status":"Restricted (Annex III): max 2.5% in leave-on products; must not be used with nitrosating systems; max 0.5% secondary amine content; minimum 99% purity; nitrosamine content below 50 µg/kg."},
+    {"region":"United Kingdom","status":"As EU."},
+    {"region":"Canada","status":"Restricted on the Hotlist with the same conditions as the EU (2.5% leave-on, no nitrosating agents)."},
+    {"region":"United States","status":"No FDA restriction. Cosmetic Ingredient Review: safe in rinse-off products; safe in leave-on up to 5%; should not be used in products containing N-nitrosating agents."},
+    {"region":"Australia","status":"Permitted; NDELA contamination is the regulated concern."}
+  ],
+  "commonProducts":["Body lotions and moisturisers","Sunscreens","Gel cleansers and foaming face washes","Liquid foundation and mascara","Shaving cream and gel","Hair gel and styling products"],
+  "alternatives":["Sodium hydroxide — used in tiny amounts, fully neutralised in the finished product","Aminomethyl propanol (AMP) — a common TEA replacement","Potassium hydroxide","Products using pre-neutralised thickeners such as sodium polyacrylate"],
+  "faqs":[
+    {"q":"Does triethanolamine cause cancer?","a":"Not directly. TEA itself is not classified as a carcinogen. The concern is that impure TEA in a badly formulated product can form NDELA, a probable carcinogen. Products made to EU standards are formulated to prevent this."},
+    {"q":"Is triethanolamine the same as diethanolamine (DEA)?","a":"No. DEA is a related but more problematic amine that forms nitrosamines more readily; it and its derivatives are banned in EU cosmetics. TEA is permitted with restrictions."},
+    {"q":"Is triethanolamine safe during pregnancy?","a":"There's no evidence of reproductive harm from TEA at cosmetic concentrations. If you want to be cautious, favour products that use sodium hydroxide or AMP as the pH adjuster instead."},
+    {"q":"Why does it appear so far down the ingredient list?","a":"Because only a small amount is needed. Typical concentrations in a lotion are 0.5–1.5%, well below the EU limit."}
+  ],
+  "related":[{"label":"Methylisothiazolinone","href":"/ingredient/methylisothiazolinone/"},{"label":"Parabens","href":"/ingredient/parabens/"},{"label":"Pregnancy-safe skincare ingredients","href":"/guides/pregnancy-safe-skincare-ingredients/"}],
+  "sources":["Regulation (EC) 1223/2009, Annex III entry 62 (Trialkylamines, trialkanolamines and their salts)","Cosmetic Ingredient Review, Amended Safety Assessment of Triethanolamine and TEA-containing ingredients, 2013","IARC Monographs Vol. 77, N-Nitrosodiethanolamine","Health Canada Cosmetic Ingredient Hotlist","FDA, Nitrosamines in Cosmetics"]
+}

@@ -12,6 +12,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IngredientIQ — Know What's In Everything</title>
+<meta name="description" content="Free AI-powered ingredient analyzer. Paste an ingredient list, type a product name, or photograph a label to get a plain-English safety rating for every ingredient in your skincare, cleaning, and garden products.">
+<link rel="canonical" href="https://ingredientiq.app/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"IngredientIQ","url":"https://ingredientiq.app/","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free AI-powered ingredient analyzer for personal care, household, and outdoor products. Rates every ingredient Safe, Caution, or Flagged with plain-English explanations."},{"@type":"Organization","name":"IngredientIQ","url":"https://ingredientiq.app/","email":"admin@cyberguardrail.com"},{"@type":"WebSite","name":"IngredientIQ","url":"https://ingredientiq.app/"}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -653,7 +656,7 @@ body.theme-outdoor .header-nav a{color:var(--ink);}
     <div class="logo-icon">🔬</div>
     <div class="logo-text">Ingredient<span>IQ</span></div>
   </div>
-  <nav style="display:flex;gap:20px;margin-right:16px;"><a href="/about.html" style="font-size:13px;font-weight:600;color:var(--ink);opacity:.75;text-decoration:none;">About</a><a href="/contact.html" style="font-size:13px;font-weight:600;color:var(--ink);opacity:.75;text-decoration:none;">Contact</a></nav><div class="header-right">
+  <nav style="display:flex;gap:20px;margin-right:16px;"><a href="/ingredient/" style="font-size:13px;font-weight:600;color:var(--ink);opacity:.75;text-decoration:none;">Ingredients</a><a href="/about.html" style="font-size:13px;font-weight:600;color:var(--ink);opacity:.75;text-decoration:none;">About</a><a href="/contact.html" style="font-size:13px;font-weight:600;color:var(--ink);opacity:.75;text-decoration:none;">Contact</a></nav><div class="header-right">
     <div class="category-pill" id="categoryPill"><span class="cat-pill-dot"></span><span id="categoryPillText">Personal Care</span></div>
     <button class="btn-home" id="btnHome" onclick="goHome()">← All Categories</button>
   </div>
@@ -864,6 +867,7 @@ body.theme-outdoor .header-nav a{color:var(--ink);}
 let uploadedFile=null,capturedDataUrl=null,capturedMimeType=null;
 let currentStream=null,allIngredients=[],activeFilter='all',loadingStepTimer=null;
 let currentCategory='personal';
+window.addEventListener('DOMContentLoaded',()=>{try{const c=new URLSearchParams(location.search).get('cat');if(c&&CFG[c])selectCategory(c);}catch(e){}});
 const CFG={
   personal:{theme:'theme-personal',label:'Personal Care',placeholder:'e.g.  CeraVe Moisturizing Cream\n— or —\nWater, Glycerin, Niacinamide, Retinol, Fragrance...',eyebrow:'Personal Care — Skincare, Soaps & Beauty',hint:'Type a product name or paste the full ingredient list from your label.',sample:'Water, Glycerin, Niacinamide, Sodium Hyaluronate, Dimethicone, Cetyl Alcohol, Phenoxyethanol, Retinol, Tocopherol, Fragrance, Salicylic Acid, Linalool, DMDM Hydantoin, Oxybenzone, Methylparaben',products:['CeraVe Moisturizing Cream','Neutrogena Hydro Boost Gel','Dove Body Wash','Head & Shoulders Shampoo','Jergens Ultra Healing Lotion','Olay Regenerist Serum','Coppertone Sport Sunscreen SPF 50','Old Spice Deodorant','Cetaphil Gentle Cleanser','Vaseline Intensive Care Lotion']},
   household:{theme:'theme-household',label:'Household',placeholder:'e.g.  Dawn Original Dish Soap\n— or —\nWater, Sodium Lauryl Sulfate, Sodium Carbonate, Fragrance, Methylisothiazolinone...',eyebrow:'Household — Detergents, Soaps & Cleaners',hint:'Type a product name or paste the full ingredient list from your label.',sample:'Water, Linear Alkylbenzene Sulfonate, Sodium Carbonate, Sodium Silicate, Alcohol Ethoxylate, Fragrance, Optical Brighteners, Lauryl Dimethyl Amine Oxide, Methylisothiazolinone, Benzalkonium Chloride',products:['Dawn Original Dish Soap','Ajax Dish Soap','Tide Original Detergent','Gain Laundry Detergent','Lysol All-Purpose Cleaner','Mr. Clean Multi-Surface Cleaner','Downy Fabric Softener','Cascade Dishwasher Pods','Febreze Air Freshener','Clorox Disinfecting Wipes']},

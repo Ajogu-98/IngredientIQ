@@ -1,0 +1,50 @@
+{
+  "type":"ingredient","slug":"permethrin","category":"outdoor","name":"Permethrin",
+  "title":"Permethrin Safety: Clothing Treatment, Pets, and Why It's Deadly to Cats — IngredientIQ",
+  "description":"Permethrin kills ticks and mosquitoes on treated clothing and is in many flea and lice treatments. It's safe for humans and dogs used correctly — and extremely toxic to cats and aquatic life.",
+  "subtitle":"The insecticide that makes tick-proof clothing work and cures head lice — with a hard rule about cats.",
+  "rating":"caution",
+  "quickAnswer":"Permethrin is a synthetic pyrethroid insecticide that kills insects and ticks on contact. Applied to clothing and gear it's the most effective tick protection available, and it's a standard treatment for head lice and scabies. Human toxicity is low because we metabolise it quickly. Two firm rules: it is not a skin repellent (never spray it on your skin like DEET), and it is highly toxic to cats, which lack the enzyme to break it down — dog flea products containing permethrin kill cats every year. It's also very toxic to fish and bees.",
+  "aliases":["Pyrethroid","Nix (lice treatment)","Elimite (scabies cream)","Sawyer / Insect Shield (clothing treatment)","3-phenoxybenzyl cyclopropanecarboxylate"],
+  "function":"Insecticide (contact-kill)","foundInShort":"Clothing sprays, pre-treated gear, lice and scabies treatments, dog flea products, garden sprays","mainConcern":"Fatal to cats; toxic to fish and bees; not for skin",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Permethrin is a synthetic version of pyrethrins, the natural insecticides in chrysanthemum flowers, engineered to last longer in light and air. It attacks insects' nervous systems by keeping sodium channels open, causing paralysis and death on contact.",
+    "It's the most widely used pyrethroid in the world, found in agriculture, mosquito nets, military uniforms, household bug sprays, and veterinary medicine."
+  ],
+  "whatItDoes":[
+    "On clothing, tents, and gear, a 0.5% permethrin treatment kills ticks and mosquitoes that land on the fabric and lasts about six weeks or six washes; factory-treated clothing lasts through dozens of washes. Studies show permethrin-treated clothing reduces tick bites by 80–90%, and it's the CDC's recommendation for people at high risk of Lyme disease.",
+    "In medicine, 1% permethrin lotion treats head lice and 5% cream treats scabies. In veterinary use it's in spot-on flea and tick treatments for dogs. In the garden it's a broad-spectrum insecticide for vegetables and lawns."
+  ],
+  "safety":[
+    "Human toxicity is low. Permethrin is poorly absorbed through skin (under 2%) and rapidly broken down by liver enzymes. The scabies cream is applied over the entire body and left overnight, which tells you something about its tolerability. Side effects are mainly mild skin tingling or irritation. The EPA classifies it as 'likely to be carcinogenic' based on mouse tumours at very high dietary doses, a finding not seen in rats or humans; the practical significance at clothing-treatment exposures is considered negligible.",
+    "Cats are the exception, and the danger is real. Cats lack the glucuronidation enzyme that clears permethrin, so the concentration in a dog flea spot-on (often 45–65%) causes tremors, seizures, and death. Cases occur every year from dog products applied to cats by mistake, and from cats grooming a recently treated dog. Once dry on clothing at 0.5%, it's not a risk to cats.",
+    "It's highly toxic to fish, aquatic invertebrates, and bees. Never spray it near ponds or streams, and don't apply garden permethrin to flowering plants when bees are active.",
+    "Do not apply clothing spray to your skin. It's designed for fabric and offers no repellency on skin; the label says so for a reason."
+  ],
+  "whoShouldAvoid":[
+    "Cats — never use dog products on cats, and keep cats away from treated dogs until fully dry",
+    "Don't apply to skin as a repellent; use DEET or picaridin for that",
+    "Don't treat clothing while wearing it or indoors; spray outdoors and let it dry completely (2–4 hours)",
+    "Keep away from fish tanks, ponds, and waterways",
+    "Pregnant women can use treated clothing; there's no evidence of harm from that exposure route"
+  ],
+  "regulatory":[
+    {"region":"United States","status":"EPA-registered for clothing treatment, garden, and structural use; FDA-approved for lice (1% OTC) and scabies (5% Rx). CDC recommends treated clothing for tick prevention. EPA cancer classification: 'likely to be carcinogenic to humans' (2006), based on high-dose mouse data."},
+    {"region":"European Union","status":"Approved biocide for textile treatment and insect control; not approved as an agricultural plant-protection product since 2000. Medical use for lice and scabies permitted."},
+    {"region":"United Kingdom","status":"As EU; permethrin creams available OTC for scabies and lice."},
+    {"region":"Canada","status":"Registered; factory-treated clothing approved for sale since 2015. Medical uses permitted."},
+    {"region":"WHO","status":"On the Model List of Essential Medicines for scabies and lice; recommended for insecticide-treated bed nets."}
+  ],
+  "commonProducts":["Clothing and gear treatment sprays (0.5%)","Factory-treated clothing, socks, and hats","Head-lice lotions (1%) and scabies cream (5%)","Dog flea and tick spot-ons, collars, and shampoos","Garden and lawn insecticides","Ant, wasp, and 'bug barrier' home sprays"],
+  "alternatives":["For skin: DEET or picaridin","For tick prevention: tucking clothing, light colours, and post-hike checks, alongside treated clothing","For cats: only cat-labelled flea products (fipronil, selamectin, fluralaner)","In the garden: insecticidal soap, neem, or targeted Bt for caterpillars"],
+  "faqs":[
+    {"q":"Is permethrin safe for humans?","a":"Yes, at the concentrations in clothing treatments and medical products. It's poorly absorbed, quickly metabolised, and the scabies cream is applied over the whole body. The key is using it as directed: on fabric, not skin, and dried before wearing."},
+    {"q":"Why is permethrin deadly to cats?","a":"Cats can't metabolise it. The high concentrations in dog spot-ons cause tremors and seizures, often fatal. Use only cat-labelled products on cats, and keep cats from grooming a dog that's been treated in the last 24 hours."},
+    {"q":"Can I spray permethrin on my skin?","a":"No. It isn't a repellent and offers no protection on skin. The clothing spray is formulated for fabric. Use DEET or picaridin on skin and permethrin on clothing — together they're the most effective combination for ticks."},
+    {"q":"Does permethrin cause cancer?","a":"The EPA classifies it as 'likely' carcinogenic based on tumours in mice fed high doses for life. This hasn't appeared in rats or in human studies, and the exposure from treated clothing is tiny. Regulators consider clothing treatment safe."},
+    {"q":"How long does treated clothing last?","a":"Home spray: about 6 washes or 6 weeks. Factory-treated: around 70 washes. Retreat when the period expires; the fabric won't look different."}
+  ],
+  "related":[{"label":"Pyrethrins — the natural version","href":"/ingredient/pyrethrins/"},{"label":"DEET — for skin","href":"/ingredient/deet/"},{"label":"Imidacloprid — the other flea-treatment insecticide","href":"/ingredient/imidacloprid/"},{"label":"Bug spray safety for kids","href":"/guides/bug-spray-safety-for-kids/"}],
+  "sources":["US EPA, Permethrin Facts (Reregistration Eligibility Decision), 2006","CDC, Preventing Tick Bites: permethrin-treated clothing","National Pesticide Information Center, Permethrin General Fact Sheet","Miller et al., Tick bite protection with permethrin-treated summer-weight clothing, Journal of Medical Entomology, 2011","ASPCA Animal Poison Control, Permethrin toxicity in cats"]
+}

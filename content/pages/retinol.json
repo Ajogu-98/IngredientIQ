@@ -1,0 +1,50 @@
+{
+  "type":"ingredient","slug":"retinol","category":"personal","name":"Retinol",
+  "title":"Is Retinol Safe? Pregnancy, New EU Limits & Side Effects — IngredientIQ",
+  "description":"Retinol is the best-evidenced anti-ageing ingredient in skincare, but it's advised against in pregnancy and the EU has capped its strength from 2025. What you need to know before using it.",
+  "subtitle":"The gold standard for wrinkles and acne, with two real caveats: don't use it while pregnant, and expect your skin to protest at first.",
+  "rating":"caution",
+  "quickAnswer":"Retinol (vitamin A) is safe and effective for most adults when introduced gradually, and it's one of the few cosmetic ingredients with strong evidence behind its anti-ageing claims. The exceptions matter: all retinoids are advised against in pregnancy and while trying to conceive because of the link between vitamin A derivatives and birth defects, and the EU has set new maximum concentrations (0.3% in most products, 0.05% in body lotion) that apply to products sold from November 2025. Irritation, peeling, and sun sensitivity are normal in the first weeks.",
+  "aliases":["Vitamin A","Retinyl palmitate","Retinyl acetate","Retinaldehyde (retinal)","Retinyl retinoate","Adapalene, tretinoin (prescription retinoids)"],
+  "function":"Cell-turnover regulator (anti-ageing, acne)","foundInShort":"Night serums, anti-ageing creams, acne treatments","mainConcern":"Pregnancy; irritation; sun sensitivity",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Retinol is a form of vitamin A. Once in the skin, enzymes convert it in two steps to retinoic acid, the molecule that actually does the work. That conversion is why over-the-counter retinol is gentler and slower than prescription tretinoin, which is retinoic acid itself.",
+    "The retinoid family on cosmetic labels runs from weakest to strongest: retinyl palmitate and retinyl acetate (esters, mild), retinol, retinaldehyde (one step from retinoic acid), and the prescription-only retinoic acid. Adapalene is a synthetic retinoid available over the counter for acne in some countries."
+  ],
+  "whatItDoes":[
+    "Retinoids speed up skin-cell turnover, increase collagen production, and normalise how skin cells mature and shed. In practice that means finer lines, more even tone, smaller-looking pores, and fewer clogged pores and breakouts. The evidence for these effects is among the strongest in dermatology; tretinoin has decades of clinical trials behind it and retinol has consistent, if smaller, data.",
+    "Results take time — typically 8 to 12 weeks for visible change and 6 months or more for the full effect on wrinkles."
+  ],
+  "safety":[
+    "For non-pregnant adults, the main issue is irritation. 'Retinisation' — redness, dryness, flaking, and stinging in the first 2 to 6 weeks — is expected and usually resolves as skin adapts. Starting with a low concentration two or three nights a week and building up prevents most of it. Retinoids also make skin more sensitive to UV, so daily sunscreen is not optional.",
+    "The pregnancy concern is real and well established. High-dose oral vitamin A and the oral retinoid isotretinoin are potent teratogens (causes of birth defects). Topical retinol is absorbed in far smaller amounts, and no clear harm from it has been demonstrated — but because the potential consequence is severe and the benefit is cosmetic, virtually all dermatology and obstetric bodies advise stopping all retinoids when pregnant, breastfeeding, or trying to conceive.",
+    "The EU's 2024 rule change reflects a different worry: total vitamin A intake. Europeans already get substantial vitamin A from food and supplements, and the Scientific Committee on Consumer Safety calculated that high-strength cosmetics could push some people over the safe upper limit. The new caps — 0.3% retinol equivalent in face and hand products, 0.05% in body lotion — apply to products placed on the market from 1 November 2025, with existing stock allowed until May 2027. Products must also carry a warning that they contain vitamin A.",
+    "Retinol is unstable in light and air. A product in a clear jar that's been open for months may have little active ingredient left."
+  ],
+  "whoShouldAvoid":[
+    "Anyone pregnant, breastfeeding, or trying to conceive — stop all retinoids",
+    "People using oral isotretinoin or prescription tretinoin (don't stack)",
+    "Skin with active eczema, rosacea flares, or a compromised barrier — wait until it's calm",
+    "Before waxing, laser, chemical peels, or heavy sun exposure — pause for a week",
+    "People who won't wear daily sunscreen"
+  ],
+  "regulatory":[
+    {"region":"European Union","status":"Regulation (EU) 2024/996 restricts retinol, retinyl acetate, and retinyl palmitate to 0.3% retinol equivalent in face/hand products and 0.05% in body lotions, with a mandatory vitamin A warning. Applies to products placed on the market from 1 November 2025; sell-through until 1 May 2027."},
+    {"region":"United Kingdom","status":"Considering equivalent limits; currently unrestricted in strength."},
+    {"region":"United States","status":"No FDA concentration limit for cosmetic retinol. Tretinoin and tazarotene are prescription-only; adapalene 0.1% is available over the counter."},
+    {"region":"Canada","status":"Retinol permitted in cosmetics; retinoic acid is a prescription drug."},
+    {"region":"Australia","status":"Retinol permitted in cosmetics; retinoic acid is prescription-only."}
+  ],
+  "commonProducts":["Night serums and creams labelled anti-ageing or 'renewal'","Acne treatments","Eye creams (usually low strength)","Body lotions marketed for texture or 'crepey' skin","Some hand creams"],
+  "alternatives":["Bakuchiol — plant-derived, similar mechanism in early studies, generally considered safe in pregnancy though data are limited","Azelaic acid — pregnancy-safe option for acne and pigmentation","Vitamin C (ascorbic acid) — antioxidant and collagen support, pregnancy-safe","Peptides — gentler collagen signalling, weaker evidence","Glycolic or lactic acid — exfoliation without retinoid effects"],
+  "faqs":[
+    {"q":"Can I use retinol while pregnant?","a":"Standard medical advice is no — stop all retinoids while pregnant, breastfeeding, or trying to conceive. Topical retinol hasn't been proven to cause harm, but oral vitamin A derivatives cause serious birth defects and the cosmetic benefit doesn't justify the uncertainty. Azelaic acid, vitamin C, and bakuchiol are the usual substitutes."},
+    {"q":"What strength should I start with?","a":"0.1% to 0.3% two or three nights a week is the standard starting point. Increase frequency first, then strength, over a couple of months. Higher isn't better if your skin can't tolerate it consistently."},
+    {"q":"Why is the EU limiting retinol?","a":"Not because topical retinol is dangerous on its own, but because the EU calculated that high-strength cosmetics on top of dietary and supplement vitamin A could push some people past the safe upper intake. The 0.3% limit still allows effective products."},
+    {"q":"Is retinyl palmitate the same as retinol?","a":"It's a milder ester of retinol that the skin must convert further before it works. It's often used in daytime products and body lotions. It counts toward the EU retinol-equivalent limit."},
+    {"q":"Can I use retinol with vitamin C or acids?","a":"Yes, but not all at once when starting out. A common approach is vitamin C in the morning and retinol at night, and skipping exfoliating acids on retinol nights until your skin has adapted."}
+  ],
+  "related":[{"label":"Pregnancy-safe skincare ingredients","href":"/guides/pregnancy-safe-skincare-ingredients/"},{"label":"Fragrance — avoid it alongside retinoids","href":"/ingredient/fragrance-parfum/"}],
+  "sources":["Commission Regulation (EU) 2024/996","SCCS Opinion on Vitamin A (SCCS/1576/16 and revision 2022)","American Academy of Dermatology, Retinoid guidance and pregnancy safety","Mukherjee et al., Retinoids in the treatment of skin aging, Clinical Interventions in Aging","Bozzo, Chua-Gocheco & Einarson, Safety of skin care products during pregnancy, Canadian Family Physician"]
+}

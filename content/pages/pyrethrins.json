@@ -1,0 +1,48 @@
+{
+  "type":"ingredient","slug":"pyrethrins","category":"outdoor","name":"Pyrethrins",
+  "title":"Are Pyrethrins Safe? The 'Natural' Insecticide Explained — IngredientIQ",
+  "description":"Pyrethrins come from chrysanthemum flowers and break down fast in sunlight, which makes them a favourite 'natural' insecticide. They're still toxic to fish, bees, and cats. What to know.",
+  "subtitle":"Natural, fast-acting, and quick to break down. 'Natural' doesn't mean gentle to everything, though.",
+  "rating":"caution",
+  "quickAnswer":"Pyrethrins are natural insecticides extracted from chrysanthemum flowers. They kill insects on contact and degrade within hours in sunlight, so they leave little residue — which is why they're allowed in organic farming and common in 'natural' bug sprays. For humans they're low in toxicity, though they can irritate skin and airways and trigger asthma or allergy in people sensitive to ragweed. They're highly toxic to fish, bees, and other beneficial insects, and cats are more sensitive than dogs. They're usually paired with piperonyl butoxide, a synthetic synergist.",
+  "aliases":["Pyrethrum","Chrysanthemum extract","Pyrethrin I and II","Natural pyrethrum","Often with piperonyl butoxide (PBO)"],
+  "function":"Insecticide (contact-kill, fast knockdown)","foundInShort":"Flying-insect sprays, garden sprays, flea products, lice shampoo","mainConcern":"Toxic to fish and bees; asthma trigger",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Pyrethrins are six related compounds found in the seed cases of Chrysanthemum cinerariifolium (Tanacetum cinerariifolium), a daisy grown mainly in Kenya, Tanzania, and Tasmania. People have used dried, powdered chrysanthemum as an insecticide for centuries.",
+    "They attack the insect nervous system the same way synthetic pyrethroids like permethrin do, but they break down in ultraviolet light and air within hours to a day, which is their main practical difference from the synthetics. Because insects sometimes recover from a low dose, most products add piperonyl butoxide (PBO), which blocks the insect's ability to detoxify the pyrethrin."
+  ],
+  "whatItDoes":[
+    "They provide fast knockdown of flying insects — the reason they're the active in most aerosol wasp, fly, and mosquito sprays — and kill aphids, whiteflies, caterpillars, beetles, and other garden pests on contact. They're also in flea sprays and shampoos and in some head-lice treatments (the 0.33% pyrethrin plus PBO shampoos).",
+    "Because they break down quickly, they offer no residual protection; you have to hit the insect."
+  ],
+  "safety":[
+    "Human toxicity is low: pyrethrins are poorly absorbed through skin and rapidly metabolised. The realistic effects are irritation — stinging eyes, itching, and a tingling or numb feeling on skin that fades in hours — and respiratory irritation from breathing aerosol mist. People with asthma can have attacks triggered by pyrethrin sprays, and there have been rare fatal asthma reactions, one involving a lice shampoo. People allergic to ragweed and related plants may be allergic to pyrethrum.",
+    "Piperonyl butoxide, the usual partner, is a separate ingredient with its own profile: low acute toxicity, classified by the EPA as a possible carcinogen at high doses, and a concern in some studies of prenatal exposure. It's often present at 5–10 times the concentration of the pyrethrins.",
+    "Environmental impact is the bigger issue. Pyrethrins are extremely toxic to fish and aquatic invertebrates even at tiny concentrations, and they kill bees, ladybirds, lacewings, and other beneficial insects as readily as pests. The quick breakdown limits the damage but doesn't prevent it. Spraying at dusk, when bees are inactive, and never near water are the standard precautions.",
+    "Cats are more sensitive than dogs but far less so than to permethrin; low-concentration cat flea products with pyrethrins exist, though newer actives are generally preferred."
+  ],
+  "whoShouldAvoid":[
+    "People with asthma or reactive airways — avoid aerosol formats and indoor spraying",
+    "Anyone with a known ragweed or chrysanthemum allergy",
+    "Never spray near ponds, streams, or aquariums; cover fish tanks before using indoor sprays",
+    "Don't apply to flowering plants during the day when bees are foraging",
+    "Pregnant women may reasonably prefer products without piperonyl butoxide"
+  ],
+  "regulatory":[
+    {"region":"United States","status":"EPA-registered; permitted in organic agriculture (USDA National Organic Program) without PBO. Pyrethrin lice shampoos are FDA-approved OTC. Classified as 'not likely' carcinogenic; PBO classified as 'possible' carcinogen (Group C)."},
+    {"region":"European Union","status":"Approved plant-protection active (pyrethrins) and biocide; permitted in EU organic production. PBO approved separately as a synergist."},
+    {"region":"United Kingdom","status":"As EU."},
+    {"region":"Canada","status":"Registered; permitted in organic production. Restricted-entry and buffer-zone requirements near water for agricultural use."}
+  ],
+  "commonProducts":["Aerosol fly, wasp, and mosquito sprays","'Natural' or 'organic' garden insecticides","Flea and tick sprays, shampoos, and foggers for pets and homes","Head-lice shampoos (pyrethrin + PBO)","Indoor foggers and 'bug bombs'","Some poultry and livestock sprays"],
+  "alternatives":["Insecticidal soap or horticultural oil for soft-bodied garden pests","Bacillus thuringiensis (Bt) for caterpillars — harmless to bees and fish","Neem oil (azadirachtin) — also toxic to fish, but selective for pests","Physical control: fly swatters, traps, screens, and nets","For lice: dimeticone lotions or wet-combing, which have no insecticide"],
+  "faqs":[
+    {"q":"Are pyrethrins safe because they're natural?","a":"They're low in toxicity to humans, which is real. But they kill fish, bees, and beneficial insects as effectively as synthetic insecticides do, and they can trigger asthma. 'Natural' describes the source, not the impact."},
+    {"q":"What's the difference between pyrethrins and pyrethroids?","a":"Pyrethrins are the natural extract; pyrethroids (permethrin, cypermethrin, deltamethrin, etc.) are synthetic versions engineered to last longer. Pyrethroids leave residues that keep working for weeks; pyrethrins are gone in a day."},
+    {"q":"Is piperonyl butoxide safe?","a":"At consumer exposures it's considered low-risk, but it's classified as a possible carcinogen at high doses and some studies have linked prenatal exposure to developmental effects. Pyrethrin products without PBO exist if you'd rather avoid it."},
+    {"q":"Can I use pyrethrin sprays around my cat?","a":"Products labelled for cats, yes. Keep cats out of rooms being sprayed until the mist settles and surfaces dry. Never use permethrin (a synthetic) products on or near cats."}
+  ],
+  "related":[{"label":"Permethrin — the synthetic version","href":"/ingredient/permethrin/"},{"label":"Imidacloprid — the systemic alternative","href":"/ingredient/imidacloprid/"},{"label":"Bug spray safety for kids","href":"/guides/bug-spray-safety-for-kids/"}],
+  "sources":["US EPA, Reregistration Eligibility Decision for Pyrethrins, 2006","National Pesticide Information Center, Pyrethrins General Fact Sheet","US EPA, Piperonyl Butoxide Reregistration Eligibility Decision","Wagner, Fatal asthma in a child after use of an animal shampoo containing pyrethrin, Western Journal of Medicine, 2000","USDA National Organic Program, National List of Allowed and Prohibited Substances"]
+}

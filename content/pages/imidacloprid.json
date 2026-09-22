@@ -1,0 +1,49 @@
+{
+  "type":"ingredient","slug":"imidacloprid","category":"outdoor","name":"Imidacloprid",
+  "title":"Is Imidacloprid Safe? Neonicotinoids, Bees, Pets & Garden Use — IngredientIQ",
+  "description":"Imidacloprid is the neonicotinoid in many flea treatments, lawn grub killers, and garden insecticides. Low toxicity to mammals, devastating to bees. What the bans mean and how to use it, if at all.",
+  "subtitle":"Gentle on mammals, lethal to bees. The insecticide at the centre of the pollinator debate — and in your dog's flea drops.",
+  "rating":"caution",
+  "quickAnswer":"Imidacloprid is a neonicotinoid insecticide that attacks insect nervous systems far more strongly than mammals', so it's low in toxicity to people, dogs, and cats — which is why it's in spot-on flea treatments. In the garden it's a different story: it's systemic, moving through the whole plant into pollen and nectar, and is highly toxic to bees and other pollinators. The EU banned all outdoor use in 2018 and the US has been tightening restrictions. For pets, it's safe as labelled; for the garden, there's rarely a good reason to use it.",
+  "aliases":["Neonicotinoid (neonic)","Advantage / Advantix (flea products, with permethrin in Advantix)","Merit, Gaucho, Confidor (garden/agricultural brands)","Grub control (many lawn products)"],
+  "function":"Insecticide (systemic)","foundInShort":"Flea spot-ons, lawn grub killers, garden insecticides, tree injections","mainConcern":"Bee and pollinator toxicity; waterway contamination",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Imidacloprid was the first neonicotinoid, introduced by Bayer in 1991 and for years the best-selling insecticide in the world. Neonicotinoids are modelled on nicotine and bind to nicotinic receptors in the insect nervous system, causing paralysis and death. Insect receptors bind it far more strongly than mammalian ones, which is the basis of its selective toxicity.",
+    "It's systemic: applied to soil or seeds, it's taken up by roots and spread through every part of the plant, including leaves, pollen, and nectar, for weeks to months. That's what makes it effective against sap-sucking pests — and what makes it a problem for pollinators."
+  ],
+  "whatItDoes":[
+    "On pets, it kills adult fleas within hours and lasts about a month per application; it's usually combined with other actives for ticks (permethrin in dog products — never on cats) or with a growth regulator.",
+    "In gardens and lawns it controls aphids, whiteflies, scale, mealybugs, leaf beetles, and soil-dwelling grubs, and is used as a tree injection against borers such as the emerald ash borer. Agriculturally it's a seed treatment on corn, soybeans, cotton, and canola."
+  ],
+  "safety":[
+    "For people and pets, imidacloprid has low acute toxicity, is poorly absorbed through skin, and is excreted within a couple of days. Flea spot-ons have a long safety record when used as labelled; occasional skin irritation at the application site is the main side effect, and cats and dogs can drool or vomit if they lick the wet product. It's not carcinogenic, and the EPA and EU found no reproductive or developmental concerns at expected exposures.",
+    "The environmental case against it is strong and largely settled. Imidacloprid is acutely toxic to bees at nanogram doses, and sublethal exposure through contaminated pollen and nectar impairs foraging, navigation, and colony reproduction in honeybees and bumblebees. It also persists in soil for months, leaches into waterways, and is toxic to aquatic insects at concentrations now routinely found in streams — with knock-on effects on birds that eat them.",
+    "Those findings drove the EU's 2013 partial restriction and 2018 ban on all outdoor uses of imidacloprid, clothianidin, and thiamethoxam. The EPA's 2020 interim decision kept it registered but added restrictions on application to blooming crops and required pollinator-protection labelling; several US states have restricted consumer sales.",
+    "Neonicotinoid metabolites are detectable in most people's urine in biomonitoring, mainly from food residues. Human health effects at those levels haven't been established, though research is ongoing."
+  ],
+  "whoShouldAvoid":[
+    "Don't apply to flowering plants, or to plants bees visit, at any time — the residue lasts for weeks in nectar and pollen",
+    "Avoid lawn grub-control products containing it if you have clover or flowering weeds; use a targeted alternative",
+    "Never apply near ponds, streams, or drains",
+    "For pets: use as labelled, don't let animals lick the wet product, and check combination products for permethrin before using on or around cats",
+    "Skip preventive garden applications entirely; treat only a confirmed pest problem, and consider whether it's needed at all"
+  ],
+  "regulatory":[
+    {"region":"European Union","status":"All outdoor uses banned since 2018 (Commission Implementing Regulation 2018/783); permitted only in permanent greenhouses. Veterinary flea products unaffected."},
+    {"region":"United Kingdom","status":"Retained the EU outdoor ban after Brexit, though emergency authorisations for sugar-beet seed treatment were granted 2021–2024."},
+    {"region":"United States","status":"EPA-registered; 2020 interim decision added bee-protection restrictions. Several states (e.g. New York, New Jersey, Maine, Vermont) restrict consumer or non-agricultural sales. Veterinary use regulated by FDA/EPA and unaffected."},
+    {"region":"Canada","status":"Health Canada's 2021 re-evaluation cancelled some uses to protect aquatic insects and pollinators but retained others with restrictions."},
+    {"region":"WHO","status":"Class II 'moderately hazardous' by acute mammalian toxicity."}
+  ],
+  "commonProducts":["Flea spot-on treatments for dogs and cats","Flea collars (some)","Lawn grub-control granules","'Systemic' rose and shrub insecticides (soil drench or granules)","Tree and shrub injections for borers","Some ant baits and termite treatments","Bird and flea sprays for poultry"],
+  "alternatives":["For fleas: fipronil, selamectin, or oral isoxazolines (fluralaner, afoxolaner) — all with their own profiles","For aphids and soft pests: insecticidal soap, horticultural oil, strong water spray, ladybirds","For grubs: beneficial nematodes or milky spore for Japanese beetle grubs","For roses: tolerate some damage; systemic insecticides are the worst choice for a plant bees love","Pyrethrins as a last-resort contact spray at dusk"],
+  "faqs":[
+    {"q":"Is imidacloprid safe for my dog or cat?","a":"Yes, in products labelled for them. It's been used in flea treatments for 30 years with a good safety record. Watch for permethrin in dog combination products (e.g. Advantix), which must never be used on cats, and don't let pets lick the application site while it's wet."},
+    {"q":"Why is imidacloprid bad for bees?","a":"It's lethal to bees at extremely low doses and, because it's systemic, it ends up in pollen and nectar for weeks after application. Even sublethal doses impair bees' ability to navigate and forage. That's why the EU banned outdoor use."},
+    {"q":"Is imidacloprid banned in the US?","a":"Not federally. It's still EPA-registered with added restrictions. Several states have restricted consumer sales of neonicotinoid garden products; check local rules."},
+    {"q":"Is it safe to eat vegetables treated with imidacloprid?","a":"Residue limits are set and enforced, and dietary exposures are well below regulatory safety thresholds. If you're growing your own, there's little reason to use a systemic insecticide on food crops at all."}
+  ],
+  "related":[{"label":"Permethrin — in many combination flea products","href":"/ingredient/permethrin/"},{"label":"Pyrethrins — the contact-spray alternative","href":"/ingredient/pyrethrins/"},{"label":"2,4-D — often in the same lawn products","href":"/ingredient/2-4-d/"}],
+  "sources":["Commission Implementing Regulation (EU) 2018/783","US EPA, Imidacloprid Interim Registration Review Decision, 2020","EFSA, Peer review of the pesticide risk assessment for bees for imidacloprid, 2018","Health Canada, Re-evaluation Decision RVD2021-05, Imidacloprid","National Pesticide Information Center, Imidacloprid General Fact Sheet","Woodcock et al., Country-specific effects of neonicotinoid pesticides on honey bees and wild bees, Science, 2017"]
+}

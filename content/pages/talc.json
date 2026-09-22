@@ -1,0 +1,48 @@
+{
+  "type":"ingredient","slug":"talc","category":"personal","name":"Talc",
+  "title":"Is Talc Safe? Asbestos Contamination, Cancer Lawsuits & EU Classification — IngredientIQ",
+  "description":"Talc is in powders, eyeshadow, and dry shampoo. The concern is asbestos contamination and inhalation, not the mineral itself. What regulators concluded in 2024 and what it means for you.",
+  "subtitle":"A soft, absorbent mineral in everything from baby powder to eyeshadow — and at the centre of one of the largest product-liability fights in history.",
+  "rating":"caution",
+  "quickAnswer":"Pure talc is a mineral with low toxicity, but two problems shadow it. Talc deposits can be contaminated with asbestos, a known carcinogen, and talc powder inhaled over time or applied to the genital area has been linked in some studies to cancer. In 2024 the EU's chemicals agency classified talc as a Category 1B carcinogen (presumed to cause cancer in humans, based mainly on inhalation), which is expected to lead to a cosmetics ban, and the US FDA proposed mandatory asbestos testing. Talc in pressed makeup poses little risk; loose powders are where caution applies.",
+  "aliases":["Talcum powder","Magnesium silicate","Hydrated magnesium silicate","CI 77718"],
+  "function":"Absorbent; filler; texture","foundInShort":"Body powder, eyeshadow, blush, dry shampoo","mainConcern":"Asbestos contamination; inhalation",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Talc is a naturally occurring magnesium silicate mineral, the softest mineral on the Mohs scale. It's mined, milled to a fine powder, and used wherever a product needs to absorb moisture, feel silky, or hold its shape when pressed.",
+    "The trouble is geology: talc and asbestos form under similar conditions and are often found in the same deposits. Separating them completely is difficult, and testing for trace asbestos in finished powder is technically demanding — which is why 'asbestos-free talc' has been contested in court for decades."
+  ],
+  "whatItDoes":[
+    "In body and baby powders it absorbs moisture and reduces friction. In pressed makeup — eyeshadow, blush, powder foundation — it's the bulk filler that lets pigments spread evenly and press into a pan without crumbling. In dry shampoo it soaks up oil at the roots.",
+    "It has no benefit beyond texture and absorption. Cornstarch, rice starch, and synthetic silicas do most of the same jobs."
+  ],
+  "safety":[
+    "Three separate issues get lumped together. First, asbestos contamination: if it's present, it's dangerous in any amount when inhaled, and there is no safe level. Second, inhalation of even asbestos-free talc: workers with long-term heavy exposure show lung damage, and fine loose powder around infants has caused acute breathing problems. Third, genital use: several epidemiological studies have found a modest increase in ovarian cancer among women who used talc powder in the genital area long-term, though the data are inconsistent and the mechanism is unproven.",
+    "The International Agency for Research on Cancer reviewed talc in 2024 and classified it as 'probably carcinogenic to humans' (Group 2A). The same year, the European Chemicals Agency's risk assessment committee agreed talc should be classified as a Category 1B carcinogen under EU chemical law — a classification that, once adopted into the Cosmetics Regulation, bans the ingredient. In December 2024 the US FDA proposed a rule requiring standardised asbestos testing of every talc-containing cosmetic.",
+    "Johnson & Johnson stopped selling talc-based baby powder in North America in 2020 and worldwide in 2023, switching to cornstarch, after tens of thousands of lawsuits.",
+    "Pressed products like eyeshadow and blush release very little airborne dust and are a far lower concern than loose powders. Talc in a compact is not the same risk as talc shaken over a baby."
+  ],
+  "whoShouldAvoid":[
+    "Babies and infants — loose talc powder should not be used on them at all (paediatric bodies have advised this for decades)",
+    "Anyone using powder in the genital area — switch to cornstarch-based products",
+    "People with asthma or chronic lung disease, for loose powders and aerosol dry shampoo",
+    "Anyone who prefers to avoid products awaiting an EU ban, as a general precaution"
+  ],
+  "regulatory":[
+    {"region":"European Union","status":"Currently permitted, with a mandatory warning on powders for children under three ('keep powder away from children's nose and mouth'). ECHA's Risk Assessment Committee concluded in 2024 that talc meets criteria for Carcinogen Category 1B; once adopted, this triggers a ban in cosmetics. Asbestos itself is banned."},
+    {"region":"United Kingdom","status":"Permitted with the same child-powder warning; watching the EU classification."},
+    {"region":"United States","status":"Permitted. FDA proposed a rule in December 2024 requiring standardised asbestos testing for all talc-containing cosmetics under MoCRA. FDA's own testing found asbestos in a small number of products in 2019 and 2020."},
+    {"region":"Canada","status":"Health Canada's 2021 screening assessment concluded talc is harmful to human health when inhaled or used in the female genital area; restrictions on loose powders and genital-use products followed."},
+    {"region":"IARC","status":"Group 2A, probably carcinogenic to humans (2024). Talc containing asbestos is Group 1."}
+  ],
+  "commonProducts":["Body and foot powders","Eyeshadow, blush, bronzer, and pressed powder","Dry shampoo (aerosol and loose)","Some deodorant sticks","Chalk, crayons, and some tablets (as an excipient)"],
+  "alternatives":["Cornstarch or tapioca starch — the standard baby-powder replacement","Rice starch — used in some setting powders","Arrowroot powder","Synthetic silica or mica in makeup (mica has its own sourcing issues)","Kaolin clay"],
+  "faqs":[
+    {"q":"Does talc cause cancer?","a":"Asbestos-contaminated talc does. Whether pure talc does is less certain: IARC calls it 'probably carcinogenic' based largely on inhalation and genital-use studies. The EU is treating it as presumed carcinogenic and moving toward a ban. For most people, the practical steps are to avoid loose talc powder and genital use."},
+    {"q":"Is talc in eyeshadow dangerous?","a":"Very unlikely. Pressed makeup releases almost no airborne dust and isn't applied to areas of concern. If you want to avoid it anyway, talc-free makeup is now widely available."},
+    {"q":"Is baby powder still made with talc?","a":"Major brands have switched to cornstarch. Check the label: if the first ingredient is talc, don't use it on an infant."},
+    {"q":"How would I know if my product has asbestos in it?","a":"You can't tell from the label. The only protection is the manufacturer's testing, which is why the FDA has proposed making standardised testing mandatory. Buying from established brands that publish their testing is the current best option."}
+  ],
+  "related":[{"label":"Fragrance — often added to body powders","href":"/ingredient/fragrance-parfum/"},{"label":"Pregnancy-safe skincare ingredients","href":"/guides/pregnancy-safe-skincare-ingredients/"}],
+  "sources":["IARC Monographs Vol. 136, Talc and Acrylonitrile, 2024","ECHA Committee for Risk Assessment, Opinion on talc classification, 2024","US FDA, Proposed rule: Testing methods for detecting and identifying asbestos in talc-containing cosmetic products, December 2024","Health Canada, Screening Assessment for Talc, 2021","Regulation (EC) 1223/2009, Annex III entry 59 (talc warning for children)"]
+}

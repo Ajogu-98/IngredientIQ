@@ -1,0 +1,48 @@
+{
+  "type":"ingredient","slug":"parabens","category":"personal","name":"Parabens",
+  "title":"Are Parabens Bad for You? Methylparaben, Propylparaben & the Evidence — IngredientIQ",
+  "description":"Parabens are the most-studied cosmetic preservatives and among the most avoided. What the research actually shows, which ones the EU has banned, and whether you need to worry.",
+  "subtitle":"Cheap, effective, and rarely allergenic — yet 'paraben-free' became a marketing badge. Here is what the evidence supports and what it doesn't.",
+  "rating":"caution",
+  "quickAnswer":"Methylparaben and ethylparaben are considered safe by every major regulator at the levels used in cosmetics. The concern is with the longer-chain parabens — propylparaben and butylparaben — which show weak oestrogen-like activity in lab studies; the EU cut their permitted concentration in 2014 and banned them from nappy-area products for children under three. Five other parabens are banned outright in Europe. Parabens are not linked to cancer in humans, and they are among the least likely preservatives to cause an allergic reaction.",
+  "aliases":["Methylparaben","Ethylparaben","Propylparaben","Butylparaben","Isobutylparaben","E218, E214 (as food additives)"],
+  "function":"Preservative (antimicrobial)","foundInShort":"Moisturisers, makeup, shampoo, deodorant, some foods","mainConcern":"Weak hormone activity (propyl/butyl)",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Parabens are a family of preservatives made from para-hydroxybenzoic acid, a compound also produced naturally by blueberries, carrots, and other plants. They've been used in cosmetics since the 1920s, which makes them one of the longest-tested ingredients on any label.",
+    "The name on your label tells you which one you're dealing with: methylparaben and ethylparaben are the short-chain versions; propylparaben and butylparaben are longer-chain and more potent, both as preservatives and in terms of the concerns raised about them."
+  ],
+  "whatItDoes":[
+    "They stop mould, yeast, and bacteria growing in water-based products. Parabens are unusually good at this: effective at very low concentrations, stable across a wide pH range, odourless, and inexpensive. They're often used in pairs (methylparaben plus propylparaben, for example) because each covers different microbes.",
+    "Their track record on allergy is excellent — sensitisation rates are a small fraction of those seen with the preservatives that replaced them, such as methylisothiazolinone."
+  ],
+  "safety":[
+    "The worry started with a 2004 study that found parabens in breast tumour tissue. That study did not compare against healthy tissue, did not establish that parabens caused anything, and its author later said it had been over-interpreted. No subsequent research has shown that parabens cause cancer in humans, and regulators in the EU, US, and Canada all say the same.",
+    "What the science does support is that longer-chain parabens (propyl, butyl) bind weakly to oestrogen receptors in laboratory tests. 'Weakly' is doing real work in that sentence: butylparaben is roughly 10,000 to 100,000 times less potent than the body's own oestrogen, and the skin absorbs only a fraction of what's applied. Still, the EU's Scientific Committee on Consumer Safety decided in 2013 that the data weren't good enough to rule out a risk at old concentrations, and cut the limit for propyl- and butylparaben by more than half.",
+    "Five parabens — isopropyl, isobutyl, phenyl, benzyl, and pentylparaben — were banned in the EU in 2014, not because they were shown to be harmful but because manufacturers never submitted the safety data needed to keep them approved.",
+    "For most adults using normal products, the short-chain parabens present no meaningful risk. The reasonable precautions are around babies (where the EU restriction on nappy-area products applies) and around heavy daily use of many propyl/butylparaben products at once."
+  ],
+  "whoShouldAvoid":[
+    "Products for babies under three, especially in the nappy area — follow the EU rule even if you're elsewhere",
+    "People with a diagnosed paraben allergy (uncommon, but confirmed by patch test)",
+    "Anyone with a history of hormone-sensitive cancer who prefers to minimise oestrogenic exposures — a personal choice, not a medical requirement",
+    "If you use many leave-on products daily, favour ones preserved with methyl- or ethylparaben over propyl- or butylparaben"
+  ],
+  "regulatory":[
+    {"region":"European Union","status":"Methyl- and ethylparaben: up to 0.4% each, 0.8% combined. Propyl- and butylparaben: 0.14% combined, and banned in leave-on products for the nappy area of children under three (Regulation 1004/2014). Isopropyl-, isobutyl-, phenyl-, benzyl-, and pentylparaben banned (Regulation 358/2014)."},
+    {"region":"United Kingdom","status":"Mirrors the EU limits and bans."},
+    {"region":"Canada","status":"Same five parabens prohibited; propyl- and butylparaben limited to 0.14% combined and restricted in products for children under three."},
+    {"region":"United States","status":"No FDA restriction. Cosmetic Ingredient Review reaffirmed all common parabens as safe at current use levels (2019). Methyl- and propylparaben are also approved food additives."},
+    {"region":"Denmark","status":"Banned propyl- and butylparaben in products for children under three in 2011, ahead of the EU."}
+  ],
+  "commonProducts":["Facial moisturisers and eye creams","Foundation, mascara, and other makeup","Shampoo, conditioner, and body wash","Deodorants (less common now)","Sunscreens","Some processed foods and medicines (methylparaben)"],
+  "alternatives":["Phenoxyethanol — the most common replacement, with its own considerations","Sodium benzoate and potassium sorbate — effective in acidic products","Benzyl alcohol — gentle, though a listed fragrance allergen","Be wary of 'paraben-free' products that switched to methylisothiazolinone; the allergy risk is higher"],
+  "faqs":[
+    {"q":"Do parabens cause breast cancer?","a":"No study has shown that. The 2004 paper that started the concern found parabens in tumour samples but didn't test healthy tissue and couldn't say whether they caused anything. Cancer research bodies and regulators do not list parabens as carcinogens."},
+    {"q":"Is methylparaben safe?","a":"Yes, by every major regulator's assessment. It has the weakest hormone activity of the family, is poorly absorbed, and is rapidly broken down by the body. It's also used in food."},
+    {"q":"Why did brands go paraben-free if they're safe?","a":"Consumer demand. Once 'paraben-free' became a selling point, brands reformulated whether or not the science warranted it. The trade-off was often a switch to preservatives with higher allergy rates."},
+    {"q":"Are parabens safe during pregnancy?","a":"Regulators have not restricted them for pregnant women. If you want to be cautious, avoid daily leave-on products containing propyl- or butylparaben and stick to methyl- or ethylparaben, which have no meaningful hormone activity at cosmetic doses."}
+  ],
+  "related":[{"label":"Methylisothiazolinone — what replaced parabens","href":"/ingredient/methylisothiazolinone/"},{"label":"Phenoxyethanol","href":"/ingredient/phenoxyethanol/"},{"label":"Pregnancy-safe skincare ingredients","href":"/guides/pregnancy-safe-skincare-ingredients/"}],
+  "sources":["SCCS Opinion on Parabens (SCCS/1514/13), 2013","Commission Regulations (EU) 358/2014 and 1004/2014","Cosmetic Ingredient Review, Amended Safety Assessment of Parabens, 2019","Health Canada Cosmetic Ingredient Hotlist","American Cancer Society, Antiperspirants and Breast Cancer Risk"]
+}

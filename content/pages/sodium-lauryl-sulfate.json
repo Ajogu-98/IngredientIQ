@@ -1,0 +1,48 @@
+{
+  "type":"ingredient","slug":"sodium-lauryl-sulfate","category":"personal","name":"Sodium Lauryl Sulfate (SLS)",
+  "title":"Is Sodium Lauryl Sulfate (SLS) Bad for You? SLS vs SLES Explained — IngredientIQ",
+  "description":"SLS is the foaming agent in most shampoo, toothpaste, and body wash. It's an irritant, not a carcinogen. What the evidence says, how it differs from SLES, and who should switch.",
+  "subtitle":"The ingredient behind the lather. Safe by every regulator's account, but harsh enough that plenty of people are better off without it.",
+  "rating":"caution",
+  "quickAnswer":"Sodium lauryl sulfate is a strong detergent that is safe in rinse-off products but a well-documented skin irritant — so reliable an irritant that dermatology researchers use it deliberately to damage skin in studies. It does not cause cancer and is not a hormone disruptor; those claims come from misread or fabricated sources. People with dry skin, eczema, a sensitive scalp, or recurring mouth ulcers often do better with SLES or sulfate-free alternatives.",
+  "aliases":["SLS","Sodium dodecyl sulfate","SDS","Sodium lauryl sulphate"],
+  "function":"Surfactant (cleanser, foaming agent)","foundInShort":"Shampoo, toothpaste, body wash, hand soap","mainConcern":"Skin and scalp irritation",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Sodium lauryl sulfate is a surfactant, usually made from coconut or palm oil, that lowers the surface tension of water so it can lift oil and dirt away. It's the reason shampoo foams and toothpaste froths.",
+    "It's frequently confused with sodium laureth sulfate (SLES), which is SLS put through an extra chemical step called ethoxylation. That step makes SLES milder on skin — at the cost of possible trace contamination with 1,4-dioxane, a separate issue covered on the SLS vs SLES comparison page."
+  ],
+  "whatItDoes":[
+    "It cleans, and it cleans very well. SLS strips oil efficiently, which is exactly what you want from a degreasing dish soap and not quite what you want on a dry scalp. It also creates the dense, stable foam that most people associate with 'working'.",
+    "In toothpaste it foams and helps spread the paste, and it has some antibacterial action. It has no role in the paste's actual cleaning of teeth — that's the abrasive and the fluoride."
+  ],
+  "safety":[
+    "SLS is not carcinogenic. The persistent internet claim that it is traces back to a 1990s chain email that was never based on any study, and has been debunked by the American Cancer Society and others. The Cosmetic Ingredient Review found it safe in rinse-off products and safe in leave-on products at 1% or below.",
+    "It is, however, one of the most reliable skin irritants in cosmetics. It disrupts the skin barrier by stripping lipids and denaturing proteins. Dermatology labs use a 1–2% SLS patch as the standard positive control when they want to induce irritation. For someone with intact skin using a rinse-off shampoo, that's rarely a problem; for someone with eczema, a sensitive scalp, or hand dermatitis from frequent washing, it can be the whole problem.",
+    "In toothpaste, SLS is linked in several small trials to more frequent recurrent mouth ulcers (aphthous stomatitis) in people who are prone to them. Switching to an SLS-free toothpaste is a cheap experiment if you get ulcers regularly.",
+    "It is not an allergen in the true sense — reactions are irritation, not immune sensitisation — which means they fade once exposure stops."
+  ],
+  "whoShouldAvoid":[
+    "People with eczema, psoriasis, or very dry skin",
+    "Anyone with a sensitive, flaky, or itchy scalp",
+    "People who get recurrent mouth ulcers (choose SLS-free toothpaste)",
+    "Frequent hand-washers with cracked or irritated hands",
+    "Colour-treated or very dry hair, where the degreasing action strips dye and moisture"
+  ],
+  "regulatory":[
+    {"region":"European Union","status":"Permitted without concentration limit; considered safe in rinse-off use."},
+    {"region":"United States","status":"No FDA restriction. Cosmetic Ingredient Review: safe in rinse-off products; safe in leave-on products up to 1%. Also approved as a food additive (whipping agent)."},
+    {"region":"Canada","status":"Permitted."},
+    {"region":"Australia","status":"Permitted; classified as a skin and eye irritant for workplace handling of the raw material."}
+  ],
+  "commonProducts":["Shampoo","Toothpaste and mouthwash","Body wash, bubble bath, and hand soap","Shaving cream","Dish soap and laundry detergent (household)","Facial cleansers (increasingly rare)"],
+  "alternatives":["Sodium laureth sulfate (SLES) — milder, foams nearly as well","Sodium coco-sulfate — similar profile to SLS, despite marketing","Cocamidopropyl betaine — mild, though itself a moderately common allergen","Decyl glucoside, coco-glucoside, lauryl glucoside — gentle sugar-based cleansers","Sodium lauroyl sarcosinate or sodium cocoyl isethionate — the usual 'sulfate-free' choices"],
+  "faqs":[
+    {"q":"Does SLS cause cancer?","a":"No. There is no evidence for it, and the claim originated in a hoax email. Regulators, cancer charities, and independent reviews all agree it is not carcinogenic."},
+    {"q":"What's the difference between SLS and SLES?","a":"SLES is SLS that has been ethoxylated, which makes it noticeably gentler on skin. The trade-off is that ethoxylation can leave trace 1,4-dioxane, which responsible manufacturers remove. See the comparison page for details."},
+    {"q":"Is 'sulfate-free' shampoo actually better?","a":"Better for some people. If your scalp is fine and your hair is oily, SLS or SLES shampoo works well and costs less. If your scalp is irritated, your hair is dry or coloured, or you have eczema, sulfate-free is usually worth it."},
+    {"q":"Is sodium lauryl sulfate natural?","a":"It's typically made from coconut or palm oil but goes through significant chemical processing. 'Derived from coconut' on a label is technically true and practically meaningless."}
+  ],
+  "related":[{"label":"SLS vs SLES — which is gentler?","href":"/compare/sls-vs-sles/"},{"label":"Fragrance — the other common irritant in body wash","href":"/ingredient/fragrance-parfum/"}],
+  "sources":["Cosmetic Ingredient Review, Final Report on the Safety Assessment of Sodium Lauryl Sulfate and Ammonium Lauryl Sulfate","American Cancer Society, Debunking cancer myths: SLS","Tupker et al., Guidelines on sodium lauryl sulfate exposure tests, Contact Dermatitis","Herlofson & Barkvoll, SLS and recurrent aphthous ulcers, Acta Odontologica Scandinavica"]
+}

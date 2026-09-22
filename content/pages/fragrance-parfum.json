@@ -1,0 +1,48 @@
+{
+  "type":"ingredient","slug":"fragrance-parfum","category":"personal","name":"Fragrance (Parfum)",
+  "title":"What Does 'Fragrance' Hide? Allergens, Phthalates & Fragrance-Free vs Unscented — IngredientIQ",
+  "description":"'Fragrance' or 'parfum' on a label can stand for dozens of undisclosed chemicals. Why it's the top cause of cosmetic allergy, what the EU makes brands reveal, and how to read the label.",
+  "subtitle":"One word on the label, potentially a hundred ingredients behind it. The single most common cause of allergic reactions to cosmetics.",
+  "rating":"caution",
+  "quickAnswer":"'Fragrance' or 'parfum' is a legally permitted catch-all for a scent blend that can contain dozens of individual chemicals, none of which have to be listed in the US. Fragrance is the leading cause of allergic contact dermatitis from cosmetics, and the EU requires 26 known allergens to be named separately (expanding to more than 80 under rules phasing in from 2026). Most people tolerate fragranced products; if you have eczema, sensitive skin, or unexplained rashes, 'fragrance-free' — not 'unscented' — is the label to look for.",
+  "aliases":["Parfum","Aroma","Flavor (in lip products)","Essential oil blend","Natural fragrance"],
+  "function":"Scent; masks base odour","foundInShort":"Almost every scented product","mainConcern":"Allergy; undisclosed contents",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "In most countries, a manufacturer can list a scent blend as a single ingredient — 'fragrance' or 'parfum' — because the blend is treated as a trade secret. That one word can represent anywhere from a handful to over a hundred separate compounds: synthetic aroma chemicals, natural extracts and essential oils, fixatives that make the scent last, and solvents that carry it.",
+    "'Natural fragrance' and 'essential oils' are not automatically safer. Limonene, linalool, geraniol, and citral — all common in essential oils — are among the most frequent fragrance allergens."
+  ],
+  "whatItDoes":[
+    "Fragrance makes a product smell pleasant or masks the smell of its raw materials, which is often the real reason it's there. It has no functional benefit for skin or hair. The exception is products like perfume, where the scent is the product.",
+    "Fixatives in the blend, historically including phthalates such as diethyl phthalate (DEP), keep the scent from evaporating quickly. DEP is still permitted in the EU and US, though many brands have dropped it."
+  ],
+  "safety":[
+    "Fragrance is the number one cause of allergic contact dermatitis from cosmetics, ahead of preservatives. The typical picture is itchy, red, sometimes scaly patches where scented products are applied — face, neck, hands, armpits — or airborne reactions on the face and eyelids from scented sprays and cleaning products.",
+    "The EU addressed the disclosure problem in 2005 by requiring 26 specific fragrance allergens (limonene, linalool, citronellol, geraniol, eugenol, and others) to be listed by name when they exceed 0.001% in leave-on or 0.01% in rinse-off products. Regulation 2023/1545 expands that list to more than 80 substances, with new products required to comply from July 2026 and existing stock by 2028. This is why European labels often end with a string of chemical names that US labels lack.",
+    "In the United States, no disclosure is required at all on the label. California's SB 312 (2020) requires companies to report certain fragrance allergens and hazardous ingredients to the state, but that information doesn't appear on packaging.",
+    "Beyond allergy, fragrance ingredients are a common trigger for migraine and asthma in susceptible people, and scented products are routinely advised against for eczema, rosacea, and post-procedure skin."
+  ],
+  "whoShouldAvoid":[
+    "Anyone with eczema, rosacea, or chronically sensitive skin",
+    "People with a patch-test-confirmed fragrance allergy (fragrance mix I and II are in every standard test series)",
+    "Babies and young children — most paediatric guidance recommends fragrance-free products",
+    "Skin after a procedure, sunburn, or while using retinoids or acids",
+    "People with fragrance-triggered migraine or asthma, particularly with sprays and scented cleaners"
+  ],
+  "regulatory":[
+    {"region":"European Union","status":"26 fragrance allergens must be listed by name above threshold levels since 2005. Regulation 2023/1545 expands this to 80+ substances, applying to new products from 31 July 2026. Certain fragrance ingredients are banned or restricted (e.g. HICC/Lyral banned since 2021)."},
+    {"region":"United Kingdom","status":"Retains the 26-allergen labelling rule; expanded list being adopted."},
+    {"region":"Canada","status":"'Parfum' permitted as a catch-all; Health Canada has proposed allergen labelling similar to the EU."},
+    {"region":"United States","status":"No fragrance allergen labelling required on cosmetics. California SB 312 requires reporting of listed fragrance allergens and hazardous chemicals to the state (not on the label). MoCRA (2022) directs FDA to develop fragrance allergen labelling rules."}
+  ],
+  "commonProducts":["Perfume, cologne, and body spray","Moisturisers, body lotion, and hand cream","Shampoo, conditioner, and body wash","Deodorant","Laundry detergent, fabric softener, and dryer sheets","Air fresheners, candles, and cleaning sprays"],
+  "alternatives":["Products labelled 'fragrance-free' — no scent added at all","Look for the full allergen list on EU-labelled products and avoid the ones you react to","Avoid 'unscented', which usually contains a masking fragrance","If you love scent, apply perfume to clothing rather than skin"],
+  "faqs":[
+    {"q":"What's the difference between fragrance-free and unscented?","a":"'Fragrance-free' means no fragrance ingredients were added. 'Unscented' means the product has no noticeable smell, which often means a masking fragrance was added to cover the raw-material odour. If you're avoiding fragrance, choose fragrance-free."},
+    {"q":"Are natural fragrances or essential oils safer?","a":"Not reliably. Many of the most common fragrance allergens (limonene, linalool, geraniol, eugenol) are natural components of essential oils. 'Natural' describes the source, not the allergy risk."},
+    {"q":"Does fragrance in products contain phthalates?","a":"Sometimes. Diethyl phthalate (DEP) is used as a fixative and solvent and is still permitted. Because it's inside the 'fragrance' term you can't tell from a US label. EU and Canadian labels won't show it either unless the brand chooses to disclose. Brands that state 'phthalate-free' are the only reliable indicator."},
+    {"q":"Can I be allergic to fragrance if I've used perfume for years?","a":"Yes. Fragrance allergy typically develops after years of exposure, and reactions to a long-used product are common. Once sensitised, the allergy is usually lifelong."}
+  ],
+  "related":[{"label":"Phthalates — the fixatives in fragrance","href":"/ingredient/phthalates/"},{"label":"Methylisothiazolinone — the other top cosmetic allergen","href":"/ingredient/methylisothiazolinone/"},{"label":"Pregnancy-safe skincare ingredients","href":"/guides/pregnancy-safe-skincare-ingredients/"}],
+  "sources":["Regulation (EC) 1223/2009, Annex III entries 45–92 (fragrance allergens)","Commission Regulation (EU) 2023/1545","SCCS Opinion on Fragrance Allergens in Cosmetic Products, 2012","California Cosmetic Fragrance and Flavor Ingredient Right to Know Act (SB 312), 2020","American Contact Dermatitis Society patch-test data"]
+}

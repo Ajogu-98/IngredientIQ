@@ -1,0 +1,48 @@
+{
+  "type":"ingredient","slug":"sodium-hypochlorite","category":"household","name":"Sodium Hypochlorite (Bleach)",
+  "title":"Bleach (Sodium Hypochlorite) Safety: What Never to Mix It With — IngredientIQ",
+  "description":"Household bleach is sodium hypochlorite. It disinfects reliably but produces toxic gas when mixed with ammonia, vinegar, or other cleaners. Dilution, ventilation, and the mixing rules.",
+  "subtitle":"The most effective disinfectant most people own, and the one most often misused. The danger isn't bleach — it's bleach plus something else.",
+  "rating":"caution",
+  "quickAnswer":"Sodium hypochlorite — household bleach — is a powerful, cheap, and well-understood disinfectant that kills bacteria, viruses, mould, and spores. Used diluted and with ventilation, it's safe. The serious risks are mixing: bleach plus ammonia makes chloramine gas, bleach plus vinegar or other acids makes chlorine gas, and bleach plus alcohol can make chloroform. All are dangerous in a closed room. Never mix bleach with anything but water.",
+  "aliases":["Bleach","Chlorine bleach","Hypochlorite","Liquid chlorine","Javel water / eau de Javel"],
+  "function":"Disinfectant; whitener; stain remover","foundInShort":"Household bleach, mould sprays, toilet cleaners, some laundry products","mainConcern":"Toxic gases when mixed; irritation",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Sodium hypochlorite is chlorine dissolved in sodium hydroxide solution. Household bleach is typically 3–8% sodium hypochlorite in water; 'concentrated' or 'splash-less' versions sit at the top of that range, and pool chlorine can be 10–12%.",
+    "It's a strong oxidiser, which is what makes it kill microbes and strip colour from stains, and also what makes it react with so many other chemicals."
+  ],
+  "whatItDoes":[
+    "Diluted bleach kills essentially everything: bacteria, enveloped and non-enveloped viruses (including norovirus, which many disinfectants miss), fungi, mould, and bacterial spores such as C. difficile. That breadth is why it remains the standard for outbreak cleaning, food safety, and water treatment.",
+    "It also breaks down organic stains and whitens fabrics, which is its laundry role. It does not clean in the sense of removing dirt — surfaces should be cleaned first, then disinfected."
+  ],
+  "safety":[
+    "Bleach on its own, diluted correctly, is low-risk. The recommended disinfecting dilution is about 4 teaspoons (20 ml) of regular bleach per litre of water (or 1/3 cup per gallon), made fresh, because diluted bleach loses strength within a day. Concentrated bleach is corrosive to skin and eyes, and its fumes irritate airways — ventilation matters even when nothing's been mixed.",
+    "The mixing hazards are where hospital visits come from. Bleach + ammonia (in many glass cleaners and some multi-surface products, and in urine) produces chloramine vapour, which causes coughing, chest pain, and, at high concentration, fluid in the lungs. Bleach + acid (vinegar, many toilet-bowl and limescale cleaners, some drain openers) releases chlorine gas, which is worse. Bleach + rubbing alcohol produces chloroform and other chlorinated compounds. Poison-control data show a steady stream of these exposures, with a spike during the 2020 pandemic when people 'doubled up' cleaners.",
+    "Regular household exposure is also associated with asthma symptoms in children and adults, likely from airborne chlorine compounds, and frequent use is linked to worse asthma control in cleaners.",
+    "Long-term, bleach isn't carcinogenic and doesn't accumulate in the body. It breaks down to salt water fairly quickly, though it's toxic to aquatic life before it does."
+  ],
+  "whoShouldAvoid":[
+    "Never combine with ammonia, vinegar, acids, alcohol, or any other cleaner — this applies to everyone",
+    "People with asthma or COPD — use sparingly, with windows open, or choose hydrogen peroxide",
+    "Small, unventilated spaces (shower stalls, closets) — the fumes concentrate quickly",
+    "Cleaning cat-litter areas or pet accidents — urine contains ammonia",
+    "On stainless steel, aluminium, or marble, which it corrodes"
+  ],
+  "regulatory":[
+    {"region":"United States","status":"EPA-registered antimicrobial pesticide when labelled for disinfection; on List N. Consumer Product Safety Commission requires child-resistant packaging above certain concentrations. No restriction on sale."},
+    {"region":"European Union","status":"Approved biocide. Classified as corrosive (skin/eye), toxic to aquatic life; products above 5% must carry hazard labelling. Banned in cosmetics except as a hair-lightening agent at low levels (not used in practice)."},
+    {"region":"United Kingdom","status":"As EU; corrosive labelling and child-resistant closures required."},
+    {"region":"Canada","status":"Registered under the Pest Control Products Act for disinfectant use; Consumer Chemicals and Containers Regulations govern labelling and packaging."}
+  ],
+  "commonProducts":["Household bleach","Mould and mildew sprays","Toilet-bowl cleaners (some — check for acid-based ones, which must never be combined)","Bleach-containing bathroom sprays","Laundry whiteners","Pool chlorine (higher concentration)"],
+  "alternatives":["Hydrogen peroxide (3%) — kills most microbes, no mixing hazards with common cleaners","70% alcohol — for hard surfaces and quick disinfection","Oxygen bleach (sodium percarbonate) — for laundry whitening without chlorine","Soap and water — sufficient for most household cleaning"],
+  "faqs":[
+    {"q":"What happens if you mix bleach and ammonia?","a":"You get chloramine gas, which irritates the eyes, nose, and lungs within minutes. In a small room it can cause serious breathing difficulty. If it happens, leave immediately, get fresh air, and call poison control if you have any breathing symptoms."},
+    {"q":"Can I mix bleach and vinegar to make a stronger cleaner?","a":"No. The acid in vinegar releases chlorine gas from bleach. This is one of the most common dangerous mixes because both are seen as 'basic' cleaners."},
+    {"q":"Is bleach safe to use around pets?","a":"Diluted, dried, and ventilated, yes. Keep pets out while cleaning and until surfaces are dry, rinse food-contact areas, and never use it where cats or dogs urinate without cleaning the urine first, since urine contains ammonia."},
+    {"q":"How long does diluted bleach last?","a":"About 24 hours. Mix what you need for the day and discard the rest. Undiluted bleach also weakens over months, especially in heat or light."}
+  ],
+  "related":[{"label":"Ammonia — the one it must never meet","href":"/ingredient/ammonia/"},{"label":"Hydrogen peroxide — the safer alternative","href":"/ingredient/hydrogen-peroxide/"},{"label":"Bleach vs hydrogen peroxide","href":"/compare/bleach-vs-hydrogen-peroxide/"},{"label":"Cleaning products safe for pets","href":"/guides/cleaning-products-safe-for-pets/"}],
+  "sources":["CDC, Cleaning and Disinfecting Your Home","American Association of Poison Control Centers, exposure data on cleaning-product mixing","Washington State Department of Health, Dangers of Mixing Bleach with Cleaners","US EPA, List N","ECHA registration dossier, sodium hypochlorite"]
+}

@@ -1,0 +1,48 @@
+{
+  "type":"ingredient","slug":"phthalates","category":"household","name":"Phthalates",
+  "title":"Phthalates in Air Fresheners, Fragrance & Plastics: What's Banned and What Isn't — IngredientIQ",
+  "description":"Phthalates are plasticisers and fragrance fixatives linked to hormone disruption. Several are banned in EU cosmetics and US toys, but DEP still hides inside 'fragrance'. How to avoid them.",
+  "subtitle":"The reason 'fragrance' on a label can matter more than it looks. Some are banned, some aren't, and none have to be named in the US.",
+  "rating":"caution",
+  "quickAnswer":"Phthalates are a family of chemicals used to soften plastics and to make fragrances last longer. Several — DEHP, DBP, BBP, DIBP — are hormone disruptors with evidence of reproductive effects, and are banned in EU cosmetics and in US and EU children's products. Diethyl phthalate (DEP), the one used in fragrance, has weaker evidence and remains legal, but because it's hidden inside the word 'fragrance' you can't tell if it's there. Scented air fresheners, plug-ins, and vinyl products are the main household sources.",
+  "aliases":["DEP (diethyl phthalate)","DEHP","DBP (dibutyl phthalate)","BBP","DINP","DIDP","'Fragrance' (may contain DEP)"],
+  "function":"Plasticiser; fragrance fixative","foundInShort":"Air fresheners, scented products, vinyl, flexible plastics","mainConcern":"Hormone disruption (some types)",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Phthalates are esters of phthalic acid. The heavier ones (DEHP, DINP, DIDP) make rigid PVC flexible — shower curtains, vinyl flooring, cables, garden hoses, some toys. The lighter ones (DEP, DBP) are solvents and fixatives in perfume, air fresheners, nail polish, and hairspray.",
+    "They aren't chemically bound to the materials they're in, so they leach out over time into air, dust, and whatever touches the product. That's why phthalate metabolites show up in nearly everyone's urine in biomonitoring studies."
+  ],
+  "whatItDoes":[
+    "In plastics, they make PVC bendable. In fragrance, DEP slows evaporation so a scent lingers for hours instead of minutes, and it helps dissolve fragrance oils into water-based products. In nail polish, DBP historically prevented chipping.",
+    "None of them have any benefit to you as a user beyond product performance and scent longevity."
+  ],
+  "safety":[
+    "The evidence differs sharply by phthalate. DEHP, DBP, BBP, and DIBP are classified in the EU as toxic to reproduction (Category 1B): in animal studies they reduce testosterone during development, and human studies associate higher exposure in pregnancy with changes in male infant genital development and other effects. These four are banned in EU cosmetics, restricted in all EU consumer articles above 0.1%, and banned in US children's toys and childcare items above 0.1% under the Consumer Product Safety Improvement Act (2008, expanded 2017).",
+    "DEP — the fragrance phthalate — is a different case. It has not shown the same anti-androgenic effect in animal studies, and regulators in the EU and US consider it safe at cosmetic use levels. It's still legal everywhere. The precautionary argument is that DEP exposure is nearly universal, it's a marker of overall phthalate load, and you can't see it on a label.",
+    "Household air is a real exposure route: plug-in and spray air fresheners, scented candles, and vinyl flooring all release phthalates into indoor air and dust, which children ingest disproportionately through hand-to-mouth behaviour.",
+    "Phthalates clear from the body within days, so reducing exposure lowers levels quickly — one of the few areas where changing products has a measurable effect within a week."
+  ],
+  "whoShouldAvoid":[
+    "Pregnant women and those planning pregnancy — the developmental-exposure window is the one with evidence",
+    "Infants and young children, who get the highest dose from dust and mouthing vinyl items",
+    "Anyone with fertility concerns; DBP and DEHP are the ones to focus on",
+    "Households using several scented air fresheners, plug-ins, or candles daily",
+    "People using nail polish or hairspray frequently — check for 'phthalate-free' (most major brands are now)"
+  ],
+  "regulatory":[
+    {"region":"European Union","status":"DEHP, DBP, BBP, DIBP: banned in cosmetics (Annex II); restricted to 0.1% in all consumer articles (REACH Annex XVII, 2020); banned in toys. DEP: permitted in cosmetics. DINP/DIDP/DNOP restricted in toys children can mouth."},
+    {"region":"United States","status":"CPSIA bans DEHP, DBP, BBP, DINP, DIBP, DPENP, DHEXP, DCHP above 0.1% in children's toys and childcare articles. FDA does not restrict phthalates in cosmetics; DEP is permitted and can be undisclosed within 'fragrance'. California Prop 65 lists DEHP, DBP, BBP, DIDP, DINP."},
+    {"region":"United Kingdom","status":"Retains EU cosmetic bans and REACH article restriction."},
+    {"region":"Canada","status":"DEHP, DBP, BBP banned in cosmetics; six phthalates restricted in soft vinyl toys and childcare articles (Phthalates Regulations, 2016)."}
+  ],
+  "commonProducts":["Plug-in and spray air fresheners, scented candles","Perfume, cologne, and scented lotions (as DEP within 'fragrance')","Vinyl shower curtains, flooring, tablecloths, and raincoats","Nail polish (older formulations), hairspray","PVC garden hoses","Food packaging and processing equipment (a significant dietary source)"],
+  "alternatives":["Fragrance-free products, or those explicitly labelled 'phthalate-free'","Open windows, baking soda, or coffee grounds instead of air fresheners","Fabric, PEVA, or polyester shower curtains instead of vinyl","Glass, stainless steel, or silicone instead of soft plastics for food","Reduce indoor dust: wet-mop and vacuum with a HEPA filter"],
+  "faqs":[
+    {"q":"Are phthalates banned?","a":"Some are. DEHP, DBP, BBP, and DIBP are banned in EU cosmetics and in children's products in the US, EU, and Canada. DEP, the fragrance phthalate, is legal everywhere. 'Banned' depends on which one and which product."},
+    {"q":"How do I know if a product contains phthalates?","a":"In the US you usually can't from the label. 'Fragrance' may or may not contain DEP. Look for 'phthalate-free' claims, fragrance-free products, or check the manufacturer's disclosures. In the EU the four banned ones can't be there; DEP still can."},
+    {"q":"Is DEP as bad as the other phthalates?","a":"The evidence says no. DEP hasn't shown the reproductive effects seen with DEHP and DBP, and regulators consider it safe at cosmetic levels. Avoiding it is a precaution, not a response to demonstrated harm."},
+    {"q":"Do air fresheners really release phthalates?","a":"Yes — testing by NRDC and others found phthalates in most scented air fresheners, including some labelled 'all natural'. Plug-ins and continuous sprays produce ongoing exposure."}
+  ],
+  "related":[{"label":"Fragrance (parfum) — where DEP hides","href":"/ingredient/fragrance-parfum/"},{"label":"Pregnancy-safe skincare ingredients","href":"/guides/pregnancy-safe-skincare-ingredients/"},{"label":"Cleaning products safe for pets","href":"/guides/cleaning-products-safe-for-pets/"}],
+  "sources":["REACH Annex XVII entry 51 (Commission Regulation (EU) 2018/2005)","Regulation (EC) 1223/2009, Annex II","US Consumer Product Safety Commission, Phthalates Business Guidance (16 CFR 1307)","CDC, National Report on Human Exposure to Environmental Chemicals","Swan et al., Decrease in anogenital distance among male infants with prenatal phthalate exposure, Environmental Health Perspectives, 2005","NRDC, Hidden Hazards of Air Fresheners, 2007"]
+}

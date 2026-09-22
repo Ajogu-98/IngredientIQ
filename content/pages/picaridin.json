@@ -1,0 +1,48 @@
+{
+  "type":"ingredient","slug":"picaridin","category":"outdoor","name":"Picaridin (Icaridin)",
+  "title":"Is Picaridin Safe? The DEET Alternative Explained — IngredientIQ",
+  "description":"Picaridin (icaridin) repels mosquitoes and ticks as well as DEET without the odour or plastic damage. Safety for children and pregnancy, effective concentration, and where it falls short.",
+  "subtitle":"Europe's default repellent for two decades, now common everywhere. As effective as DEET, easier to live with.",
+  "rating":"safe",
+  "quickAnswer":"Picaridin (called icaridin outside the US) is a synthetic repellent modelled on a compound in pepper plants. At 20% it repels mosquitoes and ticks for 8–14 hours, comparable to 20–30% DEET, and it doesn't dissolve plastics or synthetic fabric, has almost no smell, and rarely irritates skin. It's approved for children from 6 months (Canada) or 2 months (US label guidance), and health bodies consider it acceptable in pregnancy. Its main limitation is a shorter track record than DEET.",
+  "aliases":["Icaridin","KBR 3023","Bayrepel","Saltidin","Hydroxyethyl isobutyl piperidine carboxylate"],
+  "function":"Insect repellent","foundInShort":"Repellent sprays, lotions, wipes","mainConcern":"Rare skin irritation",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Picaridin is a piperidine compound developed by Bayer in the 1980s and sold in Europe from 1998 and the US from 2005. It's structurally related to piperine, the compound that makes black pepper hot, though it's fully synthetic.",
+    "It's sold at 5–20%. As with DEET, concentration sets duration: 10% gives 3–5 hours, 20% gives 8–14 hours against mosquitoes and around 8 hours against ticks."
+  ],
+  "whatItDoes":[
+    "It repels mosquitoes, ticks, biting flies, chiggers, and fleas by blocking the insects' ability to locate skin. The CDC lists it alongside DEET as a recommended repellent, and the WHO recommends it for malaria-area travel.",
+    "It's odourless, non-greasy, and doesn't damage plastics, watch straps, sunglasses, synthetic clothing, or painted surfaces — the practical reason many people switch to it."
+  ],
+  "safety":[
+    "Picaridin has a favourable safety profile in every regulatory review. It's poorly absorbed through skin, rapidly metabolised, and shows no carcinogenic, mutagenic, or reproductive effects in animal studies. Skin irritation is uncommon and generally mild. There are no case reports of neurological effects comparable to those (rare) reports with DEET.",
+    "Eye contact is irritating, as with any repellent. It shouldn't be ingested; poison-centre reports are rare and generally minor.",
+    "For children, the US EPA doesn't set an age limit, and product labels typically say 'not for children under 2 months'; Health Canada permits it from 6 months. For pregnancy, there are fewer human studies than for DEET, but no signal of harm, and the CDC lists it as safe to use in pregnancy.",
+    "The honest caveat is time: DEET has 60+ years of population data, picaridin has about 25. Nothing in that period has raised a concern."
+  ],
+  "whoShouldAvoid":[
+    "Infants under 6 months (Canada) or 2 months (US) — use nets and clothing",
+    "Avoid eyes, mouth, and broken skin; apply to a child's face with your hands, not by spraying",
+    "Wash off after coming indoors",
+    "Don't rely on 5–10% products for tick protection in high-risk areas; use 20%"
+  ],
+  "regulatory":[
+    {"region":"United States","status":"EPA-registered since 2005; CDC-recommended. No age restriction from EPA; labels commonly advise not under 2 months."},
+    {"region":"Canada","status":"Registered as icaridin; permitted for children 6 months and older at up to 20%."},
+    {"region":"European Union","status":"Approved biocide (product type 19) since 2016 as icaridin; widely sold, including to children from 2 years in some markets."},
+    {"region":"Australia","status":"Registered; recommended by state health authorities alongside DEET."},
+    {"region":"WHO","status":"Recommended repellent for travellers to malaria-endemic areas."}
+  ],
+  "commonProducts":["Repellent sprays and aerosols","Lotions and pump sprays","Repellent wipes","Some sunscreen-repellent combinations"],
+  "alternatives":["DEET 20–30% — the longer-tested option","Oil of lemon eucalyptus (PMD) 30% — plant-derived, not for children under 3","IR3535 — gentle, shorter duration","Permethrin-treated clothing for ticks, used with a skin repellent"],
+  "faqs":[
+    {"q":"Is picaridin as effective as DEET?","a":"At 20%, yes for mosquitoes, with duration of 8 hours or more. Against ticks, several studies rate 20% picaridin at least as effective as 20–30% DEET. Lower-concentration picaridin products (5–10%) are weaker and shorter-lasting."},
+    {"q":"Is picaridin safe for babies?","a":"From 6 months in Canada and from 2 months per typical US labels. For younger infants, use nets and long clothing. Apply with your hands, not sprayed directly."},
+    {"q":"Is picaridin safe in pregnancy?","a":"Regulators and the CDC list it as safe to use during pregnancy. There's less direct human data than for DEET, but no evidence of harm, and the diseases it prevents are the greater risk."},
+    {"q":"Why does it smell of nothing?","a":"Picaridin is nearly odourless and doesn't have DEET's oily, solvent-like feel. That, plus not melting plastics, is why it's become the default in Europe and increasingly elsewhere."}
+  ],
+  "related":[{"label":"DEET vs picaridin","href":"/compare/deet-vs-picaridin/"},{"label":"DEET","href":"/ingredient/deet/"},{"label":"Bug spray safety for kids","href":"/guides/bug-spray-safety-for-kids/"}],
+  "sources":["US EPA, Picaridin Pesticide Fact Sheet, 2005","CDC, Prevent Mosquito Bites: repellent guidance","Health Canada, Insect Repellents: Icaridin","WHO, International Travel and Health: personal protection","Büchel et al., Repellent efficacy of DEET, icaridin and EBAAP against ticks, Ticks and Tick-borne Diseases, 2015"]
+}

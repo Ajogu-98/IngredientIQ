@@ -1,0 +1,48 @@
+{
+  "type":"ingredient","slug":"hydrogen-peroxide","category":"household","name":"Hydrogen Peroxide",
+  "title":"Hydrogen Peroxide as a Cleaner: Safe Uses, Concentrations & Limits — IngredientIQ",
+  "description":"3% hydrogen peroxide disinfects, whitens, and breaks down into water and oxygen. Safer than bleach or quats for most household jobs. Where it works, where it doesn't, and what not to do.",
+  "subtitle":"The disinfectant that leaves nothing behind. Not as strong as bleach, and that's mostly the point.",
+  "rating":"safe",
+  "quickAnswer":"Household hydrogen peroxide (3%) is an effective disinfectant against bacteria, viruses, and mould that decomposes into water and oxygen, leaving no toxic residue and no fumes. It has no dangerous reactions with common cleaners the way bleach does. Its limits: it's slower than bleach, it bleaches fabrics and some surfaces, it loses potency in light, and concentrations above about 6% are corrosive and should not be used at home. Don't drink it, and don't use it on wounds.",
+  "aliases":["H2O2","Peroxide","Oxygen bleach (as sodium percarbonate)","Hydrogen dioxide","Food-grade peroxide (35% — not for home use undiluted)"],
+  "function":"Disinfectant; oxidising cleaner; whitener","foundInShort":"Brown-bottle peroxide, mould sprays, oxygen bleach, teeth whiteners","mainConcern":"Corrosive at high concentration; bleaches",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Hydrogen peroxide is water with an extra oxygen atom — H2O2. That extra oxygen is loosely held, which makes the molecule a strong oxidiser: it attacks the membranes and proteins of microbes, then decomposes into ordinary water and oxygen gas. The brown bottle in the pharmacy is 3%; hair-lightening products use 6–12%; industrial and 'food-grade' peroxide is 35% and genuinely hazardous.",
+    "Oxygen bleach powders (sodium percarbonate) release hydrogen peroxide when dissolved, which is how they whiten laundry without chlorine."
+  ],
+  "whatItDoes":[
+    "At 3% it disinfects hard surfaces (kills most bacteria, viruses including norovirus with enough contact time, and fungi), removes mould stains, lifts blood and organic stains from fabric, whitens grout, and deodorises. It needs contact time — about 5 to 10 minutes wet on a surface — to do its job.",
+    "It doesn't cut grease or clean dirt; like bleach, it's a disinfectant to use after cleaning, not instead of it."
+  ],
+  "safety":[
+    "3% peroxide is about as benign as a disinfectant gets. It can sting on broken skin and temporarily whiten fingertips (harmless, fades in an hour), and it irritates eyes. There's no toxic vapour and no residue. Crucially, it doesn't form dangerous gases with ammonia or acids, though mixing it with vinegar in the same container makes peracetic acid, which is a more aggressive irritant — use them separately, not combined.",
+    "Higher concentrations change the picture. Above 6% it's corrosive to skin and eyes; 35% causes serious chemical burns and, if swallowed, gas embolism that has killed people who followed 'food-grade peroxide' wellness advice. Never dilute 35% at home.",
+    "Medical consensus has shifted against using peroxide on cuts: it kills the cells that heal wounds along with the bacteria and slows healing. Clean wounds with running water.",
+    "It's not carcinogenic at consumer concentrations and has no environmental persistence — it's fully decomposed by the time it reaches a drain."
+  ],
+  "whoShouldAvoid":[
+    "Don't use it on wounds — it damages healthy tissue",
+    "Never ingest it, at any concentration; 'food-grade' means purity, not edibility",
+    "Don't use on coloured fabrics, natural stone, or unsealed wood without testing — it bleaches",
+    "Keep concentrated (above 6%) products out of the house entirely",
+    "Don't premix with vinegar in a single bottle"
+  ],
+  "regulatory":[
+    {"region":"United States","status":"3% peroxide is sold as an OTC antiseptic (FDA) and EPA-registered as a disinfectant in labelled products (on List N). Concentrations above 8% are regulated as hazardous for shipping."},
+    {"region":"European Union","status":"Approved biocide. In cosmetics, limited to 12% in hair products, 4% on skin, 2% on nails, 0.1% in oral products (Annex III); teeth-whitening products above 0.1% are dentist-only, and above 6% are banned."},
+    {"region":"United Kingdom","status":"As EU cosmetic and biocide rules. Sale of concentrations above 12% to the public restricted under explosives-precursor regulations."},
+    {"region":"Canada","status":"3% sold OTC; hazardous-product labelling applies above 8%."}
+  ],
+  "commonProducts":["3% hydrogen peroxide (brown bottle)","Peroxide-based multi-surface and bathroom sprays","Mould and mildew removers","Oxygen bleach laundry powders (sodium percarbonate)","Teeth-whitening strips and gels","Contact-lens cleaning systems (neutralised before use)"],
+  "alternatives":["70% alcohol — faster on hard surfaces, no bleaching","Diluted bleach — when you need spore-killing power, with ventilation and no mixing","Soap and water — for routine cleaning where disinfection isn't needed","Enzymatic cleaners for organic stains and odours"],
+  "faqs":[
+    {"q":"Is hydrogen peroxide better than bleach?","a":"Safer, not stronger. Peroxide has no fumes, no dangerous mixing reactions, and no residue. Bleach kills a broader range faster, including bacterial spores. For daily household use peroxide is usually the better choice; for outbreak cleaning or C. difficile, bleach remains the standard. See the comparison page."},
+    {"q":"Can I mix hydrogen peroxide and vinegar?","a":"Not in the same bottle — it forms peracetic acid, which is corrosive. Using one, then the other, rinsing between, is fine and is a common food-safety technique."},
+    {"q":"Why does peroxide come in a brown bottle?","a":"Light breaks it down into water. Keep it in the original opaque bottle, closed, and replace it after about six months of opening; if it doesn't fizz on a cut surface, it's expired."},
+    {"q":"Is hydrogen peroxide safe for pets?","a":"3% used on surfaces and dried is fine. Don't give it to pets to induce vomiting without veterinary instruction, and never use it on cats for that purpose — it can cause serious stomach injury."}
+  ],
+  "related":[{"label":"Bleach vs hydrogen peroxide","href":"/compare/bleach-vs-hydrogen-peroxide/"},{"label":"Sodium hypochlorite (bleach)","href":"/ingredient/sodium-hypochlorite/"},{"label":"Benzalkonium chloride — what peroxide can replace","href":"/ingredient/benzalkonium-chloride/"},{"label":"Cleaning products safe for pets","href":"/guides/cleaning-products-safe-for-pets/"}],
+  "sources":["US EPA, List N","CDC, Guideline for Disinfection and Sterilization in Healthcare Facilities: Hydrogen Peroxide","Regulation (EC) 1223/2009, Annex III entry 12","CDC / ATSDR, Toxicological Profile for Hydrogen Peroxide","American Academy of Dermatology, wound care guidance"]
+}

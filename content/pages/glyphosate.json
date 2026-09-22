@@ -1,0 +1,51 @@
+{
+  "type":"ingredient","slug":"glyphosate","category":"outdoor","name":"Glyphosate",
+  "title":"Is Glyphosate (Roundup) Safe? What Regulators, IARC & Courts Say — IngredientIQ",
+  "description":"Glyphosate is the world's most-used weedkiller and its most argued-over. Why regulators say it's safe and IARC says it's probably carcinogenic, what the lawsuits established, and what to do in your garden.",
+  "subtitle":"The most-used herbicide on earth, with regulators and the WHO's cancer agency reaching opposite conclusions from the same evidence.",
+  "rating":"caution",
+  "quickAnswer":"Glyphosate kills nearly all plants by blocking an enzyme humans don't have, which is why its acute toxicity to people is low. The dispute is about cancer: the WHO's cancer agency (IARC) classified it in 2015 as 'probably carcinogenic to humans' based on limited evidence for non-Hodgkin lymphoma, while the EPA, the EU's food-safety authority, Health Canada, and others reviewed the same and larger datasets and concluded it isn't carcinogenic at real-world exposures. US juries have awarded large damages to heavy long-term users. For a home gardener spraying occasionally with gloves, exposure is tiny; the bigger practical risks are killing the wrong plants and residue on lawns children and pets use.",
+  "aliases":["Roundup (original formulations)","N-(phosphonomethyl)glycine","Glyphosate isopropylamine salt","Glyphosate potassium salt","Rodeo, Ranger Pro, Touchdown (trade names)"],
+  "function":"Herbicide (non-selective, systemic)","foundInShort":"Weedkillers, path and patio cleaners, lawn 'weed & grass' killers","mainConcern":"Disputed cancer classification; residues",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Glyphosate is a broad-spectrum herbicide introduced by Monsanto as Roundup in 1974. It blocks an enzyme (EPSP synthase) that plants need to make three essential amino acids; because animals get those amino acids from food and don't have the enzyme, glyphosate has low acute toxicity to mammals. Its use exploded after 1996 with glyphosate-tolerant 'Roundup Ready' crops.",
+    "Commercial products combine glyphosate with surfactants that help it penetrate leaves. Some of those surfactants — notably POEA (polyethoxylated tallow amine), now banned in the EU — are more irritating and more toxic to aquatic life than glyphosate itself, which complicates every safety discussion."
+  ],
+  "whatItDoes":[
+    "It kills essentially any green plant it's sprayed on, moving from the leaves down to the roots so the plant doesn't regrow. It's inactive once it hits soil (it binds tightly to soil particles), so it doesn't sterilise the ground or prevent new seeds germinating — that's the job of other herbicides often sold alongside it in 'extended control' products.",
+    "In the garden it's used for paths, patios, fence lines, and clearing beds before planting. It has no place on a lawn except as a spot treatment, because it kills grass too."
+  ],
+  "safety":[
+    "Acute toxicity is low: glyphosate is less acutely toxic than table salt by weight, poorly absorbed through skin, and excreted largely unchanged. Skin and eye irritation from concentrated product is the common real-world effect, and much of that comes from the surfactants.",
+    "The cancer question turns on how you weigh different kinds of evidence. IARC's 2015 review found 'limited' evidence in humans (a handful of studies linking heavy occupational use to non-Hodgkin lymphoma), 'sufficient' evidence in animals at high doses, and mechanistic evidence of DNA damage, and classified glyphosate as Group 2A, probably carcinogenic — the same category as red meat and working night shifts. IARC evaluates whether something can cause cancer under any conditions, not whether it does at typical exposures.",
+    "Regulators ask the second question. The EPA (2020), EFSA and ECHA (2017, reaffirmed 2022–2023), Health Canada (2017), and Australia's APVMA all concluded glyphosate is not likely to be carcinogenic at expected exposures, drawing on larger datasets including unpublished industry studies and the US Agricultural Health Study of 54,000 applicators, which found no overall link to NHL. The EU renewed approval in 2023 for ten years. A US federal court in 2022 ordered the EPA to redo parts of its assessment for procedural reasons, and that work is ongoing.",
+    "Bayer (which bought Monsanto) has paid over $10 billion to settle claims from long-term users, and juries have found for plaintiffs in several trials — verdicts that turned on IARC's classification and on internal company documents, not on new science. Bayer removed glyphosate from US residential Roundup products in 2023, replacing it with other herbicides that have their own profiles.",
+    "For pets and children, the concern is treated surfaces. Keep them off sprayed areas until the spray has fully dried. Glyphosate is moderately toxic to amphibians and aquatic life, largely via surfactants; don't spray near water."
+  ],
+  "whoShouldAvoid":[
+    "Anyone spraying regularly over years should use gloves, long sleeves, and avoid mist inhalation — the occupational evidence, weak as it is, is about heavy use",
+    "Keep children and pets off treated areas until dry, and away from spraying",
+    "Don't use near ponds, streams, or drains",
+    "Pregnant women: no established risk at garden exposures, but letting someone else spray is a reasonable precaution",
+    "If the debate bothers you, hand-weeding, mulching, and boiling water work for most garden weeds"
+  ],
+  "regulatory":[
+    {"region":"United States","status":"EPA-registered; 2020 interim decision found 'no risks of concern to human health' and 'not likely to be carcinogenic'. Ninth Circuit vacated parts of that decision in 2022 on procedural grounds; EPA is reassessing. Glyphosate remains on sale; residential Roundup reformulated without it in 2023."},
+    {"region":"European Union","status":"Approval renewed in November 2023 for 10 years after EFSA and ECHA found no critical concerns. Individual states restrict consumer or public-space use (e.g. France, Germany, Austria, Luxembourg). POEA surfactant banned in glyphosate products since 2016."},
+    {"region":"United Kingdom","status":"Approved; renewal under review post-Brexit. Some councils have stopped using it in public spaces."},
+    {"region":"Canada","status":"Health Canada re-evaluation (2017) found no cancer risk at expected exposures; reaffirmed 2019. Some provinces and cities restrict cosmetic pesticide use, including glyphosate, on lawns."},
+    {"region":"IARC (WHO)","status":"Group 2A, probably carcinogenic to humans (2015)."}
+  ],
+  "commonProducts":["Weedkillers for paths, patios, and driveways","'Weed & grass killer' concentrates and ready-to-use sprays","Some 'extended control' products (glyphosate plus a soil-residual herbicide)","Agricultural and forestry herbicides","Aquatic-approved formulations (Rodeo) for invasive weeds near water"],
+  "alternatives":["Hand-pulling and hoeing — still the most effective for small areas","Mulch, landscape fabric, and dense planting to suppress weeds","Boiling water or a flame weeder for paths and cracks","Pelargonic acid or acetic acid (horticultural vinegar) — burn the tops, don't kill roots, and are irritants themselves","Iron-based selective lawn herbicides for broadleaf weeds in grass"],
+  "faqs":[
+    {"q":"Does glyphosate cause cancer?","a":"It depends who you ask, and why. IARC says 'probably' — that it can under some conditions. Every major regulator that has reviewed the fuller dataset says it's not likely to at real-world exposures. The strongest human signal, if any, is in people with years of heavy occupational use. For occasional garden use the exposure is very small."},
+    {"q":"Is Roundup still glyphosate?","a":"Not in the US since 2023 — Bayer switched residential Roundup to other herbicides (such as diquat, fluazifop, triclopyr, and imazapic), which are not necessarily safer. Professional and agricultural Roundup still contains glyphosate, as do most other brands. Read the active-ingredient line."},
+    {"q":"Is glyphosate safe for pets?","a":"Once dry, treated areas are low-risk. Keep pets off wet spray and away from the spraying. Symptoms from licking wet product are usually drooling and vomiting from the surfactants. Store concentrate where pets can't reach it."},
+    {"q":"Why did juries award damages if regulators say it's safe?","a":"Civil trials weigh evidence differently from regulators, and the cases hinged on IARC's classification, plaintiffs' heavy long-term exposure, and internal company communications about influencing research. Those verdicts are about legal liability, not a scientific finding that glyphosate causes cancer."},
+    {"q":"Is glyphosate banned anywhere?","a":"Fully banned in a few countries (Vietnam, Mexico phasing out). Many EU countries and Canadian provinces restrict consumer or public-space use while allowing agriculture. The EU as a whole renewed approval in 2023."}
+  ],
+  "related":[{"label":"2,4-D — the lawn weedkiller","href":"/ingredient/2-4-d/"},{"label":"Imidacloprid","href":"/ingredient/imidacloprid/"},{"label":"Bug spray safety for kids","href":"/guides/bug-spray-safety-for-kids/"}],
+  "sources":["IARC Monographs Vol. 112, Glyphosate, 2015","US EPA, Glyphosate Interim Registration Review Decision, 2020","EFSA, Peer review of the pesticide risk assessment of glyphosate, 2023; Commission Implementing Regulation (EU) 2023/2660","Health Canada, Re-evaluation Decision RVD2017-01, Glyphosate","Andreotti et al., Glyphosate Use and Cancer Incidence in the Agricultural Health Study, JNCI, 2018","National Pesticide Information Center, Glyphosate General Fact Sheet"]
+}

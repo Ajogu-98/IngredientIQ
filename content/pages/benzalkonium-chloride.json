@@ -1,0 +1,48 @@
+{
+  "type":"ingredient","slug":"benzalkonium-chloride","category":"household","name":"Benzalkonium Chloride",
+  "title":"Is Benzalkonium Chloride Safe? Quats, Asthma & Disinfectant Wipes — IngredientIQ",
+  "description":"Benzalkonium chloride is the active ingredient in most disinfectant wipes and sprays. It kills germs well, but it's linked to asthma, skin allergy, and it's toxic to aquatic life. What to know.",
+  "subtitle":"The disinfectant in your wipes, hand sanitiser, and eye drops. Effective — and one of the more common causes of cleaning-related asthma and hand eczema.",
+  "rating":"caution",
+  "quickAnswer":"Benzalkonium chloride (BAC) is a quaternary ammonium compound — a 'quat' — used to disinfect surfaces, preserve eye drops, and make alcohol-free hand sanitiser. It works, but frequent exposure is associated with asthma in cleaners and healthcare workers, it's a recognised contact allergen, and it's highly toxic to fish. For occasional household disinfecting it's acceptable with ventilation and gloves; for daily use, especially around people with asthma, there are gentler options.",
+  "aliases":["BAC","BZK","Alkyl dimethyl benzyl ammonium chloride","ADBAC","Quaternary ammonium compound (quat)"],
+  "function":"Disinfectant; preservative","foundInShort":"Disinfectant wipes and sprays, hand sanitiser, eye drops","mainConcern":"Asthma; skin allergy; aquatic toxicity",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Benzalkonium chloride is a mixture of related quaternary ammonium compounds — positively charged molecules that disrupt the membranes of bacteria, fungi, and enveloped viruses. It's been used as a disinfectant since the 1930s and is the workhorse active in most 'kills 99.9% of germs' wipes and sprays that don't rely on bleach or alcohol.",
+    "Because it's not volatile, it stays on surfaces rather than evaporating like alcohol, which is both its selling point (residual action) and part of its problem (residue you touch and breathe as dust)."
+  ],
+  "whatItDoes":[
+    "On surfaces, it kills most bacteria and many viruses, including coronaviruses and flu, though it's less effective against non-enveloped viruses like norovirus and against bacterial spores. It's EPA-registered for hospital and household disinfection.",
+    "In cosmetics and eye drops it's a preservative at very low concentrations. In alcohol-free hand sanitiser it's the active ingredient, though the CDC considers it less reliable than alcohol."
+  ],
+  "safety":[
+    "The strongest evidence concerns the lungs. Multiple studies link regular use of quat-based disinfectants to new-onset asthma and worsening of existing asthma, particularly in cleaners, nurses, and others exposed daily. Spray application — which creates a breathable mist — is worse than wiping. Home use is lower-risk but the same mechanism applies.",
+    "It's also a well-documented contact allergen and irritant. 'Wet work' hand eczema in cleaners and healthcare workers is often driven by quats, and it accounts for a meaningful share of positive patch tests. In eye drops, long-term BAC exposure damages the tear film and is why preservative-free drops are recommended for chronic use.",
+    "There is no established link to cancer or reproductive harm at consumer exposures. Ingestion of concentrated products is dangerous and a recurring source of poison-centre calls, mostly involving children and undiluted cleaners.",
+    "Environmentally, BAC is highly toxic to fish and aquatic invertebrates and persists in wastewater sludge. It's also implicated in promoting antimicrobial resistance when used at sub-lethal concentrations."
+  ],
+  "whoShouldAvoid":[
+    "Anyone with asthma or COPD — avoid spray formats and choose alternatives for routine cleaning",
+    "People with hand eczema or a patch-test-confirmed quat allergy",
+    "Chronic eye-drop users — ask for preservative-free drops",
+    "Households cleaning several times a day; consider rotating to hydrogen peroxide or soap and water",
+    "Anyone disposing of large volumes into a septic system"
+  ],
+  "regulatory":[
+    {"region":"United States","status":"EPA-registered antimicrobial pesticide; on List N for use against SARS-CoV-2. FDA permits it in OTC antiseptics pending further data (deferred from the 2019 hand-sanitiser rule). No consumer-product concentration limit beyond label directions."},
+    {"region":"European Union","status":"Approved as a biocide (product types 1–4). In cosmetics, restricted to 0.1% (Annex III/V) with a warning to avoid eye contact. Classified as toxic if swallowed, corrosive to skin, and very toxic to aquatic life."},
+    {"region":"United Kingdom","status":"As EU biocide and cosmetic rules."},
+    {"region":"Canada","status":"Registered under the Pest Control Products Act; restricted in cosmetics to 0.1%."}
+  ],
+  "commonProducts":["Disinfectant wipes and multi-surface sprays","Alcohol-free hand sanitiser and antibacterial hand soap","Eye drops and contact-lens solutions","Nasal sprays","Fabric refresher sprays","Some baby wipes and 'antibacterial' laundry additives"],
+  "alternatives":["Hydrogen peroxide (3%) — effective disinfectant that breaks down to water and oxygen","70% isopropyl or ethyl alcohol — fast, no residue, evaporates","Plain soap and water for routine cleaning; disinfection is rarely needed","Diluted bleach for high-risk situations (with ventilation, never mixed)","Preservative-free eye drops for daily use"],
+  "faqs":[
+    {"q":"Are quats safe to use at home?","a":"For occasional disinfecting with ventilation and gloves, yes. The asthma and eczema evidence comes mostly from people exposed many times a day. If you clean frequently or someone in the house has asthma, switch routine cleaning to soap, alcohol, or hydrogen peroxide."},
+    {"q":"Do I need to rinse surfaces after using a quat disinfectant?","a":"Food-contact surfaces should be rinsed; most labels say so. Other surfaces retain a residue, which is intended, but wiping down high-touch areas that children use is a sensible extra step."},
+    {"q":"Is benzalkonium chloride effective against COVID-19 and flu?","a":"Yes — both are enveloped viruses, which quats handle well, and BAC products are on the EPA's List N. It's less effective against norovirus and doesn't kill C. difficile spores."},
+    {"q":"Does benzalkonium chloride cause antibiotic resistance?","a":"Growing evidence suggests routine low-level exposure can select for bacteria that tolerate both quats and some antibiotics. It's one reason public-health bodies recommend against 'antibacterial' products for everyday use."}
+  ],
+  "related":[{"label":"Hydrogen peroxide — the gentler disinfectant","href":"/ingredient/hydrogen-peroxide/"},{"label":"Sodium hypochlorite (bleach)","href":"/ingredient/sodium-hypochlorite/"},{"label":"Cleaning products safe for pets","href":"/guides/cleaning-products-safe-for-pets/"}],
+  "sources":["US EPA, List N: Disinfectants for use against SARS-CoV-2","FDA, Safety and Effectiveness of Consumer Antiseptics; Topical Antimicrobial Drug Products for OTC Human Use, 2019","Dumas et al., Occupational exposure to disinfectants and asthma control in US nurses, European Respiratory Journal, 2017","ECHA, Biocidal Products Regulation assessment of ADBAC/BKC","Regulation (EC) 1223/2009, Annex III entry 65 and Annex V entry 54"]
+}

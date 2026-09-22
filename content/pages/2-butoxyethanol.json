@@ -1,0 +1,47 @@
+{
+  "type":"ingredient","slug":"2-butoxyethanol","category":"household","name":"2-Butoxyethanol",
+  "title":"What Is 2-Butoxyethanol? The Glass-Cleaner Solvent, Explained — IngredientIQ",
+  "description":"2-Butoxyethanol is the solvent in many glass, degreaser, and multi-surface cleaners. It's absorbed through skin and irritates airways, and Canada limits it in consumer products. What to know.",
+  "subtitle":"A glycol ether solvent hiding in plain sight on spray-cleaner labels. Not dramatic, but worth knowing about if you clean a lot.",
+  "rating":"caution",
+  "quickAnswer":"2-Butoxyethanol (also called butyl cellosolve or ethylene glycol monobutyl ether) is a solvent that dissolves grease and helps cleaners dry streak-free. It's readily absorbed through skin and inhaled from sprays, and can irritate the eyes, nose, and throat. It's not considered carcinogenic in humans and breaks down quickly in the body, but Canada caps it in consumer cleaners and the EU requires hazard labelling. Use with ventilation and gloves, and avoid spraying in enclosed spaces.",
+  "aliases":["Butyl cellosolve","Ethylene glycol monobutyl ether","EGBE","Butoxyethanol","Butyl glycol","Butyl oxitol"],
+  "function":"Solvent; degreaser","foundInShort":"Glass cleaners, degreasers, multi-surface sprays, carpet cleaners","mainConcern":"Skin absorption; airway irritation",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "2-Butoxyethanol belongs to the glycol ether family — solvents that mix with both water and oil. That dual nature lets a water-based cleaner dissolve grease it otherwise couldn't touch. It has a mild, sweet ether smell.",
+    "It's used in paints, inks, and industrial degreasers as well as household cleaners, and was famously the solvent in the original formulation of a leading blue glass cleaner, which has since reformulated in some markets."
+  ],
+  "whatItDoes":[
+    "It cuts grease and oily soil, helps other ingredients stay dissolved, and evaporates at a rate that leaves glass streak-free. In carpet and upholstery cleaners it lifts oily stains. Typical concentrations in consumer products are 1–8%; industrial degreasers can be much higher.",
+    "It has no cleaning role beyond solvency; it's there to make the surfactants work on grease."
+  ],
+  "safety":[
+    "The notable property is absorption. 2-Butoxyethanol passes through skin efficiently — in workplace studies skin contact contributed more to total dose than breathing — and it's also inhaled from spray mist. Once absorbed, it's metabolised to butoxyacetic acid and cleared within a day or so; it doesn't accumulate.",
+    "Acute effects at consumer concentrations are irritation of the eyes, nose, and throat, and headaches or nausea in poorly ventilated rooms. High occupational exposures have caused red-blood-cell damage in animals, though humans are considerably less sensitive to this effect.",
+    "On cancer: the US EPA removed it from the Clean Air Act hazardous air pollutant list in 2004 after concluding it wasn't carcinogenic in humans at environmental levels, and IARC classifies it as Group 3 (not classifiable). California does not list it under Proposition 65. Canada, however, concluded in 2002 that it was 'toxic' under its environmental protection law based on inhalation effects, and regulated it in consumer products.",
+    "It's not a significant allergen. The practical concerns are about frequent, close-range spray use without ventilation."
+  ],
+  "whoShouldAvoid":[
+    "Anyone using spray cleaners many times a day — cleaners, hospitality staff — should use gloves and ventilate",
+    "People with asthma or reactive airways, particularly with spray formats",
+    "Pregnant women may reasonably prefer glycol-ether-free cleaners; there's no proven harm but limited data",
+    "Avoid soaking hands in undiluted degreasers; skin absorption is the main route"
+  ],
+  "regulatory":[
+    {"region":"Canada","status":"2-Butoxyethanol Regulations (2006) cap its concentration in consumer products: e.g. 6% in non-aerosol cleaners, 5% in aerosol cleaners, and 0.5% in some other product types."},
+    {"region":"European Union","status":"Permitted; classified as harmful if swallowed, inhaled, or in contact with skin, and as a skin and eye irritant; hazard labelling required above threshold concentrations. Restricted in cosmetics."},
+    {"region":"United Kingdom","status":"As EU."},
+    {"region":"United States","status":"Permitted in consumer products. Removed from the EPA hazardous air pollutant list in 2004. OSHA workplace limit 50 ppm; NIOSH recommends 5 ppm. Some states require disclosure on cleaning-product labels (California Cleaning Product Right to Know Act, 2017)."}
+  ],
+  "commonProducts":["Glass and window cleaners","Kitchen degreasers and oven cleaners","Multi-surface and all-purpose sprays","Carpet and upholstery cleaners","Car and wheel cleaners","Some liquid soaps and paint strippers"],
+  "alternatives":["Vinegar-and-water or alcohol-based glass cleaners","Plant-derived solvents such as d-limonene (a fragrance allergen for some) or ethyl lactate","Surfactant-only degreasers","Baking soda paste for oven and stovetop grease"],
+  "faqs":[
+    {"q":"Is 2-butoxyethanol dangerous?","a":"At the concentrations in household products, used with ventilation, no. The risks come from frequent spray use in closed rooms and from prolonged skin contact with concentrated degreasers. It's not carcinogenic in humans by current assessments."},
+    {"q":"Why does Canada restrict it but the US doesn't?","a":"Canada's 2002 assessment focused on inhalation exposure from consumer products and set concentration limits. The US EPA concluded that environmental exposures didn't warrant hazardous-pollutant status. The chemistry is the same; the regulatory approach differs."},
+    {"q":"Does it cause cancer?","a":"Current assessments say no in humans. IARC rates it Group 3 and it isn't on California's Proposition 65 list. Animal studies at high doses showed some tumours, which is why it was investigated."},
+    {"q":"How do I know if my cleaner contains it?","a":"In the US, cleaning-product ingredients are often not on the label; check the manufacturer's website or safety data sheet. California-compliant labels list it. In the EU, look for 'butoxyethanol' or 'ethylene glycol monobutyl ether' on the label or hazard pictograms."}
+  ],
+  "related":[{"label":"Ammonia — often in the same glass cleaner","href":"/ingredient/ammonia/"},{"label":"Fragrance — the other hidden ingredient in sprays","href":"/ingredient/fragrance-parfum/"},{"label":"Cleaning products safe for pets","href":"/guides/cleaning-products-safe-for-pets/"}],
+  "sources":["Health Canada / Environment Canada, Priority Substances List Assessment Report: 2-Butoxyethanol, 2002; 2-Butoxyethanol Regulations SOR/2006-347","US EPA, Final rule removing EGBE from the HAP list, 2004","CDC / ATSDR, Toxicological Profile for 2-Butoxyethanol","IARC Monographs Vol. 88","California Cleaning Product Right to Know Act (SB 258), 2017"]
+}

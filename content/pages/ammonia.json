@@ -1,0 +1,47 @@
+{
+  "type":"ingredient","slug":"ammonia","category":"household","name":"Ammonia",
+  "title":"Ammonia in Cleaning Products: Safety, Fumes & the Bleach Rule — IngredientIQ",
+  "description":"Ammonia is the streak-free ingredient in glass cleaners and a strong degreaser. It's safe diluted and ventilated but produces toxic chloramine gas if mixed with bleach. What to know.",
+  "subtitle":"The sharp smell in classic glass cleaner. Harmless enough diluted — as long as it never meets bleach.",
+  "rating":"caution",
+  "quickAnswer":"Household ammonia (ammonium hydroxide) is a strong alkaline cleaner that cuts grease and dries without streaks, which is why it's in glass and multi-surface cleaners. At consumer concentrations (typically 1–10%) it's safe with ventilation. It is a potent respiratory and eye irritant in enclosed spaces, and mixing it with bleach — including cleaning cat urine, which contains ammonia, with bleach — produces chloramine gas. Never use ammonia and bleach products in the same session.",
+  "aliases":["Ammonium hydroxide","Aqueous ammonia","Household ammonia","Ammonia water","NH3 (gas)"],
+  "function":"Degreaser; alkaline cleaner","foundInShort":"Glass cleaner, multi-surface sprays, floor cleaners, oven cleaner","mainConcern":"Respiratory irritation; toxic gas with bleach",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Ammonia is a gas (NH3) that dissolves in water to form ammonium hydroxide, a strongly alkaline solution. Household ammonia sold as a cleaner is usually 5–10%; the amount in a ready-to-use glass cleaner is often under 1%.",
+    "It also occurs naturally — it's in urine, fertiliser, and the smell of a neglected litter box — which matters for the mixing rule below."
+  ],
+  "whatItDoes":[
+    "As a strong base it saponifies grease, turning it into a soap that rinses away, which makes it effective on stovetops, ovens, and oily glass. It evaporates completely, so it leaves no film or streaks — the reason it became the classic window-cleaner ingredient.",
+    "It is not a disinfectant. Ammonia cleans but doesn't reliably kill bacteria or viruses, which is where the temptation to add bleach comes from."
+  ],
+  "safety":[
+    "Ammonia's toxicity is about concentration and air. Diluted household products used with a window open cause at most mild irritation. Concentrated ammonia, or diluted ammonia used in a closed bathroom, irritates the eyes, nose, throat, and lungs; people with asthma are more sensitive. Splashes of concentrated solution can burn skin and eyes.",
+    "The mixing hazard is the real risk. Ammonia + sodium hypochlorite (bleach) forms chloramine gases, which cause coughing, shortness of breath, chest pain, and at high exposure, pulmonary oedema. It doesn't take deliberate mixing: cleaning a litter tray or a urine-soaked carpet with bleach produces the same reaction, because urine contains ammonia. So does using a glass cleaner and then a bleach spray on the same surface.",
+    "Ammonia isn't carcinogenic and doesn't accumulate; the body produces and excretes it naturally. Environmental impact is low at household volumes."
+  ],
+  "whoShouldAvoid":[
+    "Never use in the same room or session as bleach products",
+    "Don't clean urine (pet or human) with bleach; use an enzymatic or ammonia-based cleaner instead, or clean the urine fully first",
+    "People with asthma or COPD — use ammonia-free glass cleaners",
+    "Small, closed spaces without ventilation",
+    "On brass, aluminium, or marble, which it can damage"
+  ],
+  "regulatory":[
+    {"region":"United States","status":"Permitted in consumer cleaners. Labelling governed by the Federal Hazardous Substances Act; concentrated products require warnings. OSHA workplace exposure limit 50 ppm (8-hour)."},
+    {"region":"European Union","status":"Permitted. Solutions above 5% classified as corrosive and toxic to aquatic life; require hazard labelling and child-resistant closures at higher concentrations."},
+    {"region":"United Kingdom","status":"As EU."},
+    {"region":"Canada","status":"Permitted; Consumer Chemicals and Containers Regulations govern labelling."}
+  ],
+  "commonProducts":["Glass and window cleaners (many, though ammonia-free versions are common now)","Multi-surface sprays","Floor and tile cleaners","Oven and grill degreasers","Jewellery cleaners","Some hair dyes (as an alkaliser — a different use)"],
+  "alternatives":["Vinegar-and-water for glass (streak-free, but never with bleach either — it makes chlorine gas)","Alcohol-based glass cleaners","Ammonia-free glass cleaners using surfactants","Enzymatic cleaners for urine and pet messes","Baking soda paste for oven grease"],
+  "faqs":[
+    {"q":"What happens if you mix ammonia and bleach?","a":"Chloramine gas forms immediately. Symptoms — coughing, watery eyes, chest tightness — start within minutes. Leave the room, ventilate, and call poison control if you have breathing symptoms. In a closed space this can be a medical emergency."},
+    {"q":"Can I use bleach to clean cat urine?","a":"Not until the urine is completely removed. Urine contains ammonia, and bleach on it produces chloramine. Use an enzymatic cleaner, which also removes the odour bleach can't."},
+    {"q":"Is ammonia a disinfectant?","a":"No. It's a cleaner and degreaser but doesn't kill germs reliably. If you need to disinfect, clean with ammonia first, rinse, then use a disinfectant separately — never bleach in the same session."},
+    {"q":"Is the smell dangerous?","a":"The smell is your warning system: ammonia is detectable well below harmful levels. If it's making your eyes water or you're coughing, the concentration is too high for the space — open windows and step out."}
+  ],
+  "related":[{"label":"Sodium hypochlorite (bleach) — never together","href":"/ingredient/sodium-hypochlorite/"},{"label":"2-Butoxyethanol — the other glass-cleaner ingredient","href":"/ingredient/2-butoxyethanol/"},{"label":"Cleaning products safe for pets","href":"/guides/cleaning-products-safe-for-pets/"}],
+  "sources":["CDC / ATSDR, Toxicological Profile for Ammonia","American Lung Association, Cleaning Supplies and Household Chemicals","OSHA, Ammonia exposure limits","Washington State Department of Health, Dangers of Mixing Bleach with Cleaners"]
+}

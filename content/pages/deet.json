@@ -1,0 +1,49 @@
+{
+  "type":"ingredient","slug":"deet","category":"outdoor","name":"DEET",
+  "title":"Is DEET Safe? Kids, Pregnancy, Concentration & the Real Risks — IngredientIQ",
+  "description":"DEET is the most-studied insect repellent in the world. What the evidence says about safety for children and pregnancy, which concentration to choose, and when picaridin is the better pick.",
+  "subtitle":"Sixty years of use, hundreds of studies, and still the benchmark repellent. The fear outruns the evidence — but there are real rules for using it well.",
+  "rating":"caution",
+  "quickAnswer":"DEET is safe for most people, including pregnant women and children over two months, when used as directed. It's the repellent with the longest track record and the best protection against ticks and mosquitoes that carry serious diseases. Rare adverse reactions almost always involve swallowing it, applying it to broken skin, or using very high concentrations repeatedly. Concentrations of 20–30% give several hours of protection; higher doesn't protect better, only longer. It dissolves some plastics and synthetic fabrics.",
+  "aliases":["N,N-diethyl-meta-toluamide","Diethyltoluamide","N,N-diethyl-3-methylbenzamide"],
+  "function":"Insect repellent","foundInShort":"Bug sprays, lotions, wipes","mainConcern":"Skin irritation; rare neurological effects with misuse",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "DEET was developed by the US Army in 1946 and has been sold to the public since 1957. It works by interfering with the receptors mosquitoes, ticks, and other biting insects use to detect humans — they can still sense you, but they don't land and bite.",
+    "It comes in concentrations from about 5% to 100%. The number determines how long protection lasts, not how well it works: roughly 10% gives 2 hours, 20–25% gives 4–6 hours, and 30% around 6–8 hours, after which the curve flattens."
+  ],
+  "whatItDoes":[
+    "It repels mosquitoes (including species carrying malaria, dengue, Zika, and West Nile virus), ticks (Lyme disease), biting flies, chiggers, and fleas. The US CDC, WHO, and most national health agencies recommend it as a first-line repellent in areas with insect-borne disease.",
+    "It doesn't kill insects and doesn't work through clothing — apply to exposed skin and, if needed, to the outside of clothing (checking fabric compatibility)."
+  ],
+  "safety":[
+    "DEET has been reviewed repeatedly — the EPA's 1998 and 2014 re-registration reviews, Health Canada's 2002 assessment, and dozens of independent studies. The consistent conclusion: at label doses it's not carcinogenic, not a hormone disruptor, and not associated with birth defects. The most common adverse effect is skin irritation, usually with concentrations above 30% or prolonged contact.",
+    "The neurological concerns come from a small number of case reports, mostly children who ingested it or were exposed to very high concentrations repeatedly over days. Seizures have been reported in perhaps a few dozen cases over decades of use by hundreds of millions of people; causation is unclear in many. The EPA reviewed these and found no basis for restricting use, while recommending the standard precautions.",
+    "For pregnancy, the best data come from a randomised trial of 897 women in Thailand who used DEET daily through their second and third trimesters with no detectable effect on outcomes. The CDC and ACOG consider it safe in pregnancy; the risk from mosquito-borne infection is far larger.",
+    "For children, the American Academy of Pediatrics allows DEET at 10–30% from two months of age. Canada is more conservative: 10% maximum for children 6 months to 12 years, and none under 6 months. It's less effective and less well studied on infants because they're usually protected by nets and clothing instead."
+  ],
+  "whoShouldAvoid":[
+    "Infants under 2 months (US) or 6 months (Canada) — use nets and clothing instead",
+    "Never apply to hands of young children, near eyes or mouth, or to cuts, wounds, or irritated skin",
+    "Don't use under clothing or reapply more than the label says",
+    "Wash it off once you're indoors; don't leave it on overnight",
+    "Keep away from watch faces, sunglasses, synthetic fabrics, and painted surfaces — it dissolves them"
+  ],
+  "regulatory":[
+    {"region":"United States","status":"EPA-registered; re-reviewed 2014 with no new restrictions. CDC-recommended. AAP: 10–30% for children over 2 months."},
+    {"region":"Canada","status":"Registered; consumer products limited to 30%. Children 6 months–2 years: one application per day at up to 10%. Children 2–12: up to three applications per day at up to 10%. Not for infants under 6 months."},
+    {"region":"European Union","status":"Approved as a biocide (product type 19). Some member states cap concentrations and restrict use in young children (e.g. not under 2 years in some markets)."},
+    {"region":"Australia","status":"Registered; recommended by health authorities. Products up to 80% available, though 20–40% is standard advice."}
+  ],
+  "commonProducts":["Aerosol and pump-spray repellents","Repellent lotions and wipes","Sunscreen-repellent combination products (not recommended — sunscreen needs more frequent reapplication)","Clothing and gear sprays (permethrin is better for this use)"],
+  "alternatives":["Picaridin (icaridin) 20% — comparable protection, no plastic damage, better on ticks in some studies","Oil of lemon eucalyptus (PMD) 30% — effective, not for under 3s","IR3535 — mild, shorter-lasting, common in Europe","Permethrin-treated clothing — for ticks especially, used alongside a skin repellent"],
+  "faqs":[
+    {"q":"Is DEET safe for kids?","a":"Yes, within limits. US guidance allows 10–30% from 2 months; Canadian guidance caps it at 10% for children under 12 and none under 6 months. Apply it yourself, avoid hands and face, and wash it off afterward. For babies, nets and clothing are preferred."},
+    {"q":"Can I use DEET while pregnant?","a":"Yes. A large randomised trial found no effect on pregnancy outcomes, and both the CDC and ACOG recommend it in areas with Zika, dengue, or malaria. The infections are the danger, not the repellent."},
+    {"q":"What percentage of DEET should I use?","a":"20–30% for most situations. It lasts 4–8 hours. Higher concentrations extend the time but don't repel better, and above 50% there's little benefit at all. Reapply according to the label rather than choosing a stronger product."},
+    {"q":"DEET or picaridin?","a":"Both work. Picaridin doesn't damage plastics or fabrics, has less odour, and matches DEET against mosquitoes; some studies favour it against ticks. DEET has the longer safety record. See the comparison page."},
+    {"q":"Does DEET cause cancer?","a":"No. The EPA and other regulators classify it as not carcinogenic, and no association has appeared in decades of population exposure."}
+  ],
+  "related":[{"label":"DEET vs picaridin","href":"/compare/deet-vs-picaridin/"},{"label":"Picaridin","href":"/ingredient/picaridin/"},{"label":"Permethrin — for clothing, not skin","href":"/ingredient/permethrin/"},{"label":"Bug spray safety for kids","href":"/guides/bug-spray-safety-for-kids/"}],
+  "sources":["US EPA, DEET Registration Review Decision, 2014","CDC, Prevent Mosquito Bites: repellent guidance","McGready et al., Safety of the insect repellent DEET in pregnancy, American Journal of Tropical Medicine and Hygiene, 2001","American Academy of Pediatrics, Choosing an Insect Repellent for Your Child","Health Canada, Insect Repellents: DEET"]
+}

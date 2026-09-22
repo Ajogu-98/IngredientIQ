@@ -1,0 +1,49 @@
+{
+  "type":"ingredient","slug":"phenoxyethanol","category":"personal","name":"Phenoxyethanol",
+  "title":"Is Phenoxyethanol Safe? Limits, Baby Products & Allergy Risk — IngredientIQ",
+  "description":"Phenoxyethanol replaced parabens in thousands of products. It's approved up to 1% worldwide, but France advised limiting it in products for babies. What the evidence says.",
+  "subtitle":"The preservative most of the 'paraben-free' world switched to. Well tolerated at the permitted 1% — with one caveat for the very young.",
+  "rating":"safe",
+  "quickAnswer":"Phenoxyethanol is approved as a cosmetic preservative at up to 1% in the EU, US, Canada, Japan, and Australia, and is well tolerated by the vast majority of people. The one flag: France's medicines agency advised in 2012 that it should not be used in nappy-area products for children under three and be limited to 0.4% in other products for that age group, a precaution the EU's scientific committee later reviewed and did not adopt. It can occasionally cause mild irritation or contact allergy.",
+  "aliases":["2-Phenoxyethanol","Ethylene glycol monophenyl ether","Optiphen (blend)","Euxyl PE 9010 (blend)"],
+  "function":"Preservative (antimicrobial)","foundInShort":"Moisturisers, serums, sunscreen, wipes, makeup","mainConcern":"Mild irritation; dosing in infants",
+  "updated":"2026-09-22",
+  "whatItIs":[
+    "Phenoxyethanol is a glycol ether — a colourless, slightly oily liquid with a faint rose-like smell. It occurs naturally in green tea and chicory, though the version in your products is made synthetically.",
+    "It became the default preservative for brands moving away from parabens in the 2010s, and today it's in more leave-on skincare products than almost any other preservative. It's usually paired with a booster like ethylhexylglycerin or caprylyl glycol, sold as blends with names such as Optiphen or Euxyl."
+  ],
+  "whatItDoes":[
+    "It kills bacteria (especially Pseudomonas, a notorious contaminant of water-based products) and, with a booster, controls yeast and mould. It works across the pH range most skincare uses, doesn't interfere with other ingredients, and doesn't release formaldehyde — one of the reasons formulators prefer it.",
+    "It has no skincare benefit of its own. Its presence means the product is protected against contamination for its shelf life."
+  ],
+  "safety":[
+    "At the permitted 1%, phenoxyethanol has a good safety record. The EU's Scientific Committee on Consumer Safety reviewed it in 2016 and concluded it's safe at that level for all consumers, including children, in all product types. It is absorbed through skin but metabolised quickly and excreted.",
+    "The French concern came from a different angle: not skin exposure, but the total daily dose in babies who have many products applied to a large skin area relative to their body weight. The 2012 ANSM opinion was precautionary. The SCCS looked at the same data four years later and did not recommend a lower limit, though many baby-product brands voluntarily cap it at 0.4% anyway.",
+    "There is one documented case of real harm: in 2008 the US FDA warned against a nipple cream containing phenoxyethanol and chlorphenesin after infants who ingested it from the breast showed drowsiness and reduced feeding. That was ingestion of a concentrated product, not skin exposure, and is why it shouldn't be in products a baby will swallow.",
+    "Allergy is uncommon but real; it accounts for a small percentage of positive patch tests. Irritation at 1% is possible on compromised skin (eczema, freshly exfoliated skin)."
+  ],
+  "whoShouldAvoid":[
+    "Products applied to the nipples while breastfeeding, or anything a baby might ingest",
+    "Nappy-area products for children under three, if you want to follow the French precaution",
+    "People with a patch-test-confirmed phenoxyethanol allergy",
+    "Anyone whose skin barrier is compromised, if a product stings — try a product with a lower concentration"
+  ],
+  "regulatory":[
+    {"region":"European Union","status":"Permitted up to 1.0% in all cosmetics (Annex V). SCCS reaffirmed safety at this level in 2016, including for children."},
+    {"region":"France","status":"ANSM advised in 2012 against use in nappy-area products for under-threes and a 0.4% limit in other products for that age. Advisory; not adopted EU-wide."},
+    {"region":"United Kingdom","status":"1.0% limit, as EU."},
+    {"region":"Canada","status":"Permitted up to 1.0%."},
+    {"region":"United States","status":"No FDA restriction on concentration. FDA warned in 2008 against a nipple cream containing it. Cosmetic Ingredient Review deems it safe as used."},
+    {"region":"Japan","status":"Permitted up to 1.0%."}
+  ],
+  "commonProducts":["Facial moisturisers, serums, and eye creams","Sunscreens","Foundation and liquid makeup","Baby wipes and lotions (often at 0.4%)","Shampoo and conditioner","Some vaccines and medicines, as a preservative"],
+  "alternatives":["Sodium benzoate and potassium sorbate — need an acidic product to work","Benzyl alcohol — gentle, but a listed fragrance allergen","Anhydrous (water-free) products, which need no preservative at all","'Preservative-free' products in airless pumps with very short shelf lives"],
+  "faqs":[
+    {"q":"Is phenoxyethanol safe for babies?","a":"At the concentrations used in baby products (typically 0.4% or less) regulators consider it safe. Avoid it in nappy-area products if you want to follow the French precaution, and never use a product containing it on the nipples while breastfeeding."},
+    {"q":"Is phenoxyethanol safe during pregnancy?","a":"Yes. It's not associated with reproductive or developmental effects at cosmetic concentrations, and no regulator restricts it for pregnant women."},
+    {"q":"Is it better or worse than parabens?","a":"Different, not clearly better. Phenoxyethanol has no hormone-related concerns but a slightly higher irritation and allergy rate than methylparaben. Both are safe as used for most adults."},
+    {"q":"Why does my product sting when it contains phenoxyethanol?","a":"At 1% it can irritate skin that's already damaged or freshly exfoliated. If a product consistently stings, look for one preserved at a lower level or with a different system."}
+  ],
+  "related":[{"label":"Parabens — what it replaced","href":"/ingredient/parabens/"},{"label":"Methylisothiazolinone — the riskier alternative","href":"/ingredient/methylisothiazolinone/"},{"label":"Pregnancy-safe skincare ingredients","href":"/guides/pregnancy-safe-skincare-ingredients/"}],
+  "sources":["SCCS Opinion on Phenoxyethanol (SCCS/1575/16), 2016","ANSM (France), Évaluation du risque lié à l'utilisation du phénoxyéthanol, 2012","US FDA MedWatch alert on Mommy's Bliss Nipple Cream, 2008","Cosmetic Ingredient Review, Safety Assessment of Phenoxyethanol","Health Canada Cosmetic Ingredient Hotlist"]
+}
