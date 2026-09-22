@@ -32,6 +32,8 @@ nav{display:flex;gap:28px}nav a{font-family:'Inter',sans-serif;font-size:15px;fo
 .hero-title{font-family:'Inter',sans-serif;font-size:44px;font-weight:800;color:#1C0E18;line-height:1.12;letter-spacing:-.02em;margin-bottom:16px}
 .hero-sub{font-size:20px;color:#4A2E3A;line-height:1.65;max-width:640px}
 .content{max-width:780px;margin:0 auto;padding:48px 64px 100px}
+.backlink{display:inline-flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:#8B2257;margin-bottom:28px;padding:8px 16px 8px 12px;border:1.5px solid #8B2257;border-radius:999px;transition:background .15s}
+.backlink:hover{background:#F7F7F7}
 .quick{background:#F7F7F7;border-left:4px solid #8B2257;border-radius:0 16px 16px 0;padding:24px 28px;margin-bottom:40px;font-size:19px;line-height:1.7;color:#1a1a1a}
 .quick strong{display:block;font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8B2257;margin-bottom:8px}
 .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;border:1.5px solid;margin-bottom:24px}
@@ -75,6 +77,7 @@ footer{background:#C9A08A;padding:28px 64px;display:flex;gap:16px;align-items:ce
   <p class="hero-sub">A short list of things to stop, a longer list of things that are fine, and the reasoning behind each — so you can read your own labels.</p>
 </div></section>
 <main class="content">
+<a class="backlink" href="/ingredient/" onclick="if(document.referrer&&document.referrer.indexOf(location.host)>-1){history.back();return false;}">← Back</a>
 
 <div class="quick"><strong>Quick answer</strong>Only a handful of common skincare ingredients are advised against in pregnancy: all retinoids (retinol, retinaldehyde, tretinoin, adapalene, isotretinoin), hydroquinone, high-concentration salicylic acid peels, and a few less common actives. Most of what's in a typical routine — hyaluronic acid, niacinamide, vitamin C, azelaic acid, glycolic and lactic acid at everyday strengths, mineral sunscreens — is considered safe. Topical absorption is low, so the goal is avoiding the few ingredients with a plausible risk, not stripping your routine.</div>
 <div class="section"><h2 class="section-title">Why some ingredients matter and most don't</h2><div class="section-body"><p>Skin is a good barrier. Most cosmetic ingredients are absorbed in tiny amounts, and the developing baby is protected further by the placenta. The ingredients that make the avoid list are there because they're absorbed meaningfully, because the related oral drug is known to cause birth defects, or because the data are thin and the benefit is purely cosmetic — a combination where 'skip it for nine months' is the sensible default.</p>

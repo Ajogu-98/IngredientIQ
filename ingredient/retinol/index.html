@@ -32,6 +32,8 @@ nav{display:flex;gap:28px}nav a{font-family:'Inter',sans-serif;font-size:15px;fo
 .hero-title{font-family:'Inter',sans-serif;font-size:44px;font-weight:800;color:#1C0E18;line-height:1.12;letter-spacing:-.02em;margin-bottom:16px}
 .hero-sub{font-size:20px;color:#4A2E3A;line-height:1.65;max-width:640px}
 .content{max-width:780px;margin:0 auto;padding:48px 64px 100px}
+.backlink{display:inline-flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:#8B2257;margin-bottom:28px;padding:8px 16px 8px 12px;border:1.5px solid #8B2257;border-radius:999px;transition:background .15s}
+.backlink:hover{background:#F7F7F7}
 .quick{background:#F7F7F7;border-left:4px solid #8B2257;border-radius:0 16px 16px 0;padding:24px 28px;margin-bottom:40px;font-size:19px;line-height:1.7;color:#1a1a1a}
 .quick strong{display:block;font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8B2257;margin-bottom:8px}
 .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;border:1.5px solid;margin-bottom:24px}
@@ -75,6 +77,7 @@ footer{background:#C9A08A;padding:28px 64px;display:flex;gap:16px;align-items:ce
   <p class="hero-sub">The gold standard for wrinkles and acne, with two real caveats: don't use it while pregnant, and expect your skin to protest at first.</p>
 </div></section>
 <main class="content">
+<a class="backlink" href="/ingredient/" onclick="if(document.referrer&&document.referrer.indexOf(location.host)>-1){history.back();return false;}">← Back</a>
 
 <span class="badge" style="background:#FDF3E3;color:#7A4A00;border-color:#F0C87A"><i><span>!</span></i>Use With Caution</span>
 <div class="quick"><strong>Quick answer</strong>Retinol (vitamin A) is safe and effective for most adults when introduced gradually, and it's one of the few cosmetic ingredients with strong evidence behind its anti-ageing claims. The exceptions matter: all retinoids are advised against in pregnancy and while trying to conceive because of the link between vitamin A derivatives and birth defects, and the EU has set new maximum concentrations (0.3% in most products, 0.05% in body lotion) that apply to products sold from November 2025. Irritation, peeling, and sun sensitivity are normal in the first weeks.</div>

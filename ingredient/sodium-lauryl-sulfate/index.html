@@ -32,6 +32,8 @@ nav{display:flex;gap:28px}nav a{font-family:'Inter',sans-serif;font-size:15px;fo
 .hero-title{font-family:'Inter',sans-serif;font-size:44px;font-weight:800;color:#1C0E18;line-height:1.12;letter-spacing:-.02em;margin-bottom:16px}
 .hero-sub{font-size:20px;color:#4A2E3A;line-height:1.65;max-width:640px}
 .content{max-width:780px;margin:0 auto;padding:48px 64px 100px}
+.backlink{display:inline-flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:#8B2257;margin-bottom:28px;padding:8px 16px 8px 12px;border:1.5px solid #8B2257;border-radius:999px;transition:background .15s}
+.backlink:hover{background:#F7F7F7}
 .quick{background:#F7F7F7;border-left:4px solid #8B2257;border-radius:0 16px 16px 0;padding:24px 28px;margin-bottom:40px;font-size:19px;line-height:1.7;color:#1a1a1a}
 .quick strong{display:block;font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8B2257;margin-bottom:8px}
 .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;border:1.5px solid;margin-bottom:24px}
@@ -75,6 +77,7 @@ footer{background:#C9A08A;padding:28px 64px;display:flex;gap:16px;align-items:ce
   <p class="hero-sub">The ingredient behind the lather. Safe by every regulator's account, but harsh enough that plenty of people are better off without it.</p>
 </div></section>
 <main class="content">
+<a class="backlink" href="/ingredient/" onclick="if(document.referrer&&document.referrer.indexOf(location.host)>-1){history.back();return false;}">← Back</a>
 
 <span class="badge" style="background:#FDF3E3;color:#7A4A00;border-color:#F0C87A"><i><span>!</span></i>Use With Caution</span>
 <div class="quick"><strong>Quick answer</strong>Sodium lauryl sulfate is a strong detergent that is safe in rinse-off products but a well-documented skin irritant — so reliable an irritant that dermatology researchers use it deliberately to damage skin in studies. It does not cause cancer and is not a hormone disruptor; those claims come from misread or fabricated sources. People with dry skin, eczema, a sensitive scalp, or recurring mouth ulcers often do better with SLES or sulfate-free alternatives.</div>

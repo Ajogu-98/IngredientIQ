@@ -12,6 +12,7 @@ const THEMES = {
   personal:  { label:'Personal Care',   headerBg:'#C9A08A', accent:'#8B2257', ink:'#1C0E18', body:'#4A2E3A', card:'#F7F7F7', icon:'🧴' },
   household: { label:'Household',       headerBg:'#7A96A8', accent:'#1A4F72', ink:'#0A1E2A', body:'#2A4050', card:'#F4F8FA', icon:'🧹' },
   outdoor:   { label:'Outdoor & Garden',headerBg:'#8FA888', accent:'#2A5C33', ink:'#0E1E12', body:'#2A4030', card:'#F4F8F4', icon:'🌿' },
+  brand:     { label:'IngredientIQ',     headerBg:'#2E2A28', accent:'#C9A08A', ink:'#FFFFFF', body:'#E6DED8', card:'#F7F5F3', icon:'🔬' },
 };
 const RATING = {
   safe:    { label:'Generally Safe', bg:'#E8F5EE', fg:'#1B5E35', border:'#A8D5B5', icon:'✓' },
@@ -23,7 +24,8 @@ const paras = arr => (arr||[]).map(p => `<p>${esc(p)}</p>`).join('\n');
 const list = arr => arr && arr.length ? `<ul>${arr.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>` : '';
 const linkList = arr => arr && arr.length ? `<ul class="related">${arr.map(r=>`<li><a href="${esc(r.href)}">${esc(r.label)}</a></li>`).join('')}</ul>` : '';
 
-function shell({ title, description, canonical, theme, jsonld, eyebrow, h1, sub, body, updated }) {
+function shell({ title, description, canonical, theme, jsonld, eyebrow, h1, sub, body, updated, backHref }) {
+  backHref = backHref || '/ingredient/';
   const t = THEMES[theme] || THEMES.personal;
   return `<!DOCTYPE html>
 <html lang="en">
@@ -59,6 +61,8 @@ nav{display:flex;gap:28px}nav a{font-family:'Inter',sans-serif;font-size:15px;fo
 .hero-title{font-family:'Inter',sans-serif;font-size:44px;font-weight:800;color:${t.ink};line-height:1.12;letter-spacing:-.02em;margin-bottom:16px}
 .hero-sub{font-size:20px;color:${t.body};line-height:1.65;max-width:640px}
 .content{max-width:780px;margin:0 auto;padding:48px 64px 100px}
+.backlink{display:inline-flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:${t.accent};margin-bottom:28px;padding:8px 16px 8px 12px;border:1.5px solid ${t.accent};border-radius:999px;transition:background .15s}
+.backlink:hover{background:${t.card}}
 .quick{background:${t.card};border-left:4px solid ${t.accent};border-radius:0 16px 16px 0;padding:24px 28px;margin-bottom:40px;font-size:19px;line-height:1.7;color:#1a1a1a}
 .quick strong{display:block;font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:${t.accent};margin-bottom:8px}
 .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;border:1.5px solid;margin-bottom:24px}
@@ -102,6 +106,7 @@ footer{background:${t.headerBg};padding:28px 64px;display:flex;gap:16px;align-it
   <p class="hero-sub">${esc(sub)}</p>
 </div></section>
 <main class="content">
+<a class="backlink" href="${backHref}" onclick="if(document.referrer&&document.referrer.indexOf(location.host)>-1){history.back();return false;}">← Back</a>
 ${body}
 <div class="meta">Last reviewed ${esc(updated)}. IngredientIQ summaries are compiled from regulatory listings and published safety assessments and reviewed for accuracy; they are not a substitute for the product label or professional advice.</div>
 <div class="disclaimer">This page is for general information only and is not medical, veterinary, or legal advice. Formulations change; always follow the directions and warnings on the actual product label.</div>
@@ -181,7 +186,7 @@ function renderHub(pages, extras) {
     return `<div class="section"><h2 class="section-title">${THEMES[cat].icon} ${THEMES[cat].label}</h2><div class="section-body">${items.map(p=>{const r=RATING[p.rating];return `<p><a href="/ingredient/${p.slug}/" style="font-weight:600;color:${THEMES[cat].accent}">${esc(p.name)}</a> <span style="font-size:12px;font-weight:700;color:${r.fg};background:${r.bg};border:1px solid ${r.border};padding:2px 9px;border-radius:999px;margin-left:6px">${r.label}</span><br><span style="font-size:14px;color:#666">${esc(p.description)}</span></p>`;}).join('')}</div></div>`;
   }).join('');
   const jsonld = { '@context':'https://schema.org', '@type':'CollectionPage', name:'Ingredient Guides — IngredientIQ', url:`${SITE}/ingredient/` };
-  return shell({ title:'Ingredient Safety Guides — IngredientIQ', description:'Plain-English safety guides for the ingredients in your personal care, household, and outdoor products.', canonical:`${SITE}/ingredient/`, theme:'outdoor', jsonld, eyebrow:'Ingredient library', h1:'Ingredient safety, explained.', sub:'What each ingredient does, whether it is safe, who should avoid it, and where it is restricted around the world.', body, updated:new Date().toISOString().slice(0,10) });
+  return shell({ title:'Ingredient Safety Guides — IngredientIQ', description:'Plain-English safety guides for the ingredients in your personal care, household, and outdoor products.', canonical:`${SITE}/ingredient/`, theme:'brand', backHref:'/', jsonld, eyebrow:'Ingredient library', h1:'Ingredient safety, explained.', sub:'What each ingredient does, whether it is safe, who should avoid it, and where it is restricted around the world.', body, updated:new Date().toISOString().slice(0,10) });
 }
 
 // ---- build ----
