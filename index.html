@@ -783,6 +783,7 @@ body.theme-outdoor .header-nav a{color:var(--ink);}
       <div class="loading-title">Analyzing Ingredients…</div>
       <div class="loading-sub">Identifying and evaluating every ingredient</div>
       <div class="loading-sub" id="loadingSubMsg" style="margin-top:6px;font-size:13px;color:var(--accent);font-weight:600;min-height:20px;"></div>
+      <div id="loadBar" style="width:220px;max-width:70vw;height:6px;border-radius:99px;background:rgba(0,0,0,.08);margin:14px auto 0;overflow:hidden;"><div id="loadBarFill" style="height:100%;width:0%;border-radius:99px;background:var(--accent);transition:width .35s ease;"></div></div>
       <div class="loading-steps">
         <div class="load-step active" id="step1"><span class="step-dot"></span> Extracting ingredients</div>
         <div class="load-step" id="step2"><span class="step-dot"></span> Checking safety data</div>
@@ -974,29 +975,31 @@ function mergeBatchResults(batches){
 }
 
 // Run batches concurrently (capped) and render progressively as they land
-async function runBatchesParallel(batches){
+async function runBatchesParallel(batches,totalIngredients){
   const MAX_CONCURRENT=4;
   const results=new Array(batches.length);
-  let done=0, firstRendered=false, next=0;
-  const total=batches.length;
-  updateLoadingMsg('Analyzing '+total+' groups of ingredients...');
+  const total=totalIngredients||batches.reduce((n,b)=>n+b.length,0);
+  let doneCount=0, next=0;
+  updateLoadingMsg('Analyzing 0 of '+total+' ingredients...');
   async function worker(){
     while(true){
       const i=next++;
       if(i>=batches.length)return;
+      const size=batches[i].length;
       results[i]=await callAnalyze({mode:'text',content:batches[i].join(', '),category:currentCategory});
-      done++;
-      updateLoadingMsg('Analyzed '+done+' of '+total+' groups...');
-      // Show partial results as soon as the first batch lands
-      const ready=results.filter(Boolean);
-      if(ready.length&&(!firstRendered||done===total)){
-        if(!firstRendered){hideLoading();firstRendered=true;}
-        try{renderResults(mergeBatchResults(ready));}catch(e){}
-      }
+      doneCount+=size;
+      updateLoadingMsg('Analyzing '+Math.min(doneCount,total)+' of '+total+' ingredients...');
+      setLoadingProgress(doneCount/total);
     }
   }
   await Promise.all(Array.from({length:Math.min(MAX_CONCURRENT,batches.length)},worker));
   return results;
+}
+function setLoadingProgress(frac){
+  try{
+    const bar=document.getElementById('loadBarFill');
+    if(bar)bar.style.width=Math.round(Math.max(0,Math.min(1,frac))*100)+'%';
+  }catch(e){}
 }
 async function runAnalysis(mode){
   hideError();
@@ -1024,7 +1027,7 @@ async function runAnalysis(mode){
         const allIngredients=t.split(',').map(s=>s.trim()).filter(Boolean);
         const batches=[];
         for(let i=0;i<allIngredients.length;i+=BATCH_SIZE)batches.push(allIngredients.slice(i,i+BATCH_SIZE));
-        const results=await runBatchesParallel(batches);
+        const results=await runBatchesParallel(batches,allIngredients.length);
         hideLoading();renderResults(mergeBatchResults(results.filter(Boolean)));
       }
     } else if(mode==='upload'||mode==='scan'){
@@ -1066,7 +1069,7 @@ async function runAnalysis(mode){
       const allIngs=ingText.split(',').map(s=>s.trim()).filter(Boolean);
       const batches=[];
       for(let i=0;i<allIngs.length;i+=BATCH_SIZE)batches.push(allIngs.slice(i,i+BATCH_SIZE));
-      const results=await runBatchesParallel(batches);
+      const results=await runBatchesParallel(batches,allIngs.length);
       hideLoading();renderResults(mergeBatchResults(results.filter(Boolean)));
     }
   } catch(e){hideLoading();showError('Analysis failed: '+e.message);}
@@ -1099,6 +1102,7 @@ function fileToBase64(file){
   });
 }
 function showLoading(){
+  try{const b=document.getElementById('loadBarFill');if(b)b.style.width='0%';}catch(e){}
   try{document.getElementById('inputCard').style.display='none';}catch(e){}
   try{document.getElementById('loadingSection').classList.add('visible');}catch(e){}
   try{document.getElementById('resultsSection').classList.remove('visible');}catch(e){}
